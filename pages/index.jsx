@@ -21,18 +21,38 @@ export default function Home() {
         </section>
         <section className="py-20 ">
           <article className="layout">
-            <h2 className="text-2xl">Featured Project</h2>
-            <ul className="mt-4 grid gap-4 xl:grid-cols-3 sm:grid-cols-2">
-              {Array(6).fill(<BlogCard />)}
+            <div className="flex items-end">
+              <h2 className="text-7.5xl leading-normal pr-6">
+                Featured
+                <br />
+                Project
+              </h2>
+              <p className="text-xl ">
+                Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam
+                laudantium voluptate. Numquam culpa dignissimos recusandae.
+                Perferendis sed animi aut quas pariatur perferendis velit sint.
+                Fugiat voluptas quis id.
+              </p>
+            </div>
+            <ul className="grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2">
+              {Array(3).fill(<BlogCard />)}
             </ul>
             <ButtonLink className="mt-4">See more Project</ButtonLink>
           </article>
         </section>
         <section className="py-20">
           <article className="layout">
-            <h2 className="text-2xl">Featured Post</h2>
-            <ul className="mt-4 grid gap-4 xl:grid-cols-3 sm:grid-cols-2">
-            {Array(6).fill(<BlogCard />)}
+            <h2 className="text-7.5xl leading-normal pr-6 text-center">
+              Featured Blog
+            </h2>
+            <p className="max-w-4xl m-auto mt-2 text-xl text-center">
+              Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam
+              laudantium voluptate. Numquam culpa dignissimos recusandae.
+              Perferendis sed animi aut quas pariatur perferendis velit sint.
+              Fugiat voluptas quis id.
+            </p>
+            <ul className="grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2">
+              {Array(3).fill(<BlogCard />)}
             </ul>
             <ButtonLink className="mt-4">See more Post</ButtonLink>
           </article>

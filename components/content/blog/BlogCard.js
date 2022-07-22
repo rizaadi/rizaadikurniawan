@@ -3,12 +3,12 @@ import Tag from "../Tag";
 
 function BlogCard() {
   return (
-    <li className="w-full rounded-md border bg-slate-200">
-      <a href="" className="block h-full rounded-md border-gray-300">
+    <li className="w-full border rounded-md bg-slate-200">
+      <a href="" className="block h-full border-gray-300 rounded-md">
         <div className="relative">
           {/* Image */}
           <figure
-            className="overflow-hidden rounded shadow-sm mx-auto w-full"
+            className="w-full mx-auto overflow-hidden rounded shadow-sm"
             style={{ maxWidth: 400 }}
           >
             <div
@@ -30,7 +30,7 @@ function BlogCard() {
           </figure>
           {/* end of image */}
           {/* Tag */}
-          <div className="absolute bottom-0 w-full px-4 py-2 mt-2 flex flex-wrap justify-end gap-y-1 gap-x-2 text-sm text-black ">
+          <div className="absolute bottom-0 flex flex-wrap justify-end w-full px-4 py-2 mt-2 text-sm text-black gap-y-1 gap-x-2 ">
             <Tag />
             <Tag />
           </div>
@@ -38,7 +38,8 @@ function BlogCard() {
         </div>
         <div className="p-4">
           <h4 className="text-gray-800">Title post</h4>
-          <p className="text-sm text-gray-700">description</p>
+          <p className="mt-4 mb-2 text-sm font-semibold">{new Date().toUTCString()}</p>
+          <p className="text-sm text-gray-700">description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur </p>
         </div>
       </a>
     </li>
