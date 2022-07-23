@@ -38,7 +38,7 @@ function BlogCard() {
         </div>
         <div className="p-4">
           <h4 className="text-gray-800">Title post</h4>
-          <p className="mt-4 mb-2 text-sm font-semibold">{new Date().toUTCString()}</p>
+          <p className="mt-4 mb-2 text-sm font-semibold">19 Mei 2020</p>
           <p className="text-sm text-gray-700">description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur </p>
         </div>
       </a>
