@@ -21,12 +21,12 @@ export default function Home() {
         <section className="py-20 ">
           <article className="layout">
             <div className="flex items-end">
-              <h2 className="lg:text-7.5xl leading-normal pr-6 ">
+              <h2 className="md:text-7.5xl leading-normal pr-6 text-4xl">
                 Featured
                 <br />
                 Project
               </h2>
-              <p className="text-xl ">
+              <p className="text-base md:text-2xl">
                 I made some projects that I&#39;m proud of
               </p>
             </div>
@@ -40,10 +40,10 @@ export default function Home() {
         </section>
         <section className="py-20">
           <article className="layout">
-            <h2 className="text-7.5xl leading-normal pr-6 text-center lg:text-6xl">
+            <h2 className="md:text-7.5xl leading-normal pr-6 text-4xl text-center">
               Featured Blog
             </h2>
-            <p className="max-w-4xl m-auto mt-2 text-xl text-center">
+            <p className="max-w-4xl m-auto mt-2 text-base text-center md:text-2xl">
               I write a blog about design, coding, hobbies that I like, and
               random things haha
             </p>
