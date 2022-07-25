@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Tag from "../Tag";
 
-function BlogCard() {
+function BlogCard({title, desc}) {
   return (
     <li className="w-full border rounded-md bg-slate-200">
       <a href="" className="block h-full border-gray-300 rounded-md">
@@ -37,9 +37,9 @@ function BlogCard() {
           {/* end of tag */}
         </div>
         <div className="p-4">
-          <h4 className="text-gray-800">Title post</h4>
+          <h4 className="text-gray-800">{title}</h4>
           <p className="mt-4 mb-2 text-sm font-semibold">19 Mei 2020</p>
-          <p className="text-sm text-gray-700">description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur </p>
+          <p className="text-sm text-gray-700">{desc}</p>
         </div>
       </a>
     </li>

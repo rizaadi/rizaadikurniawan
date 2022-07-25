@@ -21,7 +21,7 @@ export default function Home() {
         <section className="py-20 ">
           <article className="layout">
             <div className="flex items-end">
-              <h2 className="text-7.5xl leading-normal pr-6">
+              <h2 className="lg:text-7.5xl leading-normal pr-6 ">
                 Featured
                 <br />
                 Project
@@ -31,14 +31,16 @@ export default function Home() {
               </p>
             </div>
             <ul className="grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2">
-              {Array(3).fill(<BlogCard />)}
+              {blogs.map(({ desc, title }) => (
+                <BlogCard key={title} title={title} desc={desc} />
+              ))}
             </ul>
             <ButtonLink className="mt-4">See more Project</ButtonLink>
           </article>
         </section>
         <section className="py-20">
           <article className="layout">
-            <h2 className="text-7.5xl leading-normal pr-6 text-center">
+            <h2 className="text-7.5xl leading-normal pr-6 text-center lg:text-6xl">
               Featured Blog
             </h2>
             <p className="max-w-4xl m-auto mt-2 text-xl text-center">
@@ -46,7 +48,9 @@ export default function Home() {
               random things haha
             </p>
             <ul className="grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2">
-              {Array(3).fill(<BlogCard />)}
+              {blogs.map(({ desc, title }) => (
+                <BlogCard key={title} title={title} desc={desc} />
+              ))}
             </ul>
             <ButtonLink className="mt-4">See more Post</ButtonLink>
           </article>
@@ -55,3 +59,18 @@ export default function Home() {
     </Layout>
   );
 }
+
+const blogs = [
+  {
+    title: "title",
+    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
+  },
+  {
+    title: "title2",
+    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
+  },
+  {
+    title: "title3",
+    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
+  },
+];
