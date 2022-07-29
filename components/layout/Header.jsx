@@ -7,8 +7,8 @@ function Header() {
   return (
     <header>
       {/* <div className="bg-gradient-to-b from-gray-500 to-gray-900"> */}
-      <nav className="flex items-center justify-between py-5 layout">
-        <ul className="flex items-center justify-between space-x-8 text-sm font-semibold font-poppins">
+      <nav className="flex items-center justify-center py-5 layout">
+        <ul className="flex items-center ml-auto space-x-3 text-xs md:text-base font-semibold font-poppins md:space-x-11">
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
               <Link href={href}>{label}</Link>
@@ -16,7 +16,7 @@ function Header() {
           ))}
         </ul>
         <button
-          className="p-2.5 bg-slate-400 rounded-md"
+          className="p-2.5 bg-slate-400 rounded-md ml-auto"
           onClick={() => setTheme(theme === "dark " ? "light" : "dark")}
         >
           {theme === "light" ? <FiMoon size={20} /> : <FiSun size={20} />}

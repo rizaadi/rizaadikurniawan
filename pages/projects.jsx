@@ -1,6 +1,6 @@
+import ProjectCard from "../components/content/projects/ProjectCard";
 import Tag from "../components/content/Tag";
 import Layout from "../components/layout/Layout";
-import BlogCard from "../components/content/blog/BlogCard";
 
 function Projects() {
   return (
@@ -21,7 +21,7 @@ function Projects() {
             </div>
             <ul className="grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3">
               {projects.map(({ desc, title }) => (
-                <BlogCard key={title} title={title} desc={desc} />
+                <ProjectCard key={title} title={title} desc={desc} />
               ))}
             </ul>
           </div>
