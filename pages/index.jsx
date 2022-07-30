@@ -9,6 +9,9 @@ export default function Home() {
   return (
     <Layout>
       <main>
+        <p className="p-2 mb-4 font-medium text-center bg-red-400 ">
+          This website is still under development
+        </p>
         <section className="flex flex-col justify-center mb-20 -mt-20 min-h-main">
           <article className="layout">
             <h2 className="text-2xl md:text-4xl 2xl:text-5xl">Hello!</h2>
