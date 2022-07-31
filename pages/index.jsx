@@ -49,7 +49,7 @@ export default function Home() {
             </h2>
             <p className="max-w-4xl m-auto mt-2 text-base text-center md:text-2xl">
               I write a blog about design, coding, hobbies that I like, and
-              random things haha
+              random things
             </p>
             <ul className="grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2">
               {blogs.map(({ desc, title }) => (

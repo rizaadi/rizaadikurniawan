@@ -26,7 +26,6 @@ function TechIcons({ className, techs }) {
       {techs.map((tech) => {
         // if (!techList[tech]) return;
         const currentIcon = techList[tech];
-        console.log(techs);
         return (
           <li key={currentIcon.name}>
             <currentIcon.icon />
