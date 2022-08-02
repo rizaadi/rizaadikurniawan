@@ -1,6 +1,7 @@
 import Tag from "../components/content/Tag";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/content/blog/BlogCard";
+import BlogContent from "../components/content/blog/BlogContent";
 
 function BlogPage() {
   return (
@@ -8,25 +9,29 @@ function BlogPage() {
       <main>
         <section>
           <div className="py-12 layout">
-            <h1 className="text-3xl md:text-5xl">Blog</h1>
-            <p className="mt-2">
+            <h1 className="text-6xl md:text-7.5xl leading-normal">Blog</h1>
+            <p className="mt-3 text-base md: md:text-2xl">
               I write a blog about design, coding, hobbies that I like, and
               random things haha
             </p>
-            <input
-              className="mt-4 border rounded-md w-80"
-              type="text"
-              placeholder="Search.."
-            />
-            <div className="flex flex-wrap items-baseline justify-start gap-2 mt-2">
-              <span>Select Tag: </span>
-              {Array(10).fill(<Tag />)}
+            <div className="gap-24 mt-10 md:flex">
+              <ul className="mt-4">
+                {blogs.map(({ desc, title }) => (
+                  <BlogContent key={title} title={title} desc={desc} />
+                ))}
+              </ul>
+              <div className="w-auto">
+                <input
+                  className="w-full p-1 mt-4 border rounded-md"
+                  type="text"
+                  placeholder="Search.."
+                />
+                <h3 className="mt-3 whitespace-nowrap">Explore Categories</h3>
+                <div className="flex flex-wrap gap-2 mt-2 md:grid-cols-5 md:grid">
+                  {Array(11).fill(<Tag />)}
+                </div>
+              </div>
             </div>
-            <ul className="grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3">
-              {blogs.map(({ desc, title }) => (
-                <BlogCard key={title} title={title} desc={desc} />
-              ))}
-            </ul>
           </div>
         </section>
       </main>
