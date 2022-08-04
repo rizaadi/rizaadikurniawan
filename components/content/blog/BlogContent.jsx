@@ -3,7 +3,7 @@ function BlogContent({ title, desc }) {
     <li>
       <a href="">
         <div className="pb-9">
-          <p className="text-gray-700">June 6, 2021 • 5 mins reading time</p>
+          <p className="text-gray-700 dark:text-white">June 6, 2021 • 5 mins reading time</p>
           <h1 className="mt-2">{title}</h1>
           <p className="mt-3 ">{desc}</p>
           <p className="mt-4">READ MORE</p>

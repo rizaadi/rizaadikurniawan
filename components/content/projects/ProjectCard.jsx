@@ -19,7 +19,7 @@ function ProjectCard({ title, desc }) {
             {/* List Icons */}
           </div>
           <h4 className="mt-2">{title}</h4>
-          <p className="mb-auto text-sm ">{desc}</p>
+          <p className="mb-auto text-sm text-gray-700 dark:text-white">{desc}</p>
         </div>
       </a>
     </li>

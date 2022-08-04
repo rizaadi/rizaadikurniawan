@@ -5,6 +5,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -13,6 +14,9 @@ module.exports = {
       fontSize: {
         "7.5xl": "5.625rem",
       },
+      colors: {
+        dark: '#222222'
+      }
     },
   },
   plugins: [],

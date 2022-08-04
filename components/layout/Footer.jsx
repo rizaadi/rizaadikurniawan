@@ -3,7 +3,7 @@ import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 function Footer() {
   return (
     <footer className="pb-2 mt-4">
-      <main className="flex flex-col items-center border-t layout">
+      <main className="flex flex-col items-center border-t layout dark:border-gray-600">
         <h4 className="mt-10 font-semibold ">Reach me out</h4>
         <div className="flex mt-3 space-x-4">
           {sosmed.map((sosmed) => (

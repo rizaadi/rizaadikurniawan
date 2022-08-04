@@ -21,7 +21,7 @@ function BlogCard({ title, desc }) {
             <Tag />
           </div>
             <p className="mt-2 text-sm font-semibold">19 Mei 2020</p>
-            <p className="mt-2 text-sm text-gray-700 ">{desc}</p>
+            <p className="mt-2 text-sm text-gray-700 dark:text-white">{desc}</p>
         </div>
       </a>
     </li>
