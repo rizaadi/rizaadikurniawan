@@ -2,7 +2,7 @@ function Tag() {
   return (
     <button
       href=""
-      className="inline-block rounded-md bg-slate-400 px-1.5 py-0.5 font-medium "
+      className="inline-block rounded-md bg-slate-100 px-1.5 py-0.5 font-medium  w-fit dark:bg-dark"
     >
       Tag
     </button>

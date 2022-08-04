@@ -1,6 +1,6 @@
+import ProjectCard from "../components/content/projects/ProjectCard";
 import Tag from "../components/content/Tag";
 import Layout from "../components/layout/Layout";
-import BlogCard from "../components/content/blog/BlogCard";
 
 function Projects() {
   return (
@@ -8,20 +8,19 @@ function Projects() {
       <main>
         <section>
           <div className="py-12 layout">
-            <h1 className="text-3xl md:text-5xl">Projects</h1>
-            <p className="mt-2">I made some projects that I&#39;m proud of</p>
-            <input
-              className="mt-4 border rounded-md w-80"
-              type="text"
-              placeholder="Search.."
-            />
-            <div className="flex flex-wrap items-baseline justify-start gap-2 mt-2">
-              <span>Select Tag: </span>
+            <h1 className="text-6xl md:text-7.5xl leading-normal text-center">
+              Projects
+            </h1>
+            <p className="mt-3 text-base text-center md: md:text-2xl">
+              I made some projects that I&#39;m proud of
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
               {Array(10).fill(<Tag />)}
             </div>
-            <ul className="grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3">
+            <ul className="grid gap-4 mt-14 sm:grid-cols-2 xl:grid-cols-3">
               {projects.map(({ desc, title }) => (
-                <BlogCard key={title} title={title} desc={desc} />
+                <ProjectCard key={title} title={title} desc={desc} />
               ))}
             </ul>
           </div>
