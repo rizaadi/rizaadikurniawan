@@ -1,10 +1,15 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { FiMoon, FiSun } from "react-icons/fi";
 function Header() {
   const { theme, setTheme } = useTheme();
+  
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
   return (
     <header className="sticky top-0 z-50 transition-shadow shadow-sm">
       <div className="transition-colors bg-white dark:bg-dark dark:text-white">

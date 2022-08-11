@@ -1,9 +1,28 @@
 import Tag from "../components/content/Tag";
 import Layout from "../components/layout/Layout";
-import BlogCard from "../components/content/blog/BlogCard";
 import BlogContent from "../components/content/blog/BlogContent";
+import { getAllArticles } from "../lib/mdx";
 
-function BlogPage() {
+export async function getStaticProps() {
+  const articles = await getAllArticles("blog");
+
+  articles
+    .map((article) => article.data)
+    .sort((a, b) => {
+      if (a.data.publishedAt > b.data.publishedAt) return 1;
+      if (a.data.publishedAt < b.data.publishedAt) return -1;
+
+      return 0;
+    });
+
+  return {
+    props: {
+      posts: articles.reverse(),
+    },
+  };
+}
+
+function BlogPage({ posts }) {
   return (
     <Layout>
       <main>
@@ -16,8 +35,15 @@ function BlogPage() {
             </p>
             <div className="gap-24 mt-10 md:flex">
               <ul className="mt-4">
-                {blogs.map(({ desc, title }) => (
-                  <BlogContent key={title} title={title} desc={desc} />
+                {posts.map((post) => (
+                  <BlogContent
+                    key={post.slug}
+                    slug={post.slug}
+                    title={post.title}
+                    desc={post.excerpt}
+                    publishedAt={post.publishedAt}
+                    readingTime={post.readingTime}
+                  />
                 ))}
               </ul>
               <div className="w-auto">
@@ -39,22 +65,4 @@ function BlogPage() {
   );
 }
 
-const blogs = [
-  {
-    title: "title",
-    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
-  },
-  {
-    title: "title2",
-    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
-  },
-  {
-    title: "title3",
-    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
-  },
-  {
-    title: "title4",
-    desc: "description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ",
-  },
-];
 export default BlogPage;
