@@ -5,13 +5,9 @@ import { useTheme } from "next-themes";
 import { FiMoon, FiSun } from "react-icons/fi";
 function Header() {
   const { theme, setTheme } = useTheme();
-  
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-
   return (
     <header className="sticky top-0 z-50 transition-shadow shadow-sm">
+      <script>(function () {})</script>
       <div className="transition-colors bg-white dark:bg-dark dark:text-white">
         <nav className="flex items-center justify-center py-5 layout">
           <ul className="flex items-center ml-auto space-x-3 text-xs font-semibold md:text-base font-poppins md:space-x-11">
