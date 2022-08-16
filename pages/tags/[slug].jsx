@@ -1,10 +1,24 @@
-import Tag from "../components/content/Tag";
-import Layout from "../components/layout/Layout";
-import BlogContent from "../components/content/blog/BlogContent";
-import { getAllArticles, getTags } from "../lib/mdx";
+import Tag from "../../components/content/Tag";
+import Layout from "../../components/layout/Layout";
+import BlogContent from "../../components/content/blog/BlogContent";
+import { getAllArticles, getTags } from "../../lib/mdx";
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
   const articles = await getAllArticles("blog");
+  const tags = new Set(
+    articles.map((article) => article.tags.split(",")).flat()
+  );
+  const paths = Array.from(tags).map((tag) => ({ params: { slug: tag } }));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const articles = await getAllArticles("blog");
+  const { slug } = params;
+  const posts = articles.filter((article) => article.tags.includes(slug));
 
   articles
     .map((article) => article.data)
@@ -18,19 +32,22 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: articles.reverse(),
+      posts: posts.reverse(),
       tags: tags,
+      slug: slug,
     },
   };
 }
 
-function BlogPage({ posts, tags }) {
+function TagsPage({ posts, tags, slug }) {
   return (
     <Layout>
       <main>
         <section>
           <div className="py-12 layout">
-            <h1 className="text-6xl md:text-7.5xl leading-normal">Blog</h1>
+            <h1 className="text-6xl md:text-7.5xl leading-normal">
+              Blog : {slug}
+            </h1>
             <p className="mt-3 text-base md: md:text-2xl">
               I write a blog about design, coding, hobbies that I like, and
               random things haha
@@ -55,7 +72,6 @@ function BlogPage({ posts, tags }) {
                   placeholder="Search.."
                 />
                 <h3 className="mt-3 whitespace-nowrap">Explore Categories</h3>
-                {/* <div className="flex flex-wrap gap-2 mt-2 md:grid-cols-5 md:grid"> */}
                 <div className="flex flex-wrap gap-2 mt-2">
                   {tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
@@ -70,4 +86,4 @@ function BlogPage({ posts, tags }) {
   );
 }
 
-export default BlogPage;
+export default TagsPage;
