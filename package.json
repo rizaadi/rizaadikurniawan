@@ -41,10 +41,10 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "npx prettier --write"
+      "npx prettier -w ."
     ],
     "src/**/*.{json,css,scss,md,mdx}": [
-      "npx prettier -w"
+      "npx prettier -w ."
     ]
   }
 }
