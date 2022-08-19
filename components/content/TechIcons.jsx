@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import * as React from "react";
-import { IoLogoVercel } from "react-icons/io5";
+import clsx from 'clsx';
+import * as React from 'react';
+import { IoLogoVercel } from 'react-icons/io5';
 import {
   SiFirebase,
   SiGit,
@@ -17,12 +17,11 @@ import {
   SiSass,
   SiTailwindcss,
   SiTypescript,
-} from "react-icons/si";
-
+} from 'react-icons/si';
 
 function TechIcons({ className, techs }) {
   return (
-    <ul className={clsx(className, "flex gap-2")}>
+    <ul className={clsx(className, 'flex gap-2')}>
       {techs.map((tech) => {
         // if (!techList[tech]) return;
         const currentIcon = techList[tech];
@@ -39,67 +38,67 @@ function TechIcons({ className, techs }) {
 const techList = {
   react: {
     icon: SiReact,
-    name: "React",
+    name: 'React',
   },
   nextjs: {
     icon: SiNextdotjs,
-    name: "Next.js",
+    name: 'Next.js',
   },
   tailwindcss: {
     icon: SiTailwindcss,
-    name: "Tailwind CSS",
+    name: 'Tailwind CSS',
   },
   scss: {
     icon: SiSass,
-    name: "SCSS",
+    name: 'SCSS',
   },
   javascript: {
     icon: SiJavascript,
-    name: "JavaScript",
+    name: 'JavaScript',
   },
   typescript: {
     icon: SiTypescript,
-    name: "TypeScript",
+    name: 'TypeScript',
   },
   nodejs: {
     icon: SiNodedotjs,
-    name: "Node.js",
+    name: 'Node.js',
   },
   firebase: {
     icon: SiFirebase,
-    name: "Firebase",
+    name: 'Firebase',
   },
   mongodb: {
     icon: SiMongodb,
-    name: "MongoDB",
+    name: 'MongoDB',
   },
   swr: {
     icon: IoLogoVercel,
-    name: "SWR",
+    name: 'SWR',
   },
   redux: {
     icon: SiRedux,
-    name: "Redux",
+    name: 'Redux',
   },
   mdx: {
     icon: SiMarkdown,
-    name: "MDX",
+    name: 'MDX',
   },
   prettier: {
     icon: SiPrettier,
-    name: "Prettier",
+    name: 'Prettier',
   },
   analytics: {
     icon: SiGoogleanalytics,
-    name: "Google Analytics",
+    name: 'Google Analytics',
   },
   git: {
     icon: SiGit,
-    name: "Git",
+    name: 'Git',
   },
   notion: {
     icon: SiNotion,
-    name: "Notion API",
+    name: 'Notion API',
   },
 };
 export default TechIcons;
