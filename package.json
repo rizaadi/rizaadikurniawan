@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "clsx": "^1.2.1",
@@ -41,10 +42,10 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "npx prettier -w ."
+      "yarn prettier -w"
     ],
     "src/**/*.{json,css,scss,md,mdx}": [
-      "npx prettier -w ."
+      "yarn prettier -w"
     ]
   }
 }
