@@ -35,7 +35,7 @@ function BlogPage({ posts, tags }) {
               I write a blog about design, coding, hobbies that I like, and
               random things haha
             </p>
-            <div className='gap-24 mt-10 md:flex'>
+            <div className='justify-between gap-24 mt-10 md:flex'>
               <ul className='mt-4'>
                 {posts.map((post) => (
                   <BlogContent
@@ -48,7 +48,7 @@ function BlogPage({ posts, tags }) {
                   />
                 ))}
               </ul>
-              <div className='w-auto'>
+              <div className='w-auto md:w-60'>
                 <input
                   className='w-full p-1 mt-4 border rounded-md'
                   type='text'
