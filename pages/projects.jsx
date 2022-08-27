@@ -1,8 +1,30 @@
+import React from 'react';
 import ProjectCard from '../components/content/projects/ProjectCard';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
+import { getAllArticles, getTags } from '../lib/mdx';
 
-function Projects() {
+export async function getStaticProps() {
+  const articles = await getAllArticles('project');
+
+  articles
+    .map((article) => article.data)
+    .sort((a, b) => {
+      if (a.data.publishedAt > b.data.publishedAt) return 1;
+      if (a.data.publishedAt < b.data.publishedAt) return -1;
+
+      return 0;
+    });
+  const tags = getTags(articles);
+
+  return {
+    props: {
+      posts: articles.reverse(),
+      tags: tags,
+    },
+  };
+}
+function Projects({ posts, tags }) {
   return (
     <Layout>
       <main>
@@ -15,12 +37,15 @@ function Projects() {
               I made some projects that I&#39;m proud of
             </p>
 
-            <div className='flex flex-wrap justify-center gap-2 mt-4'>
-              {Array(10).fill(<Tag />)}
-            </div>
             <ul className='grid gap-4 mt-14 sm:grid-cols-2 xl:grid-cols-3'>
-              {projects.map(({ desc, title }) => (
-                <ProjectCard key={title} title={title} desc={desc} />
+              {posts.map((post) => (
+                <ProjectCard
+                  key={post.slug}
+                  slug={post.slug}
+                  title={post.title}
+                  desc={post.description}
+                  tags={post.tags}
+                />
               ))}
             </ul>
           </div>

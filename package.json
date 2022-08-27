@@ -44,7 +44,7 @@
     "**/*.{js,jsx,ts,tsx,html,css,json}": [
       "yarn prettier -w"
     ],
-    "src/**/*.{json,css,scss,md,mdx}": [
+    "**/*.{json,css,scss,md,mdx}": [
       "yarn prettier -w"
     ]
   }

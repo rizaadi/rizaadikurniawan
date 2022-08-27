@@ -4,8 +4,21 @@ import Layout from '../components/layout/Layout';
 import BlogCard from '../components/content/blog/BlogCard';
 import ButtonLink from '../components/buttons/ButtonLink';
 import ProjectCard from '../components/content/projects/ProjectCard';
+import { getAllArticles, getFeatured } from '../lib/mdx';
 
-export default function Home() {
+export async function getStaticProps() {
+  const projects = await getAllArticles('project');
+  const featuredProjects = getFeatured(projects, [
+    'example-project',
+    'example-project2',
+    'example-project3',
+  ]);
+  console.log(featuredProjects);
+  return {
+    props: { featuredProjects },
+  };
+}
+export default function Home({ featuredProjects }) {
   return (
     <Layout>
       <main>
@@ -35,8 +48,14 @@ export default function Home() {
               </p>
             </div>
             <ul className='grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2'>
-              {blogs.map(({ desc, title }) => (
-                <ProjectCard key={title} title={title} desc={desc} />
+              {featuredProjects.map((post) => (
+                <ProjectCard
+                  key={post.slug}
+                  slug={post.slug}
+                  title={post.title}
+                  desc={post.description}
+                  tags={post.tags}
+                />
               ))}
             </ul>
             <ButtonLink className='mt-4'>See more Project</ButtonLink>
