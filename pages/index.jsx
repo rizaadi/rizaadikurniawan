@@ -8,17 +8,22 @@ import { getAllArticles, getFeatured } from '../lib/mdx';
 
 export async function getStaticProps() {
   const projects = await getAllArticles('project');
+  const blogs = await getAllArticles('blog');
   const featuredProjects = getFeatured(projects, [
     'example-project',
     'example-project2',
     'example-project3',
   ]);
-  console.log(featuredProjects);
+  const featuredBlogs = getFeatured(blogs, [
+    'example-post',
+    'hello-world',
+    'hello-worldsada',
+  ]);
   return {
-    props: { featuredProjects },
+    props: { featuredProjects, featuredBlogs },
   };
 }
-export default function Home({ featuredProjects }) {
+export default function Home({ featuredProjects, featuredBlogs }) {
   return (
     <Layout>
       <main>
@@ -71,8 +76,13 @@ export default function Home({ featuredProjects }) {
               random things
             </p>
             <ul className='grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2'>
-              {blogs.map(({ desc, title }) => (
-                <BlogCard key={title} title={title} desc={desc} />
+              {featuredBlogs.map((post) => (
+                <BlogCard
+                  key={post.slug}
+                  title={post.title}
+                  desc={post.description}
+                  tags={post.tags}
+                />
               ))}
             </ul>
             <ButtonLink className='mt-4'>See more Post</ButtonLink>
