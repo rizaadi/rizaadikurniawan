@@ -4,6 +4,7 @@ import { getFiles, getSlug } from '../../lib/mdx';
 import Layout from '../../components/layout/Layout';
 import Tag from '../../components/content/Tag';
 import dayjs from 'dayjs';
+import TechIcons from '../../components/content/TechIcons';
 
 export default function Project({ frontMatter, source }) {
   return (
@@ -23,11 +24,7 @@ export default function Project({ frontMatter, source }) {
             </ul>
             <ul className='flex justify-center gap-2 mt-3'>
               {frontMatter.tags.split(',').map((tag) => (
-                <li key={tag}>
-                  <Tag key={tag} className='gap-6'>
-                    {tag}
-                  </Tag>
-                </li>
+                <TechIcons key={tag} techs={tag.split(',')} />
               ))}
             </ul>
             <div className='mt-14'>
