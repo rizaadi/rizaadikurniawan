@@ -1,8 +1,8 @@
 import React from 'react';
+
 import ProjectCard from '../components/content/projects/ProjectCard';
-import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
-import { getAllArticles, getTags } from '../lib/mdx';
+import { getAllArticles } from '../lib/mdx';
 
 export async function getStaticProps() {
   const articles = await getAllArticles('project');
@@ -15,16 +15,14 @@ export async function getStaticProps() {
 
       return 0;
     });
-  const tags = getTags(articles);
 
   return {
     props: {
       posts: articles.reverse(),
-      tags: tags,
     },
   };
 }
-function Projects({ posts, tags }) {
+function Projects({ posts }) {
   return (
     <Layout>
       <main>
@@ -54,22 +52,4 @@ function Projects({ posts, tags }) {
   );
 }
 
-const projects = [
-  {
-    title: 'title',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-  {
-    title: 'title2',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-  {
-    title: 'title3',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-  {
-    title: 'title4',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-];
 export default Projects;

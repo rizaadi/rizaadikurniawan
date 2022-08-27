@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import TechIcons from '../TechIcons';
 function ProjectCard({ title, desc, tags, slug }) {
   return (

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';

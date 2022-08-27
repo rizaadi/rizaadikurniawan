@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Layout from '../components/layout/Layout';
-import BlogCard from '../components/content/blog/BlogCard';
 import ButtonLink from '../components/buttons/ButtonLink';
+import BlogCard from '../components/content/blog/BlogCard';
 import ProjectCard from '../components/content/projects/ProjectCard';
+import Layout from '../components/layout/Layout';
 import { getAllArticles, getFeatured } from '../lib/mdx';
 
 export async function getStaticProps() {
@@ -92,18 +92,3 @@ export default function Home({ featuredProjects, featuredBlogs }) {
     </Layout>
   );
 }
-
-const blogs = [
-  {
-    title: 'title',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-  {
-    title: 'title2',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-  {
-    title: 'title3',
-    desc: 'description Deserunt ullam laudantium omnis fugit. Dolor autem quibusdam laudantium voluptate. Numquam culpa dignissimos recusandae. Perferendis sed animi aut quas pariatur ',
-  },
-];

@@ -1,11 +1,13 @@
 import React from 'react';
+
+import BlogContent from '../../components/content/blog/BlogContent';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
-import BlogContent from '../../components/content/blog/BlogContent';
 import { getAllArticles, getTags } from '../../lib/mdx';
 
 export async function getStaticPaths() {
   const articles = await getAllArticles('blog');
+  // eslint-disable-next-line no-undef
   const tags = new Set(
     articles.map((article) => article.tags.split(',')).flat()
   );

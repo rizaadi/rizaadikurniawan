@@ -1,8 +1,9 @@
+import React from 'react';
+
+import BlogContent from '../components/content/blog/BlogContent';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
-import BlogContent from '../components/content/blog/BlogContent';
 import { getAllArticles, getTags } from '../lib/mdx';
-import React from 'react';
 
 export async function getStaticProps() {
   const articles = await getAllArticles('blog');

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import Tag from '../Tag';
 
 function BlogCard({ title, desc, tags }) {

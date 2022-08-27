@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiGithub, SiLinkedin, SiInstagram } from 'react-icons/si';
+import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si';
 function Footer() {
   return (
     <footer className='pb-2 mt-4'>
