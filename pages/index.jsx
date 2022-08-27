@@ -63,7 +63,10 @@ export default function Home({ featuredProjects, featuredBlogs }) {
                 />
               ))}
             </ul>
-            <ButtonLink className='mt-4'>See more Project</ButtonLink>
+
+            <ButtonLink href='/projects' className='mt-4'>
+              See more Project
+            </ButtonLink>
           </article>
         </section>
         <section className='py-20'>
@@ -85,7 +88,9 @@ export default function Home({ featuredProjects, featuredBlogs }) {
                 />
               ))}
             </ul>
-            <ButtonLink className='mt-4'>See more Post</ButtonLink>
+            <ButtonLink href='/blog' className='mt-4'>
+              See more Post
+            </ButtonLink>
           </article>
         </section>
       </main>
