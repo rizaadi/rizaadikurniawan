@@ -2,6 +2,7 @@ import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
 import BlogContent from '../components/content/blog/BlogContent';
 import { getAllArticles, getTags } from '../lib/mdx';
+import React from 'react';
 
 export async function getStaticProps() {
   const articles = await getAllArticles('blog');
@@ -25,6 +26,29 @@ export async function getStaticProps() {
 }
 
 function BlogPage({ posts, tags }) {
+  const populatedPosts = posts;
+
+  //search
+  const [search, setSearch] = React.useState('');
+
+  const [filteredPosts, setFilteredPosts] = React.useState(() => [...posts]);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  React.useEffect(() => {
+    const results = populatedPosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.description.toLowerCase().includes(search.toLowerCase()) ||
+        search
+          .toLowerCase()
+          .split(' ')
+          .every((tag) => post.tags.includes(tag))
+    );
+    setFilteredPosts(results);
+  }, [search, populatedPosts]);
+
   return (
     <Layout>
       <main>
@@ -37,7 +61,7 @@ function BlogPage({ posts, tags }) {
             </p>
             <div className='justify-between gap-24 mt-10 md:flex'>
               <ul className='mt-4'>
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                   <BlogContent
                     key={post.slug}
                     slug={post.slug}
@@ -53,6 +77,8 @@ function BlogPage({ posts, tags }) {
                   className='w-full p-1 mt-4 border rounded-md'
                   type='text'
                   placeholder='Search..'
+                  onChange={handleSearch}
+                  value={search}
                 />
                 <h3 className='mt-3 whitespace-nowrap'>Explore Categories</h3>
                 {/* <div className="flex flex-wrap gap-2 mt-2 md:grid-cols-5 md:grid"> */}
