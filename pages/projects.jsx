@@ -33,11 +33,10 @@ function Projects({ posts, tags }) {
             <h1 className='text-6xl md:text-7.5xl leading-normal text-center'>
               Projects
             </h1>
-            <p className='mt-3 text-base text-center md: md:text-2xl'>
+            <p className='mt-3 text-base text-center md:text-2xl'>
               I made some projects that I&#39;m proud of
             </p>
-
-            <ul className='grid gap-4 mt-14 sm:grid-cols-2 xl:grid-cols-3'>
+            <ul className='grid gap-4 mt-14 sm:grid-cols-2 lg:grid-cols-3'>
               {posts.map((post) => (
                 <ProjectCard
                   key={post.slug}

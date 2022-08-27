@@ -52,7 +52,7 @@ export default function Home({ featuredProjects, featuredBlogs }) {
                 I made some projects that I&#39;m proud of
               </p>
             </div>
-            <ul className='grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2'>
+            <ul className='grid gap-4 mt-16 lg:grid-cols-3 sm:grid-cols-2'>
               {featuredProjects.map((post) => (
                 <ProjectCard
                   key={post.slug}
@@ -75,7 +75,7 @@ export default function Home({ featuredProjects, featuredBlogs }) {
               I write a blog about design, coding, hobbies that I like, and
               random things
             </p>
-            <ul className='grid gap-4 mt-16 xl:grid-cols-3 sm:grid-cols-2'>
+            <ul className='grid gap-4 mt-16 lg:grid-cols-3 sm:grid-cols-2'>
               {featuredBlogs.map((post) => (
                 <BlogCard
                   key={post.slug}
