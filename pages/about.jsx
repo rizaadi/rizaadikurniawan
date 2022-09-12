@@ -55,7 +55,7 @@ function About() {
           </div>
         </section>
         <section>
-          <div className='pt-6 pb-24 layout'>
+          <div className='pt-6 layout'>
             <h2 className='text-3xl font-semibold'>EDUCATION</h2>
             <div className='flex justify-between mt-2 text-2xl font-medium border-b dark:border-gray-600'>
               <p>Universitas Internasional Semen Indonesia - Informatics</p>

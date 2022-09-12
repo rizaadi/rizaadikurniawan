@@ -27,7 +27,7 @@ function Projects({ posts }) {
     <Layout>
       <main>
         <section>
-          <div className='py-12 layout'>
+          <div className='pt-12 layout'>
             <h1 className='text-6xl md:text-7.5xl leading-normal text-center'>
               Projects
             </h1>

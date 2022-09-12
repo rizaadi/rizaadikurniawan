@@ -53,6 +53,9 @@ function BlogPage({ posts, tags }) {
   return (
     <Layout>
       <main>
+        <p className='p-2 mb-4 font-medium text-center bg-red-400 '>
+          This blog is still under development
+        </p>
         <section>
           <div className='py-12 layout'>
             <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
