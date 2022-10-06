@@ -2,15 +2,20 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
+  SiDart,
+  SiFigma,
   SiFirebase,
+  SiFlutter,
   SiGit,
   SiGoogleanalytics,
   SiJavascript,
+  SiLaravel,
   SiMarkdown,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
   SiNotion,
+  SiPhp,
   SiPrettier,
   SiReact,
   SiRedux,
@@ -99,6 +104,26 @@ const techList = {
   notion: {
     icon: SiNotion,
     name: 'Notion API',
+  },
+  figma: {
+    icon: SiFigma,
+    name: 'Figma',
+  },
+  flutter: {
+    icon: SiFlutter,
+    name: 'Flutter',
+  },
+  laravel: {
+    icon: SiLaravel,
+    name: 'Laravel',
+  },
+  php: {
+    icon: SiPhp,
+    name: 'Php',
+  },
+  dart: {
+    icon: SiDart,
+    name: 'Dart',
   },
 };
 export default TechIcons;

@@ -8,8 +8,8 @@ import { getAllArticles, getFeatured } from '../lib/mdx';
 export async function getStaticProps() {
   const projects = await getAllArticles('project');
   const featuredProjects = getFeatured(projects, [
-    'example-project',
-    'example-project2',
+    'sinpro',
+    'valorantlab',
     'example-project3',
   ]);
   return {
