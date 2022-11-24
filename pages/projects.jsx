@@ -42,6 +42,7 @@ function Projects({ posts }) {
                   title={post.title}
                   desc={post.description}
                   tags={post.tags}
+                  banner={post.banner}
                 />
               ))}
             </ul>

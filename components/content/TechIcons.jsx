@@ -26,12 +26,12 @@ import {
 
 function TechIcons({ className, techs }) {
   return (
-    <ul className={clsx(className, 'flex gap-2')}>
+    <ul className={clsx(className, 'flex list-none ')}>
       {techs.map((tech) => {
         // if (!techList[tech]) return;
         const currentIcon = techList[tech];
         return (
-          <li key={currentIcon.name}>
+          <li key={currentIcon.name} className='px-1'>
             <currentIcon.icon />
           </li>
         );
