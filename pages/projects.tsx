@@ -1,3 +1,4 @@
+import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 
 import ProjectCard from '../components/content/projects/ProjectCard';
@@ -8,10 +9,10 @@ export async function getStaticProps() {
   const articles = await getAllArticles('project');
 
   articles
-    .map((article) => article.data)
+    .map((article) => article.publishedAt)
     .sort((a, b) => {
-      if (a.data.publishedAt > b.data.publishedAt) return 1;
-      if (a.data.publishedAt < b.data.publishedAt) return -1;
+      if (a > b) return 1;
+      if (a < b) return -1;
 
       return 0;
     });
@@ -22,7 +23,7 @@ export async function getStaticProps() {
     },
   };
 }
-function Projects({ posts }) {
+function Projects({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <main>
@@ -40,9 +41,11 @@ function Projects({ posts }) {
                   key={post.slug}
                   slug={post.slug}
                   title={post.title}
-                  desc={post.description}
+                  description={post.description}
                   tags={post.tags}
                   banner={post.banner}
+                  publishedAt={post.publishedAt}
+                  readingTime={post.readingTime}
                 />
               ))}
             </ul>

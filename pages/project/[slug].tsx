@@ -1,12 +1,20 @@
 import dayjs from 'dayjs';
-import { MDXRemote } from 'next-mdx-remote';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
 import MDXComponents from '../../components/content/MDXComponents';
 import Layout from '../../components/layout/Layout';
 import { getFiles, getSlug } from '../../lib/mdx';
+import { ProjectFrontmatter } from '../../types/frontmatters';
 
-export default function Project({ frontMatter, source }) {
+export default function ProjectPage({
+  frontMatter,
+  source,
+}: {
+  frontMatter: ProjectFrontmatter;
+  source: MDXRemoteSerializeResult;
+}) {
   return (
     <Layout>
       <main>
@@ -40,7 +48,7 @@ export default function Project({ frontMatter, source }) {
     </Layout>
   );
 }
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getFiles('project');
   return {
     paths: posts.map((p) => ({
@@ -50,10 +58,10 @@ export async function getStaticPaths() {
     })),
     fallback: false,
   };
-}
-export async function getStaticProps(params) {
-  const post = await getSlug('project', params.params.slug);
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const post = await getSlug('project', params?.slug as string);
   return {
     props: { ...post },
   };
-}
+};

@@ -1,7 +1,11 @@
 import clsx from 'clsx';
 import Link from 'next/link';
+import React from 'react';
 
-function Tag({ children, className = '' }) {
+function Tag({
+  children,
+  className = '',
+}: React.ComponentPropsWithoutRef<'button'>) {
   return (
     <Link href={`/tags/${children}`}>
       <button

@@ -1,6 +1,18 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-function ButtonLink({ children, className = '', href }) {
+import React from 'react';
+
+type ButtonLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+};
+
+export default function ButtonLink({
+  children,
+  className = '',
+  href,
+}: ButtonLinkProps) {
   return (
     <Link href={`${href}`}>
       <a
@@ -14,5 +26,3 @@ function ButtonLink({ children, className = '', href }) {
     </Link>
   );
 }
-
-export default ButtonLink;

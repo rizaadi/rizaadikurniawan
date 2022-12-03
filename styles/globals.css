@@ -16,27 +16,27 @@
 
   h1,
   .h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl text-black-third dark:text-white;
+    @apply text-2xl font-bold font-primary md:text-4xl text-black-third dark:text-white;
   }
 
   h2,
   .h2 {
-    @apply font-primary text-xl font-bold md:text-3xl text-black-third dark:text-white;
+    @apply text-xl font-bold font-primary md:text-3xl text-black-third dark:text-white;
   }
 
   h3,
   .h3 {
-    @apply font-primary text-lg font-bold md:text-2xl text-black-third dark:text-white;
+    @apply text-lg font-bold font-primary md:text-2xl text-black-third dark:text-white;
   }
 
   h4,
   .h4 {
-    @apply font-primary text-base font-bold md:text-lg text-black-third dark:text-white;
+    @apply text-base font-bold font-primary md:text-lg text-black-third dark:text-white;
   }
 
   body,
   .body {
-    @apply font-primary text-sm md:text-base text-black-third dark:text-white;
+    @apply text-sm font-primary md:text-base text-black-third dark:text-white;
   }
 
   .layout {

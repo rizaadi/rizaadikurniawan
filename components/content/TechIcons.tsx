@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import * as React from 'react';
+import React from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
   SiDart,
@@ -24,11 +24,16 @@ import {
   SiTypescript,
 } from 'react-icons/si';
 
-function TechIcons({ className, techs }) {
+export type TechListType = keyof typeof techList;
+export type TechIconsProps = {
+  techs: Array<TechListType>;
+} & React.ComponentPropsWithoutRef<'ul'>;
+
+function TechIcons({ className, techs }: TechIconsProps) {
   return (
     <ul className={clsx(className, 'flex list-none ')}>
       {techs.map((tech) => {
-        // if (!techList[tech]) return;
+        if (!techList[tech]) return;
         const currentIcon = techList[tech];
         return (
           <li key={currentIcon.name} className='px-1'>

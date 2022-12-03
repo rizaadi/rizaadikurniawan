@@ -1,3 +1,4 @@
+import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 
 import ButtonLink from '../components/buttons/ButtonLink';
@@ -16,7 +17,9 @@ export async function getStaticProps() {
     props: { featuredProjects },
   };
 }
-export default function Home({ featuredProjects }) {
+export default function Home({
+  featuredProjects,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <main>
@@ -48,9 +51,11 @@ export default function Home({ featuredProjects }) {
                   key={post.slug}
                   slug={post.slug}
                   title={post.title}
-                  desc={post.description}
+                  description={post.description}
                   tags={post.tags}
                   banner={post.banner}
+                  publishedAt={post.publishedAt}
+                  readingTime={post.readingTime}
                 />
               ))}
             </ul>

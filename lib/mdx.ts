@@ -12,11 +12,17 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-export async function getFiles(type) {
+import {
+  ContentType,
+  Frontmatter,
+  PickFrontmatter,
+} from './../types/frontmatters';
+
+export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'pages', 'contents', type));
 }
 
-export async function getSlug(type, slug) {
+export async function getSlug(type: ContentType, slug: string) {
   const source = slug
     ? readFileSync(
         join(process.cwd(), 'pages', 'contents', type, `${slug}.mdx`),
@@ -52,38 +58,44 @@ export async function getSlug(type, slug) {
   };
 }
 
-export async function getAllArticles(type) {
+export async function getAllArticles<T extends ContentType>(type: T) {
   const articles = fs.readdirSync(
     path.join(process.cwd(), 'pages', 'contents', type)
   );
 
-  return articles.reduce((allArticles, articleSlug) => {
-    const source = fs.readFileSync(
-      path.join(process.cwd(), 'pages', 'contents', type, articleSlug),
-      'utf-8'
-    );
-    const { data } = matter(source);
+  return articles.reduce(
+    (allArticles: Array<PickFrontmatter<T>>, articleSlug) => {
+      const source = fs.readFileSync(
+        path.join(process.cwd(), 'pages', 'contents', type, articleSlug),
+        'utf-8'
+      );
+      const { data } = matter(source);
 
-    return [
-      {
-        ...data,
-        slug: articleSlug.replace('.mdx', ''),
-        readingTime: readingTime(source).text,
-      },
-      ...allArticles,
-    ];
-  }, []);
+      return [
+        {
+          ...(data as PickFrontmatter<T>),
+          slug: articleSlug.replace('.mdx', ''),
+          readingTime: readingTime(source).text,
+        },
+        ...allArticles,
+      ];
+    },
+    []
+  );
 }
-export function getTags(articles) {
+export function getTags<T extends Array<Frontmatter>>(articles: T) {
   const tags = articles.reduce(
-    (accTags, article) => [...accTags, ...article.tags.split(',')],
+    (accTags: string[], article) => [...accTags, ...article.tags.split(',')],
     []
   );
   return map(sortBy(toPairs(countBy(tags)), 1), 0).reverse();
 }
 
-export function getFeatured(articles, features) {
-  return features.map((feat) =>
-    articles.find((article) => article.slug === feat)
+export function getFeatured<T extends Frontmatter>(
+  articles: Array<T>,
+  features: string[]
+) {
+  return features.map(
+    (feat) => articles.find((article) => article.slug === feat) as T
   );
 }

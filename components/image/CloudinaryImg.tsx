@@ -1,6 +1,21 @@
 import { buildUrl } from 'cloudinary-build-url';
 import clsx from 'clsx';
 import Image from 'next/image';
+import * as React from 'react';
+
+type CloudinaryImgType = {
+  publicId: string;
+  height: string | number;
+  width: string | number;
+  alt: string;
+  title: string;
+  className: string;
+  aspect?: {
+    width: number;
+    height: number;
+  };
+  mdx?: boolean;
+} & React.ComponentPropsWithoutRef<'figure'>;
 
 export default function CloudinaryImg({
   publicId,
@@ -11,7 +26,7 @@ export default function CloudinaryImg({
   className,
   aspect,
   mdx = false,
-}) {
+}: CloudinaryImgType) {
   const urlBlurred = buildUrl(publicId, {
     cloud: {
       cloudName: 'rizaadi',
@@ -62,7 +77,7 @@ export default function CloudinaryImg({
         <style jsx>{`
           .img-blur::before {
             content: '';
-            position: absolute;
+            position: absolute;js
             inset: 0;
             filter: blur(20px);
             z-index: 0;
