@@ -26,6 +26,7 @@ export default function CloudinaryImg({
   className,
   aspect,
   mdx = false,
+  ...rest
 }: CloudinaryImgType) {
   const urlBlurred = buildUrl(publicId, {
     cloud: {
@@ -51,10 +52,11 @@ export default function CloudinaryImg({
         : undefined,
     },
   });
+
   const aspectRatio = aspect ? aspect.height / aspect.width : undefined;
+
   return (
     <figure
-      // className={clsx(className, 'block w-full overflow-hidden rounded', {
       className={clsx(
         className,
         'overflow-hidden rounded shadow dark:shadow-none',
@@ -63,6 +65,7 @@ export default function CloudinaryImg({
         }
       )}
       style={{ ...(mdx && width <= 800 ? { maxWidth: width } : {}) }}
+      {...rest}
     >
       <div
         style={{
@@ -77,7 +80,7 @@ export default function CloudinaryImg({
         <style jsx>{`
           .img-blur::before {
             content: '';
-            position: absolute;js
+            position: absolute;
             inset: 0;
             filter: blur(20px);
             z-index: 0;
