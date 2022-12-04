@@ -14,15 +14,14 @@ export default function ButtonLink({
   href,
 }: ButtonLinkProps) {
   return (
-    <Link href={`${href}`}>
-      <a
-        className={clsx(
-          'bg-slate-300 rounded py-2 px-4 font-bold inline-block dark:bg-dark',
-          className
-        )}
-      >
-        {children}
-      </a>
+    <Link
+      href={`${href}`}
+      className={clsx(
+        'bg-slate-300 rounded py-2 px-4 font-bold inline-block dark:bg-dark',
+        className
+      )}
+    >
+      {children}
     </Link>
   );
 }
