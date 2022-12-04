@@ -5,8 +5,8 @@ import * as React from 'react';
 
 type CloudinaryImgType = {
   publicId: string;
-  height: string | number;
-  width: string | number;
+  height: number;
+  width: number;
   alt: string;
   title: string;
   className: string;
