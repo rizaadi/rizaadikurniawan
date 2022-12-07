@@ -5,6 +5,7 @@ import React from 'react';
 
 import MDXComponents from '../../components/content/MDXComponents';
 import Layout from '../../components/layout/Layout';
+import Seo from '../../components/Seo';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { ProjectFrontmatter } from '../../types/frontmatters';
 
@@ -17,6 +18,15 @@ export default function ProjectPage({
 }) {
   return (
     <Layout>
+      <Seo
+        templateTitle={frontMatter.title}
+        description={frontMatter.description}
+        // TODO: make banner OG
+        // banner={}
+        date={new Date(
+          frontMatter.lastModifiedAt ?? frontMatter.publishedAt
+        ).toISOString()}
+      />
       <main>
         <article className='py-12 layout-blog'>
           <section>

@@ -4,6 +4,7 @@ import React from 'react';
 import ButtonLink from '../components/buttons/ButtonLink';
 import ProjectCard from '../components/content/projects/ProjectCard';
 import Layout from '../components/layout/Layout';
+import Seo from '../components/Seo';
 import { getAllArticles, getFeatured } from '../lib/mdx';
 
 export async function getStaticProps() {
@@ -22,6 +23,7 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
+      <Seo />
       <main>
         <section className='flex flex-col justify-center mb-20 min-h-main'>
           <article className='layout'>

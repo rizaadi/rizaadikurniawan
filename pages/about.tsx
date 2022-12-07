@@ -2,9 +2,11 @@ import React from 'react';
 
 import CloudinaryImg from '../components/image/CloudinaryImg';
 import Layout from '../components/layout/Layout';
+import Seo from '../components/Seo';
 function About() {
   return (
     <Layout>
+      <Seo templateTitle='About' />
       <main>
         <section>
           <div className='layout'>

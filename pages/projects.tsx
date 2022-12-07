@@ -3,6 +3,7 @@ import React from 'react';
 
 import ProjectCard from '../components/content/projects/ProjectCard';
 import Layout from '../components/layout/Layout';
+import Seo from '../components/Seo';
 import { getAllArticles } from '../lib/mdx';
 
 export async function getStaticProps() {
@@ -26,6 +27,10 @@ export async function getStaticProps() {
 function Projects({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
+      <Seo
+        templateTitle='Projects'
+        description="I made some projects that I'm proud of."
+      />
       <main>
         <section>
           <div className='pt-12 layout'>
