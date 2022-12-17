@@ -6,6 +6,7 @@ import React from 'react';
 import MDXComponents from '../../components/content/MDXComponents';
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
+import useContentMeta from '../../hooks/useContentMeta';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { ProjectFrontmatter } from '../../types/frontmatters';
 
@@ -16,6 +17,7 @@ export default function ProjectPage({
   frontMatter: ProjectFrontmatter;
   source: MDXRemoteSerializeResult;
 }) {
+  const meta = useContentMeta(frontMatter.slug);
   return (
     <Layout>
       <Seo
@@ -48,6 +50,9 @@ export default function ProjectPage({
                 </li>
               )}
               <li>{frontMatter.readingTime.text}</li>
+              <li>{`${
+                meta?.contentViews ? meta?.contentViews : '–––'
+              } Views`}</li>
             </ul>
           </section>
           <section className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'>
@@ -60,6 +65,7 @@ export default function ProjectPage({
 }
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getFiles('project');
+
   return {
     paths: posts.map((p) => ({
       params: {

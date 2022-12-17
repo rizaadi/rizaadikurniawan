@@ -54,7 +54,11 @@ export async function getSlug(type: ContentType, slug: string) {
   });
   return {
     source: mdxSource,
-    frontMatter: { readingTime: readingTime(source), ...data },
+    frontMatter: {
+      readingTime: readingTime(source),
+      slug: slug || null,
+      ...data,
+    },
   };
 }
 
