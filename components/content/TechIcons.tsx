@@ -1,16 +1,21 @@
 import clsx from 'clsx';
-import * as React from 'react';
+import React from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
+  SiDart,
+  SiFigma,
   SiFirebase,
+  SiFlutter,
   SiGit,
   SiGoogleanalytics,
   SiJavascript,
+  SiLaravel,
   SiMarkdown,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
   SiNotion,
+  SiPhp,
   SiPrettier,
   SiReact,
   SiRedux,
@@ -19,14 +24,19 @@ import {
   SiTypescript,
 } from 'react-icons/si';
 
-function TechIcons({ className, techs }) {
+export type TechListType = keyof typeof techList;
+export type TechIconsProps = {
+  techs: Array<TechListType>;
+} & React.ComponentPropsWithoutRef<'ul'>;
+
+function TechIcons({ className, techs }: TechIconsProps) {
   return (
-    <ul className={clsx(className, 'flex gap-2')}>
+    <ul className={clsx(className, 'flex list-none ')}>
       {techs.map((tech) => {
-        // if (!techList[tech]) return;
+        if (!techList[tech]) return;
         const currentIcon = techList[tech];
         return (
-          <li key={currentIcon.name}>
+          <li key={currentIcon.name} className='px-1'>
             <currentIcon.icon />
           </li>
         );
@@ -99,6 +109,26 @@ const techList = {
   notion: {
     icon: SiNotion,
     name: 'Notion API',
+  },
+  figma: {
+    icon: SiFigma,
+    name: 'Figma',
+  },
+  flutter: {
+    icon: SiFlutter,
+    name: 'Flutter',
+  },
+  laravel: {
+    icon: SiLaravel,
+    name: 'Laravel',
+  },
+  php: {
+    icon: SiPhp,
+    name: 'Php',
+  },
+  dart: {
+    icon: SiDart,
+    name: 'Dart',
   },
 };
 export default TechIcons;
