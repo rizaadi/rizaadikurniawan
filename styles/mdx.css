@@ -44,3 +44,7 @@
 .mdx.prose :where(h1, h2, h3, h4) > a {
   border-bottom: none;
 }
+
+.prose img {
+  margin: 0;
+}
