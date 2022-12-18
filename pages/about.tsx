@@ -67,14 +67,14 @@ function About() {
           <div className='pt-6 layout'>
             <h2 className='text-2xl font-semibold md:text-3xl'>EDUCATION</h2>
             <div className='flex justify-between mt-2 text-base border-b md:text-2xl dark:border-gray-600'>
+              <p className='pr-4'>Bangkit 2022 - Android Learning Path</p>
+              <p className='text-end'>2022</p>
+            </div>
+            <div className='flex justify-between mt-2 text-base border-b md:text-2xl dark:border-gray-600'>
               <p className='pr-4'>
                 Universitas Internasional Semen Indonesia - Informatics
               </p>
               <p className='text-end'>2018 - 2022</p>
-            </div>
-            <div className='flex justify-between mt-2 text-base border-b md:text-2xl dark:border-gray-600'>
-              <p className='pr-4'>Bangkit 2022 - Android Learning Path</p>
-              <p className='text-end'>2022</p>
             </div>
           </div>
         </section>

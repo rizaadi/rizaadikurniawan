@@ -1,5 +1,7 @@
 import { InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import React from 'react';
+import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
 
 import ButtonLink from '../components/buttons/ButtonLink';
 import ProjectCard from '../components/content/projects/ProjectCard';
@@ -27,12 +29,17 @@ export default function Home({
       <main>
         <section className='flex flex-col justify-center mb-20 min-h-main'>
           <article className='layout'>
-            <h2 className='text-2xl md:text-4xl 2xl:text-5xl'>Hello!</h2>
-            <h1 className='mt-1 text-3xl'>You can call me Riza</h1>
-            <p className='max-w-4xl mt-4 md:text-lg 2xl:text-xl text-black-fourth dark:text-gray-300'>
-              Interested in Web Developer, Mobile Developer, and Design. I also
-              like to learn new things about technology, and photography.
+            <h1 className='text-2xl md:text-4xl'>Riza Adi Kurniawan</h1>
+            <p className='max-w-4xl mt-2 text-base md:text-xl text-black-fourth dark:text-gray-300'>
+              Interested in Web Developer, Mobile Developer, and Design.
             </p>
+            <div className='flex mt-2 space-x-4'>
+              {sosmed.map((sosmed) => (
+                <Link href={sosmed.href} key={sosmed.href} target='_blank'>
+                  <sosmed.icon className='w-4 h-4 md:h-5 md:w-5 text-black-fourth dark:text-gray-300 hover:text-black-third hover:dark:text-white' />
+                </Link>
+              ))}
+            </div>
           </article>
         </section>
         <section className='pt-20'>
@@ -71,3 +78,20 @@ export default function Home({
     </Layout>
   );
 }
+const sosmed = [
+  {
+    name: 'Github',
+    href: 'https://github.com/rizaadi',
+    icon: SiGithub,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/rizaadikurniawan/',
+    icon: SiLinkedin,
+  },
+  {
+    name: 'Email',
+    href: 'mailto:rizaadi890@gmail.com',
+    icon: SiGmail,
+  },
+];

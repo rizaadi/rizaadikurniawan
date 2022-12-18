@@ -32,7 +32,7 @@ const sosmed = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/',
+    href: 'https://www.linkedin.com/in/rizaadikurniawan/',
     icon: SiLinkedin,
   },
   {

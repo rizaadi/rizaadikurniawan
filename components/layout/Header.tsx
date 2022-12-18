@@ -6,10 +6,9 @@ function Header() {
   const { theme, setTheme } = useTheme();
   return (
     <header className='sticky top-0 z-50 transition-shadow backdrop-blur-md'>
-      <script>(function () {})</script>
       <nav className='grid items-center grid-cols-3 py-5 layout'>
         <div className='justify-self-start'></div>
-        <ul className='flex items-center self-center space-x-3 text-base font-semibold justify-self-center md:space-x-11 dark:text-black-fifth '>
+        <ul className='flex items-center self-center space-x-3 text-base font-medium justify-self-center md:space-x-11 dark:text-black-fifth '>
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`} className='dark:hover:text-white'>
               <Link href={href}>{label}</Link>
