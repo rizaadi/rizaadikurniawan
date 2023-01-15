@@ -16,6 +16,7 @@
     "cloudinary-build-url": "^0.2.4",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.4",
+    "framer-motion": "^8.1.7",
     "glob": "^8.0.3",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",

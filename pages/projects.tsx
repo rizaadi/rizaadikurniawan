@@ -1,9 +1,11 @@
+import { m } from 'framer-motion';
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 
 import ProjectCard from '../components/content/projects/ProjectCard';
 import Layout from '../components/layout/Layout';
 import Seo from '../components/Seo';
+import { FADE_DOWN_ANIMATION_VARIANTS } from '../lib/framer';
 import { getAllArticles } from '../lib/mdx';
 
 export async function getStaticProps() {
@@ -33,14 +35,44 @@ function Projects({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
       />
       <main>
         <section>
-          <div className='pt-12 layout'>
-            <h1 className='text-6xl md:text-7.5xl leading-normal text-center'>
+          <m.div
+            initial='hidden'
+            whileInView='show'
+            viewport={{ once: true }}
+            variants={{
+              show: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}
+            className='pt-12 layout'
+          >
+            <m.h1
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='text-6xl md:text-7.5xl leading-normal text-center'
+            >
               Projects
-            </h1>
-            <p className='mt-3 text-base text-center md:text-2xl'>
+            </m.h1>
+            <m.p
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='mt-3 text-base text-center md:text-2xl'
+            >
               I made some projects that I&#39;m proud of
-            </p>
-            <ul className='grid gap-4 mt-14 sm:grid-cols-2 lg:grid-cols-3'>
+            </m.p>
+            <m.ul
+              initial='hidden'
+              whileInView='show'
+              viewport={{ once: true, amount: 'some' }}
+              variants={{
+                show: {
+                  transition: {
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}
+              className='grid gap-4 mt-14 sm:grid-cols-2 lg:grid-cols-3'
+            >
               {posts.map((post) => (
                 <ProjectCard
                   key={post.slug}
@@ -53,8 +85,8 @@ function Projects({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                   readingTime={post.readingTime}
                 />
               ))}
-            </ul>
-          </div>
+            </m.ul>
+          </m.div>
         </section>
       </main>
     </Layout>
