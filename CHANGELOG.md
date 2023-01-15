@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.1.0...v1.2.0) (2023-01-15)
+
+
+### Features
+
+* add framer motion ([a12fc87](https://github.com/rizaadi/rizaadikurniawan/commit/a12fc87bbf57520a8955dc758bf12c1e05dcc551))
+
 ## [1.1.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.0.0...v1.1.0) (2022-12-18)
 
 
