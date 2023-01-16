@@ -51,7 +51,7 @@ export default function Home({
           <article className='layout'>
             <m.h1
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='text-2xl md:text-4xl'
+              className='text-2xl text-transparent md:text-4xl from-black to-stone-500 bg-gradient-to-br bg-clip-text'
             >
               Riza Adi Kurniawan
             </m.h1>
@@ -90,7 +90,7 @@ export default function Home({
             >
               <m.h2
                 variants={FADE_RIGHT_ANIMATION_VARIANTS}
-                className='md:text-7.5xl leading-normal pr-6 text-4xl'
+                className='md:text-7.5xl leading-normal pr-6 text-4xl text-transparent from-black to-stone-500 bg-gradient-to-br bg-clip-text'
               >
                 Featured
                 <br />
