@@ -17,9 +17,12 @@ function Header() {
     >
       <nav className='grid items-center grid-cols-3 py-5 layout'>
         <div className='justify-self-start'></div>
-        <ul className='flex items-center self-center space-x-3 text-base font-medium justify-self-center md:space-x-11 dark:text-black-fifth '>
+        <ul className='flex items-center self-center space-x-3 text-base justify-self-center md:space-x-11'>
           {links.map(({ href, label }) => (
-            <li key={`${href}${label}`} className='dark:hover:text-white'>
+            <li
+              key={`${href}${label}`}
+              className='dark:hover:text-white-primary hover:text-black-primary '
+            >
               <Link href={href}>{label}</Link>
             </li>
           ))}
@@ -27,8 +30,8 @@ function Header() {
         <button
           className={clsx(
             'rounded-md p-2.5 focus:outline-none justify-self-end',
-            'border dark:border-black-fifth',
-            'hover:border-black-second hover:text-black-second dark:hover:border-white dark:hover:text-white'
+            'border dark:border-black-secondary',
+            'hover:border-black-secondary hover:text-black-secondary dark:hover:border-white dark:hover:text-white-primary'
           )}
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >

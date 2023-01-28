@@ -36,13 +36,11 @@ function ProjectCard({
             aspect={undefined}
           />
           <div className='flex flex-col items-start h-full p-4'>
-            <div className='mt-1 dark:text-white'>
+            <div className='mt-1 '>
               <TechIcons techs={tags.split(',') as Array<TechListType>} />
             </div>
-            <h4 className='mt-2 dark:text-white'>{title}</h4>
-            <p className='mb-auto text-sm text-black-fourth dark:text-gray-300'>
-              {description}
-            </p>
+            <h4 className='mt-2 '>{title}</h4>
+            <p className='mb-auto text-sm '>{description}</p>
           </div>
         </m.li>
       </m.div>

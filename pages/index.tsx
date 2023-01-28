@@ -51,13 +51,13 @@ export default function Home({
           <article className='layout'>
             <m.h1
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='text-2xl text-transparent md:text-4xl from-black to-stone-500 bg-gradient-to-br bg-clip-text'
+              className='text-2xl text-transparent md:text-4xl from-black-primary to-stone-500 bg-gradient-to-br bg-clip-text'
             >
-              Riza Adi Kurniawan
+              I'm Riza Adi Kurniawan
             </m.h1>
             <m.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='max-w-4xl mt-2 text-base md:text-xl text-black-fourth dark:text-gray-300'
+              className='max-w-4xl mt-2 text-base md:text-xl'
             >
               Interested in Web Developer, Mobile Developer, and Design.
             </m.p>
@@ -67,7 +67,7 @@ export default function Home({
             >
               {sosmed.map((sosmed) => (
                 <Link href={sosmed.href} key={sosmed.href} target='_blank'>
-                  <sosmed.icon className='w-4 h-4 md:h-5 md:w-5 text-black-fourth dark:text-gray-300 hover:text-black-third hover:dark:text-white' />
+                  <sosmed.icon className='w-4 h-4 md:h-5 md:w-5 hover:text-black-primary hover:dark:text-white-primary' />
                 </Link>
               ))}
             </m.div>
@@ -90,7 +90,7 @@ export default function Home({
             >
               <m.h2
                 variants={FADE_RIGHT_ANIMATION_VARIANTS}
-                className='md:text-7.5xl leading-normal pr-6 text-4xl text-transparent from-black to-stone-500 bg-gradient-to-br bg-clip-text'
+                className='md:text-7.5xl leading-normal pr-6 text-4xl text-transparent from-black-primary to-stone-500 bg-gradient-to-br bg-clip-text'
               >
                 Featured
                 <br />

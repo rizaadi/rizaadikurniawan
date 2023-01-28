@@ -52,7 +52,7 @@ export default function ProjectPage({
           </m.section>
           <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
             {/* TODO: fix to center */}
-            <ul className='flex flex-wrap justify-center mt-10 text-gray-500 list-none md:text-sm gap-y-3 gap-x-7'>
+            <ul className='flex flex-wrap justify-center mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
               <li>
                 Published at{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMM YYYY')}

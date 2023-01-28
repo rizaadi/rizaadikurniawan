@@ -1,5 +1,6 @@
 .prose {
   max-width: 50rem;
+  @apply text-black-secondary;
 }
 
 .prose a {
@@ -36,9 +37,42 @@
   scroll-margin-top: 100px;
   position: relative;
   display: block;
-  margin-right: 0.5rem;
   width: -moz-fit-content;
   width: fit-content;
+  @apply text-black-primary dark:text-white-primary font-medium;
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.prose h1 {
+  margin-top: 0;
+  margin-bottom: 64px;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.prose h2 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  letter-spacing: -0.019em;
+  line-height: 34px;
+}
+.prose h3 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  letter-spacing: -0.014em;
+  line-height: 25px;
+}
+.prose h4 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  letter-spacing: -0.011em;
+  line-height: 22px;
 }
 
 .mdx.prose :where(h1, h2, h3, h4) > a {
