@@ -9,19 +9,19 @@ function Header() {
   const scrolled = useScroll(50);
 
   return (
-    <header
-      className={clsx(
-        'sticky top-0 z-50 transition-all backdrop-blur-md dark:border-gray-800 dark:bg-black/50 border-gray-200 bg-white/50',
-        scrolled && 'border-b'
-      )}
-    >
-      <nav className='grid items-center grid-cols-3 py-5 layout'>
+    <header className='fixed top-0 left-0 right-0 z-50 transition-all backdrop-blur-md'>
+      <nav
+        className={clsx(
+          'grid items-center grid-cols-3 py-5 layout transition-all border-gray-200 dark:border-white/10 ',
+          scrolled && 'border-b'
+        )}
+      >
         <div className='justify-self-start'></div>
         <ul className='flex items-center self-center space-x-3 text-base justify-self-center md:space-x-11'>
           {links.map(({ href, label }) => (
             <li
               key={`${href}${label}`}
-              className='dark:hover:text-white-primary hover:text-black-primary '
+              className='dark:hover:text-white-primary hover:text-black-primary'
             >
               <Link href={href}>{label}</Link>
             </li>

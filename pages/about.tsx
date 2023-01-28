@@ -10,7 +10,7 @@ function About() {
   return (
     <Layout>
       <Seo templateTitle='About' />
-      <main>
+      <main className='layout-container'>
         <section>
           <m.div
             initial='hidden'

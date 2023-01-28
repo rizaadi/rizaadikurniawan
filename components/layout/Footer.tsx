@@ -1,27 +1,41 @@
-import React from 'react';
+import Link from 'next/link';
 import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
 function Footer() {
   return (
-    <footer className='pb-2 mt-32'>
-      <main className='flex flex-col items-center border-t layout dark:border-gray-800'>
-        <h4 className='mt-10 font-medium dark:text-white-primary'>
-          Reach me out
-        </h4>
-        <div className='flex mt-3 space-x-4'>
-          {sosmed.map((sosmed) => (
-            <a
-              href={sosmed.href}
-              key={sosmed.href}
-              className='items-center justify-center inline'
+    <footer className='pb-2 text-center transition-all duration-500 ease-in-out border-t dark:border-black-primary dark:bg-gradient-to-b dark:from-black-tertiary dark:to-black md:text-start'>
+      <div className='items-center md:flex md:flex-row-reverse layout md:justify-between md:items-start md:mt-14'>
+        <div className='flex flex-row justify-center mt-6 space-x-4 text-sm md:mt-0'>
+          {links.map((link) => (
+            <Link
+              href={link.href}
+              key={link.href}
+              className='dark:hover:text-white-primary hover:text-black-primary'
             >
-              <sosmed.icon className='w-6 h-6 my-auto align-middle' />
-            </a>
+              {link.label}
+            </Link>
           ))}
         </div>
-        <p className='mt-6 text-sm font-medium'>
-          © Riza Adi Kurniawan {new Date().getFullYear()}
-        </p>
-      </main>
+        <div className='flex flex-col '>
+          <h4 className='mt-8 font-medium md:mt-0'>Riza Adi Kurniawan</h4>
+          <p className='mt-1 text-sm'>
+            Interested in Web Developer, Mobile Developer, and Design.
+          </p>
+          <div className='flex justify-center mt-3 space-x-4 md:justify-start'>
+            {sosmed.map((sosmed) => (
+              <Link
+                href={sosmed.href}
+                key={sosmed.href}
+                className='items-center justify-center inline dark:hover:text-white-primary'
+              >
+                <sosmed.icon className='w-4 h-4 my-auto align-middle' />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p className='my-8 text-xs text-center '>
+        © Riza Adi Kurniawan {new Date().getFullYear()}
+      </p>
     </footer>
   );
 }
@@ -42,6 +56,11 @@ const sosmed = [
     href: 'mailto:rizaadi890@gmail.com',
     icon: SiGmail,
   },
+];
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
 ];
 
 export default Footer;

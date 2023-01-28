@@ -33,7 +33,7 @@ function Projects({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         templateTitle='Projects'
         description="I made some projects that I'm proud of."
       />
-      <main>
+      <main className='layout-container dark:bg-gradient-radial dark:from-[#01102D] dark:to-black'>
         <section>
           <m.div
             initial='hidden'

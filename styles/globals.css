@@ -16,32 +16,43 @@
 
   h1,
   .h1 {
-    @apply text-2xl font-bold font-primary md:text-4xl text-black-primary dark:text-white-primary;
+    @apply text-2xl font-bold font-primary md:text-4xl text-black-primary dark:text-white-primary transition-all duration-500 ease-in-out;
   }
 
   h2,
   .h2 {
-    @apply text-xl font-bold font-primary md:text-3xl text-black-primary dark:text-white-primary;
+    @apply text-xl font-bold font-primary md:text-3xl text-black-primary dark:text-white-primary transition-all duration-500 ease-in-out;
   }
 
   h3,
   .h3 {
-    @apply text-lg font-bold font-primary md:text-2xl text-black-primary dark:text-white-primary;
+    @apply text-lg font-bold font-primary md:text-2xl text-black-primary dark:text-white-primary transition-all duration-500 ease-in-out;
   }
 
   h4,
   .h4 {
-    @apply text-base font-bold font-primary md:text-lg text-black-primary dark:text-white-primary;
+    @apply text-base font-bold font-primary md:text-lg text-black-primary dark:text-white-primary transition-all duration-500 ease-in-out;
   }
 
   body,
   .body {
-    @apply text-sm font-primary md:text-base text-black-secondary dark:text-black-secondary;
+    @apply text-sm font-primary md:text-base text-black-secondary dark:text-black-secondary antialiased;
   }
 
   .layout {
     max-width: 68rem;
     @apply w-11/12 mx-auto;
+  }
+  .layout-container {
+    @apply pt-20 pb-32;
+  }
+  .aha {
+    background-image: url('https://linear.app/static/careers-page/blue-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-position-x: center;
+    background-position-y: top;
   }
   .layout-blog {
     max-width: 42rem;

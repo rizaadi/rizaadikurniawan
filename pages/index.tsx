@@ -33,7 +33,7 @@ export default function Home({
   return (
     <Layout>
       <Seo />
-      <m.main>
+      <main className='layout-container'>
         <m.section
           initial='hidden'
           whileInView='show'
@@ -46,7 +46,7 @@ export default function Home({
               },
             },
           }}
-          className='flex flex-col justify-center mb-20 min-h-main'
+          className='flex flex-col justify-center mb-20 min-h-main '
         >
           <article className='layout'>
             <m.h1
@@ -73,7 +73,7 @@ export default function Home({
             </m.div>
           </article>
         </m.section>
-        <section className='pt-20'>
+        <section className='pt-20  dark:bg-gradient-radial dark:from-[#01102D] dark:to-black'>
           <article className='layout'>
             <m.div
               initial='hidden'
@@ -98,7 +98,7 @@ export default function Home({
               </m.h2>
               <m.p
                 variants={FADE_UP_ANIMATION_VARIANTS}
-                className='text-base md:text-2xl'
+                className='text-base dark:text-white md:text-2xl'
               >
                 I made some projects that I&#39;m proud of
               </m.p>
@@ -135,7 +135,7 @@ export default function Home({
             </ButtonLink>
           </article>
         </section>
-      </m.main>
+      </main>
     </Layout>
   );
 }

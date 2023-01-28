@@ -31,7 +31,7 @@ export default function ProjectPage({
           frontMatter.lastModifiedAt ?? frontMatter.publishedAt
         ).toISOString()}
       />
-      <main>
+      <main className='dark:border-black-primary dark:bg-gradient-to-b dark:from-black-primary/50 dark:to-black md:text-start layout-container'>
         <m.article
           initial='hidden'
           whileInView='show'

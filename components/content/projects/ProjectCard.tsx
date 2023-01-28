@@ -24,7 +24,7 @@ function ProjectCard({
       >
         <m.li
           variants={FADE_UP_ANIMATION_VARIANTS}
-          className='transition-colors border rounded-xl md:w-full dark:border-gray-800'
+          className='transition-all duration-500 ease-in-out bg-white border rounded-xl md:w-full dark:border-black-primary dark:bg-black'
         >
           <CloudinaryImg
             publicId={`rizaadikurniawan/${banner}`}
