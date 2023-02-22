@@ -46,7 +46,7 @@ export default function Home({
               },
             },
           }}
-          className='flex flex-col justify-center mb-20 min-h-main '
+          className='flex flex-col justify-center mb-20 min-h-main'
         >
           <article className='layout'>
             <m.h1
@@ -73,7 +73,7 @@ export default function Home({
             </m.div>
           </article>
         </m.section>
-        <section className='pt-20  dark:bg-gradient-radial dark:from-[#01102D] dark:to-black'>
+        <section className='pt-20'>
           <article className='layout'>
             <m.div
               initial='hidden'
