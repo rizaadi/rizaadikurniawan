@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
 function Footer() {
   return (
-    <footer className='pb-2 text-center transition-all duration-500 ease-in-out border-t dark:border-black-primary dark:bg-gradient-to-b dark:from-black-tertiary dark:to-black md:text-start'>
+    <footer className='pb-2 text-center border-t dark:border-black-primary dark:bg-gradient-to-b dark:from-black-tertiary dark:to-black md:text-start'>
       <div className='items-center md:flex md:flex-row-reverse layout md:justify-between md:items-start md:mt-14'>
         <div className='flex flex-row justify-center mt-6 space-x-4 text-sm md:mt-0'>
           {links.map((link) => (

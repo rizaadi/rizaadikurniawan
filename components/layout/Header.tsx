@@ -9,10 +9,10 @@ function Header() {
   const scrolled = useScroll(50);
 
   return (
-    <header className='fixed top-0 left-0 right-0 z-50 transition-all backdrop-blur-md'>
+    <header className='fixed top-0 left-0 right-0 z-50 backdrop-blur-md'>
       <nav
         className={clsx(
-          'grid items-center grid-cols-3 py-5 layout transition-all border-gray-200 dark:border-white/10 ',
+          'grid items-center grid-cols-3 py-5 layout border-gray-200 dark:border-white/10 ',
           scrolled && 'border-b'
         )}
       >
