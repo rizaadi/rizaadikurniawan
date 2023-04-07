@@ -25,6 +25,12 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
+      dropShadow: {
+        mobile: '0 -10px 7px  rgba(17, 24, 28, 0.20)',
+        mobile_dark: '0 -10px 7px  rgba(17, 24, 28, 0.70)',
+        mobile_only_top: '0 -24px 10px #ffffff',
+        mobile_only_top_dark: '0 -24px 10px #000000',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

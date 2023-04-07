@@ -1,6 +1,9 @@
+import buildUrl from 'cloudinary-build-url';
+import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
@@ -20,6 +23,14 @@ export default function ProjectPage({
   source: MDXRemoteSerializeResult;
 }) {
   const meta = useContentMeta(frontMatter.slug);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 0.3], [5, -200]);
+  const url = buildUrl(`rizaadikurniawan/${frontMatter.mockup}`, {
+    cloud: {
+      cloudName: 'rizaadi',
+    },
+  });
+
   return (
     <Layout>
       <Seo
@@ -43,16 +54,39 @@ export default function ProjectPage({
               },
             },
           }}
-          className='py-12 layout-blog'
+          className='py-24 layout-blog'
         >
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <h1 className='text-3xl font-bold text-center md:text-7xl'>
-              {frontMatter.title}
-            </h1>
-          </m.section>
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
+          <section
+            className={clsx(
+              'overflow-hidden',
+              frontMatter.mockup && 'h-[28rem]'
+            )}
+          >
+            <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <h1 className='text-3xl font-bold text-center md:text-7xl'>
+                {frontMatter.title}
+              </h1>
+            </m.section>
+            {frontMatter.mockup && (
+              <m.div
+                className='relative flex justify-center drop-shadow-mobile dark:drop-shadow-mobile_dark'
+                style={{ y }}
+              >
+                <Image src={url} alt='iphone' width={250} height={100} />
+              </m.div>
+            )}
+          </section>
+
+          <m.section
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className={clsx(
+              'z-10 pt-10 ',
+              frontMatter.mockup &&
+                'bg-white drop-shadow-mobile_only_top dark:bg-black dark:drop-shadow-mobile_only_top_dark'
+            )}
+          >
             {/* TODO: fix to center */}
-            <ul className='flex flex-wrap justify-center mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
+            <ul className='flex flex-wrap justify-center list-none md:text-sm gap-y-3 gap-x-7'>
               <li>
                 Published at{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMM YYYY')}

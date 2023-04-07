@@ -3,6 +3,7 @@ import { ReadTimeResults } from 'reading-time';
 export type ProjectFrontmatter = {
   title: string;
   banner: string;
+  mockup: string;
   publishedAt: string;
   lastModifiedAt?: string;
   description: string;
