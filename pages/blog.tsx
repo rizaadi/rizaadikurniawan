@@ -1,3 +1,4 @@
+import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 
 import BlogContent from '../components/content/blog/BlogContent';
@@ -9,10 +10,10 @@ export async function getStaticProps() {
   const articles = await getAllArticles('blog');
 
   articles
-    .map((article) => article.data)
+    .map((article) => article.publishedAt)
     .sort((a, b) => {
-      if (a.data.publishedAt > b.data.publishedAt) return 1;
-      if (a.data.publishedAt < b.data.publishedAt) return -1;
+      if (a > b) return 1;
+      if (a < b) return -1;
 
       return 0;
     });
@@ -26,14 +27,17 @@ export async function getStaticProps() {
   };
 }
 
-function BlogPage({ posts, tags }) {
+function BlogPage({
+  posts,
+  tags,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = posts;
 
   //search
   const [search, setSearch] = React.useState('');
 
   const [filteredPosts, setFilteredPosts] = React.useState(() => [...posts]);
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
@@ -49,11 +53,10 @@ function BlogPage({ posts, tags }) {
     );
     setFilteredPosts(results);
   }, [search, populatedPosts]);
-
   return (
     <Layout>
       <main>
-        <p className='p-2 mb-4 font-medium text-center bg-red-400 '>
+        <p className='p-2 mb-4 font-medium text-center'>
           This blog is still under development
         </p>
         <section>
@@ -70,9 +73,11 @@ function BlogPage({ posts, tags }) {
                     key={post.slug}
                     slug={post.slug}
                     title={post.title}
-                    desc={post.excerpt}
+                    description={post.description}
                     publishedAt={post.publishedAt}
                     readingTime={post.readingTime}
+                    banner={post.banner}
+                    tags={post.tags}
                   />
                 ))}
               </ul>

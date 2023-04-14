@@ -19,7 +19,7 @@ export type BlogFrontmatter = {
   description: string;
   tags: string;
   slug: string;
-  readingtime: ReadTimeResults;
+  readingTime: ReadTimeResults;
 };
 
 export type ContentType = 'project' | 'blog';

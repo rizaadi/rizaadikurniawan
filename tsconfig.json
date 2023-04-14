@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/content/blog/BlogCard.jsx"
+    "components/content/blog/BlogCard.tsx"
   ],
   "exclude": ["node_modules"]
 }
