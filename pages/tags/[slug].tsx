@@ -1,13 +1,14 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 
 import BlogContent from '../../components/content/blog/BlogContent';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
 import { getAllArticles, getTags } from '../../lib/mdx';
+import { BlogFrontmatter } from '../../types/frontmatters';
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getAllArticles('blog');
-  // eslint-disable-next-line no-undef
   const tags = new Set(
     articles.map((article) => article.tags.split(',')).flat()
   );
@@ -16,18 +17,18 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const articles = await getAllArticles('blog');
-  const { slug } = params;
+  const slug = params?.slug as string;
   const posts = articles.filter((article) => article.tags.includes(slug));
 
   articles
-    .map((article) => article.data)
+    .map((article) => article.publishedAt)
     .sort((a, b) => {
-      if (a.data.publishedAt > b.data.publishedAt) return 1;
-      if (a.data.publishedAt < b.data.publishedAt) return -1;
+      if (a > b) return 1;
+      if (a < b) return -1;
 
       return 0;
     });
@@ -40,16 +41,24 @@ export async function getStaticProps({ params }) {
       slug: slug,
     },
   };
-}
+};
 
-function TagsPage({ posts, tags, slug }) {
+function TagsPage({
+  posts,
+  tags,
+  slug,
+}: {
+  posts: BlogFrontmatter[];
+  tags: string[];
+  slug: string;
+}) {
   const populatedPosts = posts;
 
   //search
   const [search, setSearch] = React.useState('');
 
   const [filteredPosts, setFilteredPosts] = React.useState(() => [...posts]);
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
@@ -85,9 +94,11 @@ function TagsPage({ posts, tags, slug }) {
                     key={post.slug}
                     slug={post.slug}
                     title={post.title}
-                    desc={post.excerpt}
+                    description={post.description}
                     publishedAt={post.publishedAt}
                     readingTime={post.readingTime}
+                    banner={post.banner}
+                    tags={post.tags}
                   />
                 ))}
               </ul>
