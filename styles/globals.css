@@ -46,14 +46,7 @@
   .layout-container {
     @apply pt-20 pb-32;
   }
-  .aha {
-    background-image: url('https://linear.app/static/careers-page/blue-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    background-position-x: center;
-    background-position-y: top;
-  }
+
   .layout-blog {
     max-width: 42rem;
     @apply w-11/12 mx-auto;

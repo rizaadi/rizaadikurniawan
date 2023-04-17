@@ -4,6 +4,7 @@ import React from 'react';
 import BlogContent from '../components/content/blog/BlogContent';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
+import Seo from '../components/Seo';
 import { getAllArticles, getTags, sortByDate } from '../lib/mdx';
 import { BlogFrontmatter } from '../types/frontmatters';
 
@@ -51,38 +52,36 @@ function BlogPage({
 
   return (
     <Layout>
-      <main>
-        <p className='p-2 mb-4 font-medium text-center'>
-          This blog is still under development
-        </p>
-        <section>
-          <div className='py-12 layout'>
-            <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
-            <p className='mt-3 text-base md: md:text-2xl'>
-              I write a blog about design, coding, hobbies that I like, and
-              random things haha
-            </p>
-            <div className='justify-between gap-24 mt-10 md:flex'>
-              <ul className='mt-4'>
-                {filteredPosts.map((post) => (
-                  <BlogContent key={post.slug} post={post} />
+      <Seo
+        templateTitle='Blog'
+        description='I write a blog about design, coding, hobbies that I like, and random things'
+      />
+      <main className='layout-container'>
+        <section className='pt-12 layout'>
+          <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
+          <p className='mt-3 text-base md:text-2xl'>
+            I write a blog about design, coding, hobbies that I like, and random
+            things haha
+          </p>
+          <div className='justify-between gap-24 mt-10 md:flex'>
+            <ul className='mt-4'>
+              {filteredPosts.map((post) => (
+                <BlogContent key={post.slug} post={post} />
+              ))}
+            </ul>
+            <div className='w-auto md:w-60'>
+              <input
+                className='w-full p-1 mt-4 border rounded-md'
+                type='text'
+                placeholder='Search..'
+                onChange={handleSearch}
+                value={search}
+              />
+              <h3 className='mt-3 whitespace-nowrap'>Explore Categories</h3>
+              <div className='flex flex-wrap gap-2 mt-2'>
+                {tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
                 ))}
-              </ul>
-              <div className='w-auto md:w-60'>
-                <input
-                  className='w-full p-1 mt-4 border rounded-md'
-                  type='text'
-                  placeholder='Search..'
-                  onChange={handleSearch}
-                  value={search}
-                />
-                <h3 className='mt-3 whitespace-nowrap'>Explore Categories</h3>
-                {/* <div className="flex flex-wrap gap-2 mt-2 md:grid-cols-5 md:grid"> */}
-                <div className='flex flex-wrap gap-2 mt-2'>
-                  {tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
