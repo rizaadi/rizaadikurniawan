@@ -80,7 +80,7 @@ export async function getAllArticles<T extends ContentType>(type: T) {
         {
           ...(data as PickFrontmatter<T>),
           slug: articleSlug.replace('.mdx', ''),
-          readingTime: readingTime(source).text,
+          readingTime: readingTime(source),
         },
         ...allArticles,
       ];
