@@ -90,16 +90,7 @@ function TagsPage({
             <div className='justify-between gap-24 mt-10 md:flex'>
               <ul className='mt-4'>
                 {filteredPosts.map((post) => (
-                  <BlogContent
-                    key={post.slug}
-                    slug={post.slug}
-                    title={post.title}
-                    description={post.description}
-                    publishedAt={post.publishedAt}
-                    readingTime={post.readingTime}
-                    banner={post.banner}
-                    tags={post.tags}
-                  />
+                  <BlogContent key={post.slug} post={post} />
                 ))}
               </ul>
               <div className='w-auto md:w-60'>
