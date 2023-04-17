@@ -15,6 +15,7 @@ import remarkGfm from 'remark-gfm';
 import {
   ContentType,
   Frontmatter,
+  FrontmatterWithDate,
   PickFrontmatter,
 } from './../types/frontmatters';
 
@@ -101,5 +102,19 @@ export function getFeatured<T extends Frontmatter>(
 ) {
   return features.map(
     (feat) => articles.find((article) => article.slug === feat) as T
+  );
+}
+
+export function sortByDate<T extends FrontmatterWithDate>(content: Array<T>) {
+  return content.sort(sortByDateFn);
+}
+
+export function sortByDateFn<T extends FrontmatterWithDate>(
+  contentA: T,
+  contentB: T
+) {
+  return (
+    new Date(contentA.lastModifiedAt ?? contentA.publishedAt).valueOf() -
+    new Date(contentB.lastModifiedAt ?? contentB.publishedAt).valueOf()
   );
 }

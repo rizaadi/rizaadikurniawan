@@ -1,38 +1,33 @@
-import { InferGetStaticPropsType } from 'next';
+import { GetStaticProps } from 'next';
 import React from 'react';
 
 import BlogContent from '../components/content/blog/BlogContent';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
-import { getAllArticles, getTags } from '../lib/mdx';
+import { getAllArticles, getTags, sortByDate } from '../lib/mdx';
+import { BlogFrontmatter } from '../types/frontmatters';
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const articles = await getAllArticles('blog');
+  const articlesSorted = sortByDate(articles);
 
-  articles
-    .map((article) => article.publishedAt)
-    .sort((a, b) => {
-      if (a > b) return 1;
-      if (a < b) return -1;
-
-      return 0;
-    });
-  const tags = getTags(articles);
+  const tags = getTags(articlesSorted);
 
   return {
     props: {
-      posts: articles.reverse(),
+      posts: articlesSorted.reverse(),
       tags: tags,
     },
   };
-}
+};
 
 function BlogPage({
   posts,
   tags,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const populatedPosts = posts;
-
+}: {
+  posts: BlogFrontmatter[];
+  tags: string[];
+}) {
   //search
   const [search, setSearch] = React.useState('');
 
@@ -42,7 +37,7 @@ function BlogPage({
   };
 
   React.useEffect(() => {
-    const results = populatedPosts.filter(
+    const results = posts.filter(
       (post) =>
         post.title.toLowerCase().includes(search.toLowerCase()) ||
         post.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -52,7 +47,8 @@ function BlogPage({
           .every((tag) => post.tags.includes(tag))
     );
     setFilteredPosts(results);
-  }, [search, populatedPosts]);
+  }, [search, posts]);
+
   return (
     <Layout>
       <main>

@@ -29,3 +29,4 @@ export type PickFrontmatter<T extends ContentType> = T extends 'project'
   : BlogFrontmatter;
 
 export type Frontmatter = ProjectFrontmatter | BlogFrontmatter;
+export type FrontmatterWithDate = ProjectFrontmatter | BlogFrontmatter;
