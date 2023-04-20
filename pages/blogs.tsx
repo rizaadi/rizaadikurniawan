@@ -5,6 +5,7 @@ import BlogContent from '../components/content/blog/BlogContent';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
 import Seo from '../components/Seo';
+import useInjectContentMeta from '../hooks/useInjectContentMeta';
 import { getAllArticles, getTags, sortByDate } from '../lib/mdx';
 import { BlogFrontmatter } from '../types/frontmatters';
 
@@ -29,6 +30,8 @@ function BlogPage({
   posts: BlogFrontmatter[];
   tags: string[];
 }) {
+  const populatedContent = useInjectContentMeta(posts);
+
   //search
   const [search, setSearch] = React.useState('');
 
@@ -38,7 +41,7 @@ function BlogPage({
   };
 
   React.useEffect(() => {
-    const results = posts.filter(
+    const results = populatedContent.filter(
       (post) =>
         post.title.toLowerCase().includes(search.toLowerCase()) ||
         post.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -48,7 +51,7 @@ function BlogPage({
           .every((tag) => post.tags.includes(tag))
     );
     setFilteredPosts(results);
-  }, [search, posts]);
+  }, [search, populatedContent]);
 
   return (
     <Layout>

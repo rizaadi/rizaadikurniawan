@@ -21,6 +21,7 @@ export type BlogFrontmatter = {
   slug: string;
   readingTime: ReadTimeResults;
 };
+export type InjectedMeta = { views?: number; likes?: number };
 
 export type ContentType = 'project' | 'blog';
 

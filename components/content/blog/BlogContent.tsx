@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-import { BlogFrontmatter } from '../../../types/frontmatters';
+import { BlogFrontmatter, InjectedMeta } from '../../../types/frontmatters';
 
 type BlogContentProps = {
-  post: BlogFrontmatter;
+  post: BlogFrontmatter & InjectedMeta;
 } & React.ComponentPropsWithoutRef<'a'>;
 
 function BlogContent({ post }: BlogContentProps) {
@@ -14,7 +14,8 @@ function BlogContent({ post }: BlogContentProps) {
         <div className='pb-9'>
           <p className='text-gray-700 dark:text-white'>
             {dayjs(post.publishedAt).format('MMMM D YYYY')} &mdash;{' '}
-            {post.readingTime.text}
+            {post.readingTime.text} &mdash;{' '}
+            {post.views?.toLocaleString() ?? '–––'}
           </p>
           <h1 className='mt-2'>{post.title}</h1>
           <p className='mt-3 '>{post.description}</p>

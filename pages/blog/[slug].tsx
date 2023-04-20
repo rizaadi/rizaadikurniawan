@@ -7,6 +7,7 @@ import MDXComponents from '../../components/content/MDXComponents';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
+import useContentMeta from '../../hooks/useContentMeta';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
@@ -17,6 +18,8 @@ export default function Blog({
   frontMatter: BlogFrontmatter;
   source: MDXRemoteSerializeResult;
 }) {
+  const meta = useContentMeta(frontMatter.slug);
+
   return (
     <Layout>
       <Seo
@@ -46,6 +49,9 @@ export default function Blog({
                 </li>
               )}
               <li>{frontMatter.readingTime.text}</li>
+              <li>{`${
+                meta?.contentViews ? meta?.contentViews : '–––'
+              } Views`}</li>
             </ul>
             <ul className='flex justify-center gap-2 mt-3'>
               {frontMatter.tags.split(',').map((tag) => (
