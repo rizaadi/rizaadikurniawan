@@ -62,7 +62,7 @@ function BlogPage({
       <main className='layout-container'>
         <section className='pt-12 layout'>
           <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
-          <p className='mt-3 text-base md:text-2xl'>
+          <p className='mt-3 text-base font-medium md:text-2xl'>
             I write a blog about design, coding, hobbies that I like, and random
             things haha
           </p>
@@ -74,7 +74,7 @@ function BlogPage({
             </ul>
             <div className='w-auto md:w-60'>
               <input
-                className='w-full p-1 mt-4 border rounded-md'
+                className='w-full p-2 mt-4 font-medium rounded-md outline-none dark:bg-black-primary bg-slate-100'
                 type='text'
                 placeholder='Search..'
                 onChange={handleSearch}
