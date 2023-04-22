@@ -11,7 +11,7 @@ function Tag({
       <button
         className={clsx(
           className,
-          'inline-block rounded-md bg-slate-100 px-1.5 py-0.5 font-medium  w-fit dark:bg-dark'
+          'inline-block rounded-md bg-slate-100 px-1.5 py-0.5 font-medium  w-fit dark:bg-black-tertiary dark:hover:bg-black-primary'
         )}
       >
         {children}
