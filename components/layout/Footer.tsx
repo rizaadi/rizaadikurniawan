@@ -59,6 +59,7 @@ const sosmed = [
 ];
 const links = [
   { href: '/', label: 'Home' },
+  { href: '/blogs', label: 'Blogs' },
   { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
 ];
