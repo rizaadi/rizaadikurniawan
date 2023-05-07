@@ -4,7 +4,7 @@ import React from 'react';
 import BlogContent from '../../components/content/blog/BlogContent';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
-import { getAllArticles, getTags } from '../../lib/mdx';
+import { getAllArticles, getTags, sortByDate } from '../../lib/mdx';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -23,20 +23,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const articles = await getAllArticles('blog');
   const slug = params?.slug as string;
   const posts = articles.filter((article) => article.tags.includes(slug));
+  const postsSorted = sortByDate(posts);
 
-  articles
-    .map((article) => article.publishedAt)
-    .sort((a, b) => {
-      if (a > b) return 1;
-      if (a < b) return -1;
-
-      return 0;
-    });
   const tags = getTags(articles);
 
   return {
     props: {
-      posts: posts.reverse(),
+      posts: postsSorted,
       tags: tags,
       slug: slug,
     },
