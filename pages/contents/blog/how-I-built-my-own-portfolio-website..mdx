@@ -1,0 +1,118 @@
+---
+title: 'How I Built My Own Portfolio Website'
+publishedAt: '2023-10-07'
+description: 'Gambaran ketika membuat website portfolioku dan hal-hal seru yang aku pelajari selama pejalanan ini, termasuk tech stack gunakan, desain dan konten yang aku buat.'
+tags: 'Random Things'
+---
+
+## Blogger
+
+Dari dulu kesampaian juga untuk membuat website pribadi. Sekalian tempat untuk showcase project-project yang pernah aku buat dan buat portofolio juga, walaupun
+sekarang masih project kuliah aja yang masih di publish 😄.
+
+Dulu pertamakali membuat website dengan blogger dengan template gratisan atau berbayar yang dibuat suhu-suhu terdahulu 😂 blogku pada saat itu berisi tips dan trik
+untuk membuat/kustomisasi blogger serta berbagi aplikasi atau game bajakan (jangan ditiru 🤣).
+
+<CloudinaryImg
+  mdx
+  className='rounded-xl'
+  publicId='rizaadikurniawan/blog/how-I-built-my-own-portfolio-website/blogger_pb1dde.png'
+  alt='blogger'
+  width={2880}
+  height={1642}
+/>
+
+Pada saat itu, aku tidak terlalu memperdulikan jumlah pengunjung, asal bikin aja yang penting seneng dulu punya blog sendiri 😂
+dan ternyata ada juga orang-orang yang berkunjung pada zamannya hahaha.
+
+<CloudinaryImg
+  mdx
+  className='rounded-xl'
+  publicId='rizaadikurniawan/blog/how-I-built-my-own-portfolio-website/traffict_yfbzs1.png'
+  alt='traffict blog'
+  width={1942}
+  height={468}
+/>
+
+<CloudinaryImg
+  mdx
+  publicId='rizaadikurniawan/meme/meme-blogger_na3nwb.jpg'
+  alt='meme blog'
+  width={250}
+  height={187}
+/>
+
+## Desain
+
+Aku menggunakan Figma untuk mendesain tampilan website sebelum diimplementasikan, jadi ada gambaran tampilan website yang akan dibuat dan lebih efektif dalam
+proses pengembangannya. Untuk saat ini figma aku gunakan hanya sampai Lo-Fi aja dan kedepannya mari kita lihat 👀
+dan dari beberapa style desain, aku pakai style minimalis untuk web ini.
+
+<iframe
+  className='rounded-xl'
+  style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+  width='100%'
+  height='450'
+  src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/vwlsuJKR7zxkgJaMwxu0KA/Web-Portofolio?type=design&node-id=601-57'
+  allowfullscreen
+></iframe>
+
+## Tech Stack
+
+Ketika memilih teknologi yang digunakan, ada beberapa hal yang aku pertimbangkan:
+
+- Kesempatan Belajar - Aku ingin mendapatkan pengalaman dengan teknologi baru yang akan aku pakai di masa depan dan tentu sekalian juga untuk explore teknologinya.
+- Teknologi Populer - aku memilih teknologi yang banyak digunakan di berbagai perusahaan yang kemungkinan dimasa depan akan aku gunakan teknologi itu, sehingga aku
+  memiliki pengetahuan yang cukup dan tidak perlu belajar dari awal lagi di masa depan.
+
+Pada akhirnya aku memilih [React.js](https://react.dev/) untuk frontend, karena React.js salah satu teknologi yang aku ingin pelajari dari dulu dan
+menggunakan framework [Next.js](https://nextjs.org/), dan teknologi lainnya aku menggunakan [Tailwind CSS](https://tailwindcss.com/), [MDX](https://github.com/hashicorp/next-mdx-remote), [Prisma](https://www.prisma.io), [PlanetScale](https://planetscale.com), dan [Vercel](https://vercel.com).
+
+Aku mendapatkan inspirasi ini dari [Lee Robinson](https://leerob.io/) dan [Delba](https://delba.dev/) jadi aku belajar banyak dari website mereka. Semua teknologi ini masih baru bagiku, jadi aku belajar satu per satu dan memulai semuanya dari awal.
+
+Memang banyak yang harus dipelajari dan mungkin terlihat berat diawal dan ditengah-tengah proses belajar akan merasa bingung kayak _"Ini apan sih kok gini, ini error apaan, dll"_ justru ini menariknya belajar hal baru ya gasihh ??? 😆 jadi ya nikmati saja prosesnya, karena gak ada ruginya kita investasi ke diri sendiri 🤟 kalo stuck ya tinggal main Valorant 🎮 👀
+
+### Next.js
+
+Sebelum aku belajar Next.js tentu aku ingin memperdalam pemahamanku Javascript-ku, jadi aku mengikuti course [Pemrograman Javascript: Pemula sampai mahir](https://www.udemy.com/course/pemrograman-javascript-pemula-sampai-mahir/) di Udemy.
+Menurutku di course ini cocok untuk orang yang ingin belajar Javascript dari awal atau ingin memperdalam lagi bagaimana Javascript ini bekerja.
+Setelah selesai aku lanjut belajar di React.js di Youtubenya [Lee Robinson](https://www.youtube.com/@leerob) dan [Net Ninja](https://www.youtube.com/@NetNinja) disana aku mengerjakan React 2025 dan Full React Tutorial. Setelah selesai di react lanjut di Next.js yang belajarnya sama juga di channel youtube tadi. Setelah Web ini jadi aku memutuskan untuk belajar Typescript dengan membaca dokumentasi dan menggunakan playgroundnya, terkadang aku lihat tips-tips tentang Typescript di Youtubenya [Matt Pocock](https://www.youtube.com/@mattpocockuk).
+
+### Tailwind CSS
+
+Tailwind CSS ini adalah framework CSS yang sangat ingin aku pelajari dari dahulu, salah satu keunggulan Tailwind CSS ini adalah pendekatan _"utility-first"_, dimana kelas-kelasnya bisa diterapkan langsung di elemen HTML. Jadi dengan pendekatan ini proses pengembangan atau styling jadi lebih cepat dan mudah.
+Selain menggunakan Tailwind CSS aku juga menggunakan Vanilla CSS untuk styling yang tidak dapat diimplementasikan menggunakan Tailwind CSS.
+
+### MDX
+
+Dengan MDX (Markdown with JSX) kita bisa menggunakan markdown didalam JSX, jadi aku bisa membuat konten yang interaktif dan dinamis.
+aku menggunakan [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) karena dapat memanfaatkan fitur-fitur yang disediakan oleh Next.js, seperti server-side rendering.
+
+### Prisma
+
+Prisma merupakan ORM (Object-Relational Mapping)
+yang digunakan untuk mempermudah interaksi aplikasi yang kita buat dengan database,
+seperti kita bisa mudah mendefine schema database kita, selain itu di prisma kita
+dapat menggunakan berbagai jenis database seperti PostgreSQL, MySQL, MongoDB, dll.
+Aku menggunakan Prisma Client yang dapat menulis query database dengan cara
+yang ekspresif dan juga type-safe. Selain itu aku juga menggunakan Prisma Studio
+untuk melihat atau mengedit database.
+
+### PlanetScale
+
+PlanetScale adalah database serverless yang cepat dan scalable. Dengan planetscale aku bisa membuat dan mendeploy database dengan cepat, PlanetScale juga otomatis melakukan backup database kita, selain itu kita bisa membuat branching di database,
+sehingga jika kita ingin membuat perubahan pada schema database, kita bisa membuat branch baru. PlanetScale juga bisa terintregrasi dengan Prisma dan Vercel jadi cukup mempermudah dan menarik.
+
+### Vercel
+
+Untuk hosting dan deployment website ini aku menggunakan Vercel. Salah satu fitur yang aku sukai adalah kita bisa menghubungkan Git Repository kita, jadi ketika ada perubahan di Repository kita, vercel otomatis akan Build dan Deploy website kita.
+
+## Konten
+
+Rencana awalku di personal website ini pada awalnya cuma berisi project-project yang aku buat. Saat seiring proses pengembangannya muncul lah beberapa ide seperti membuat blog yang berisi pengalamanku, programming, design, pikiran-pikiran random 😂, dll.
+
+## Apa selanjutnya ?
+
+- Mengoptimalkan kode & performa personal website.
+- Menambahkan Animasi dengan framer dan lottie.
+- Mobile 👀
