@@ -57,14 +57,13 @@ function BlogPage({
     <Layout>
       <Seo
         templateTitle='Blog'
-        description='I write a blog about design, coding, hobbies that I like, and random things'
+        description='Exploring coding, design, and more'
       />
       <main className='layout-container'>
         <section className='pt-12 layout'>
           <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
           <p className='mt-3 text-base font-medium md:text-2xl'>
-            I write a blog about design, coding, hobbies that I like, and random
-            things haha
+            Exploring coding, design, and more
           </p>
           <div className='justify-between gap-24 mt-10 md:flex'>
             <ul className='mt-4'>
