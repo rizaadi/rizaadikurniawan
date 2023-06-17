@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import React from 'react';
 
 import BlogContent from '../components/content/blog/BlogContent';
+import BlogContentNotFound from '../components/content/blog/BlogContentNotFound';
 import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
 import Seo from '../components/Seo';
@@ -60,17 +61,12 @@ function BlogPage({
         description='Exploring coding, design, and more'
       />
       <main className='layout-container'>
-        <section className='pt-12 layout'>
+        <section className='pt-12 layout min-h-main'>
           <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
-          <p className='mt-3 text-base font-medium md:text-2xl'>
+          <h2 className='mt-3 text-base font-medium md:text-2xl text-black-secondary dark:text-black-secondary'>
             Exploring coding, design, and more
-          </p>
-          <div className='justify-between gap-24 mt-10 md:flex'>
-            <ul className='mt-4'>
-              {filteredPosts.map((post) => (
-                <BlogContent key={post.slug} post={post} />
-              ))}
-            </ul>
+          </h2>
+          <div className='mt-5 md:mt-10 md:flex md:flex-row-reverse '>
             <div className='w-auto md:w-60'>
               <input
                 className='w-full p-2 mt-4 font-medium rounded-md outline-none dark:bg-black-primary bg-slate-100'
@@ -86,6 +82,15 @@ function BlogPage({
                 ))}
               </div>
             </div>
+            <ul className='w-full pt-4 pr-10'>
+              {filteredPosts.length > 0 ? (
+                filteredPosts.map((post) => (
+                  <BlogContent key={post.slug} post={post} />
+                ))
+              ) : (
+                <BlogContentNotFound />
+              )}
+            </ul>
           </div>
         </section>
       </main>
