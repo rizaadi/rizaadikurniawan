@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.3.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.2.0...v1.3.0) (2023-06-17)
+
+
+### Features
+
+* add figma embed component ([69988b2](https://github.com/rizaadi/rizaadikurniawan/commit/69988b2e805b1dc124c5e84d337e601a5b58219b))
+* add mockup mobile projects ([d64b95a](https://github.com/rizaadi/rizaadikurniawan/commit/d64b95a0e43f5bb4ac2a4303bf1217946a0d36ab))
+* add sort by date ([454f74d](https://github.com/rizaadi/rizaadikurniawan/commit/454f74dc9bf812f338d0223f65be281b3b91b5f6))
+* add views blogs ([eb41429](https://github.com/rizaadi/rizaadikurniawan/commit/eb414292cf11341dcf0d2b857aef51f729376906))
+* change link path blog to blogs ([76beb8d](https://github.com/rizaadi/rizaadikurniawan/commit/76beb8d545a74b7db9182290d6a3dfd5fd226167))
+
+
+### Bug Fixes
+
+* reading times in blog ([e89396e](https://github.com/rizaadi/rizaadikurniawan/commit/e89396eed8b7e2f0e2bd14392345f69d25551500))
+* sort by date tags ([617c8a3](https://github.com/rizaadi/rizaadikurniawan/commit/617c8a321b8a152ecacc8acc1c5fa4001d26e458))
+* type project ([60869fa](https://github.com/rizaadi/rizaadikurniawan/commit/60869fa7007c3130d74a1dabfb14ee8469786e81))
+
 ## [1.2.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.1.0...v1.2.0) (2023-01-15)
 
 
