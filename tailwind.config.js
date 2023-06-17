@@ -20,6 +20,7 @@ module.exports = {
         'black-primary': '#11181C',
         'black-secondary': '#687076',
         'white-primary': '#ECEDEE',
+        'white-secondary': '#B6BABC',
         'black-tertiary': '#080C0E',
       },
       backgroundImage: {

@@ -5,6 +5,7 @@
 
 .prose a {
   text-decoration: none;
+  @apply dark:text-white-secondary;
 }
 
 .prose > ol > li > :last-child,
