@@ -8,6 +8,9 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
 import MDXComponents from '../../components/content/MDXComponents';
+import TableOfContents, {
+  HeadingScrollSpy,
+} from '../../components/content/TableOfContents';
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
 import useContentMeta from '../../hooks/useContentMeta';
@@ -30,6 +33,24 @@ export default function ProjectPage({
       cloudName: 'rizaadi',
     },
   });
+
+  const [toc, setToc] = React.useState<HeadingScrollSpy>();
+  const minLevel =
+    toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
+
+  React.useEffect(() => {
+    const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
+
+    const headingArr: HeadingScrollSpy = [];
+    headings.forEach((heading) => {
+      const id = heading.id;
+      const level = +heading.tagName.replace('H', '');
+      const text = heading.textContent + '';
+
+      headingArr.push({ id, level, text });
+    });
+    setToc(headingArr);
+  }, [frontMatter.slug]);
 
   return (
     <Layout>
@@ -54,39 +75,35 @@ export default function ProjectPage({
               },
             },
           }}
-          className='py-24 layout-blog'
+          className='py-24'
         >
-          <section
-            className={clsx(
-              'overflow-hidden',
-              frontMatter.mockup && 'h-[28rem]'
-            )}
-          >
-            <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
-              <h1 className='text-3xl font-bold text-center md:text-7xl'>
+          <section className='overflow-hidden'>
+            <m.section variants={FADE_DOWN_ANIMATION_VARIANTS} className='mx-4'>
+              <h1 className='text-5xl font-bold text-center md:text-7xl'>
                 {frontMatter.title}
               </h1>
             </m.section>
             {frontMatter.mockup && (
-              <m.div
-                className='relative flex justify-center drop-shadow-mobile dark:drop-shadow-mobile_dark'
-                style={{ y }}
-              >
-                <Image src={url} alt='iphone' width={250} height={100} />
-              </m.div>
+              <div className='h-[28rem]'>
+                <m.div
+                  className='relative flex justify-center drop-shadow-mobile dark:drop-shadow-mobile_dark'
+                  style={{ y }}
+                >
+                  <Image src={url} alt='iphone' width={250} height={100} />
+                </m.div>
+              </div>
             )}
           </section>
 
           <m.section
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className={clsx(
-              'z-10 pt-10 ',
+              'z-10 pt-10',
               frontMatter.mockup &&
                 'bg-white drop-shadow-mobile_only_top dark:bg-black dark:drop-shadow-mobile_only_top_dark'
             )}
           >
-            {/* TODO: fix to center */}
-            <ul className='flex flex-wrap justify-center list-none md:text-sm gap-y-3 gap-x-7'>
+            <ul className='flex flex-wrap justify-center list-none md:text-sm gap-y-3 gap-x-7 mb-14'>
               <li>
                 Published at{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMM YYYY')}
@@ -103,12 +120,24 @@ export default function ProjectPage({
               } Views`}</li>
             </ul>
           </m.section>
-          <m.section
-            variants={FADE_DOWN_ANIMATION_VARIANTS}
-            className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'
-          >
-            <MDXRemote {...source} components={MDXComponents} />
-          </m.section>
+          <section className='lg:grid lg:grid-cols-[1fr,auto,1fr] lg:gap-7 flex justify-center lg:px-0 px-4'>
+            <aside />
+            <m.article
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
+            >
+              <MDXRemote {...source} components={MDXComponents} />
+            </m.article>
+            <aside>
+              <div className='sticky top-36'>
+                <TableOfContents
+                  toc={toc}
+                  minLevel={minLevel}
+                  activeSection={null}
+                />
+              </div>
+            </aside>
+          </section>
         </m.article>
       </main>
     </Layout>
