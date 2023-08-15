@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 
 export type HeadingScrollSpy = Array<{
@@ -16,22 +17,25 @@ export default function TableOfContents({
   activeSection,
 }: TableOfContentsProps) {
   return (
-    <div id='toc-container'>
+    <div id='toc-container' className='hidden overflow-auto lg:block'>
       <h4 className='mb-3'>Table Of Contents</h4>
-      <div className='hidden max-h-[calc(100vh-15rem)] overflow-auto lg:block'>
-        <div className='flex flex-col space-y-1'>
-          {toc
-            ? toc.map(({ id, text }) => (
-                <Link
-                  key={id}
-                  href={`#${id}`}
-                  className='dark:hover:text-white-primary hover:text-black-primary'
-                >
-                  {text}
-                </Link>
-              ))
-            : null}
-        </div>
+      <div className='flex flex-col space-y-1 text-sm max-h-[calc(100vh-15rem)]'>
+        {toc
+          ? toc.map(({ id, text }) => (
+              <Link
+                key={id}
+                href={`#${id}`}
+                className={clsx(
+                  'dark:hover:text-white-primary hover:text-black-primary font-medium',
+                  activeSection === id
+                    ? 'text-black-primary dark:text-white-primary'
+                    : 'text-black-secondary dark:text-gray-500'
+                )}
+              >
+                {text}
+              </Link>
+            ))
+          : null}
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import TableOfContents, {
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
 import useContentMeta from '../../hooks/useContentMeta';
+import useScrollSpy from '../../hooks/useScrollSpy';
 import { FADE_DOWN_ANIMATION_VARIANTS } from '../../lib/framer';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { ProjectFrontmatter } from '../../types/frontmatters';
@@ -26,8 +27,11 @@ export default function ProjectPage({
   source: MDXRemoteSerializeResult;
 }) {
   const meta = useContentMeta(frontMatter.slug);
+
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.3], [5, -200]);
+  const activeSection = useScrollSpy();
+
   const url = buildUrl(`rizaadikurniawan/${frontMatter.mockup}`, {
     cloud: {
       cloudName: 'rizaadi',
@@ -133,7 +137,7 @@ export default function ProjectPage({
                 <TableOfContents
                   toc={toc}
                   minLevel={minLevel}
-                  activeSection={null}
+                  activeSection={activeSection}
                 />
               </div>
             </aside>
