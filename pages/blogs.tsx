@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import React from 'react';
 
@@ -7,6 +8,7 @@ import Tag from '../components/content/Tag';
 import Layout from '../components/layout/Layout';
 import Seo from '../components/Seo';
 import useInjectContentMeta from '../hooks/useInjectContentMeta';
+import { FADE_DOWN_ANIMATION_VARIANTS } from '../lib/framer';
 import { getAllArticles, getTags, sortByDate } from '../lib/mdx';
 import { BlogFrontmatter } from '../types/frontmatters';
 
@@ -61,12 +63,35 @@ function BlogPage({
         description='Exploring coding, design, and more'
       />
       <main className='layout-container'>
-        <section className='pt-12 layout min-h-main'>
-          <h1 className='text-6xl md:text-7.5xl leading-normal'>Blog</h1>
-          <h2 className='mt-3 text-base font-medium md:text-2xl text-black-secondary dark:text-black-secondary'>
+        <m.section
+          initial='hidden'
+          whileInView='show'
+          viewport={{ once: true }}
+          variants={{
+            show: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+          className='pt-12 layout min-h-main'
+        >
+          <m.h1
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className='text-6xl md:text-7.5xl leading-normal'
+          >
+            Blog
+          </m.h1>
+          <m.h2
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className='mt-3 text-base font-medium md:text-2xl text-black-secondary dark:text-black-secondary'
+          >
             Exploring coding, design, and more
-          </h2>
-          <div className='mt-5 md:mt-10 md:flex md:flex-row-reverse '>
+          </m.h2>
+          <m.div
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className='mt-5 md:mt-10 md:flex md:flex-row-reverse '
+          >
             <div className='w-auto md:w-60'>
               <input
                 className='w-full p-2 mt-4 font-medium rounded-md outline-none dark:bg-black-primary bg-slate-100'
@@ -82,7 +107,19 @@ function BlogPage({
                 ))}
               </div>
             </div>
-            <ul className='w-full pt-4 pr-10'>
+            <m.ul
+              initial='hidden'
+              whileInView='show'
+              viewport={{ once: true, amount: 'some' }}
+              variants={{
+                show: {
+                  transition: {
+                    staggerChildren: 0.3,
+                  },
+                },
+              }}
+              className='w-full pt-4 pr-10'
+            >
               {filteredPosts.length > 0 ? (
                 filteredPosts.map((post) => (
                   <BlogContent key={post.slug} post={post} />
@@ -90,9 +127,9 @@ function BlogPage({
               ) : (
                 <BlogContentNotFound />
               )}
-            </ul>
-          </div>
-        </section>
+            </m.ul>
+          </m.div>
+        </m.section>
       </main>
     </Layout>
   );
