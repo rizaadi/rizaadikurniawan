@@ -23,6 +23,8 @@ export default function TableOfContents({
         {toc
           ? toc.map(({ id, text }) => (
               <Link
+                replace
+                scroll={false}
                 key={id}
                 href={`#${id}`}
                 className={clsx(
