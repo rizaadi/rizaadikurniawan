@@ -5,11 +5,18 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
 import MDXComponents from '../../components/content/MDXComponents';
+import TableOfContents, {
+  HeadingScrollSpy,
+} from '../../components/content/TableOfContents';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
 import useContentMeta from '../../hooks/useContentMeta';
-import { FADE_DOWN_ANIMATION_VARIANTS } from '../../lib/framer';
+import useScrollSpy from '../../hooks/useScrollSpy';
+import {
+  FADE_DOWN_ANIMATION_VARIANTS,
+  FADE_LEFT_ANIMATION_VARIANTS,
+} from '../../lib/framer';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
@@ -21,6 +28,25 @@ export default function Blog({
   source: MDXRemoteSerializeResult;
 }) {
   const meta = useContentMeta(frontMatter.slug);
+  const activeSection = useScrollSpy();
+
+  const [toc, setToc] = React.useState<HeadingScrollSpy>();
+  const minLevel =
+    toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
+
+  React.useEffect(() => {
+    const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
+
+    const headingArr: HeadingScrollSpy = [];
+    headings.forEach((heading) => {
+      const id = heading.id;
+      const level = +heading.tagName.replace('H', '');
+      const text = heading.textContent + '';
+
+      headingArr.push({ id, level, text });
+    });
+    setToc(headingArr);
+  }, [frontMatter.slug]);
 
   return (
     <Layout>
@@ -45,9 +71,9 @@ export default function Blog({
               },
             },
           }}
-          className='py-24 layout-blog'
+          className='py-24'
         >
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
+          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS} className='mx-4'>
             <h1 className='text-3xl text-center md:text-5xl'>
               {frontMatter.title}
             </h1>
@@ -81,11 +107,27 @@ export default function Blog({
               ))}
             </ul>
           </m.section>
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <section className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'>
+          <section className='lg:grid lg:grid-cols-[1fr,auto,1fr] lg:gap-7 flex justify-center lg:px-0 px-4'>
+            <aside />
+            <m.section
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'
+            >
               <MDXRemote {...source} components={MDXComponents} />
-            </section>
-          </m.section>
+            </m.section>
+            <aside>
+              <m.div
+                variants={FADE_LEFT_ANIMATION_VARIANTS}
+                className='sticky top-36'
+              >
+                <TableOfContents
+                  toc={toc}
+                  minLevel={minLevel}
+                  activeSection={activeSection}
+                />
+              </m.div>
+            </aside>
+          </section>
         </m.article>
       </main>
     </Layout>
