@@ -96,8 +96,11 @@ export default function Blog({
               } Views`}</li>
             </ul>
           </m.section>
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <ul className='flex justify-center gap-2 mt-3'>
+          <m.section
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className='max-w-2xl px-4 mx-auto'
+          >
+            <ul className='flex flex-wrap justify-center gap-2 mt-3 mb-14'>
               {frontMatter.tags.split(',').map((tag) => (
                 <li key={tag}>
                   <Tag key={tag} className='gap-6'>
@@ -111,7 +114,7 @@ export default function Blog({
             <aside />
             <m.section
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'
+              className='items-center prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
             >
               <MDXRemote {...source} components={MDXComponents} />
             </m.section>
