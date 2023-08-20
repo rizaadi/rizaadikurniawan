@@ -17,7 +17,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang='en' className='scroll-smooth'>
         <Head>
           <link
             rel='preload'
@@ -27,7 +27,7 @@ class MyDocument extends Document {
             crossOrigin='anonymous'
           />
         </Head>
-        <body className='bg-white  dark:bg-dark'>
+        <body className='bg-white dark:bg-dark'>
           <Main />
           <NextScript />
         </body>

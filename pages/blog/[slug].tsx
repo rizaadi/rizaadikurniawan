@@ -1,13 +1,22 @@
 import dayjs from 'dayjs';
+import { m } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
 import MDXComponents from '../../components/content/MDXComponents';
+import TableOfContents, {
+  HeadingScrollSpy,
+} from '../../components/content/TableOfContents';
 import Tag from '../../components/content/Tag';
 import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
 import useContentMeta from '../../hooks/useContentMeta';
+import useScrollSpy from '../../hooks/useScrollSpy';
+import {
+  FADE_DOWN_ANIMATION_VARIANTS,
+  FADE_LEFT_ANIMATION_VARIANTS,
+} from '../../lib/framer';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
@@ -19,6 +28,25 @@ export default function Blog({
   source: MDXRemoteSerializeResult;
 }) {
   const meta = useContentMeta(frontMatter.slug);
+  const activeSection = useScrollSpy();
+
+  const [toc, setToc] = React.useState<HeadingScrollSpy>();
+  const minLevel =
+    toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
+
+  React.useEffect(() => {
+    const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
+
+    const headingArr: HeadingScrollSpy = [];
+    headings.forEach((heading) => {
+      const id = heading.id;
+      const level = +heading.tagName.replace('H', '');
+      const text = heading.textContent + '';
+
+      headingArr.push({ id, level, text });
+    });
+    setToc(headingArr);
+  }, [frontMatter.slug]);
 
   return (
     <Layout>
@@ -32,12 +60,26 @@ export default function Blog({
         ).toISOString()}
       />
       <main className='dark:border-black-primary dark:bg-gradient-to-b dark:from-black-primary/50 dark:to-black md:text-start layout-container'>
-        <article className='py-24 layout-blog'>
-          <section>
+        <m.article
+          initial='hidden'
+          whileInView='show'
+          viewport={{ once: true }}
+          variants={{
+            show: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+          className='py-24'
+        >
+          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS} className='mx-4'>
             <h1 className='text-3xl text-center md:text-5xl'>
               {frontMatter.title}
             </h1>
-            <ul className='flex flex-wrap justify-center mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
+          </m.section>
+          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <ul className='flex flex-wrap justify-center mx-4 mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
               <li>
                 Published At{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMMM YYYY')}
@@ -53,7 +95,12 @@ export default function Blog({
                 meta?.contentViews ? meta?.contentViews : '–––'
               } Views`}</li>
             </ul>
-            <ul className='flex justify-center gap-2 mt-3'>
+          </m.section>
+          <m.section
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+            className='max-w-2xl px-4 mx-auto'
+          >
+            <ul className='flex flex-wrap justify-center gap-2 mt-3 mb-14'>
               {frontMatter.tags.split(',').map((tag) => (
                 <li key={tag}>
                   <Tag key={tag} className='gap-6'>
@@ -62,11 +109,29 @@ export default function Blog({
                 </li>
               ))}
             </ul>
+          </m.section>
+          <section className='lg:grid lg:grid-cols-[1fr,auto,1fr] lg:gap-7 flex justify-center lg:px-0 px-4'>
+            <aside />
+            <m.section
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
+            >
+              <MDXRemote {...source} components={MDXComponents} />
+            </m.section>
+            <aside>
+              <m.div
+                variants={FADE_LEFT_ANIMATION_VARIANTS}
+                className='sticky top-36'
+              >
+                <TableOfContents
+                  toc={toc}
+                  minLevel={minLevel}
+                  activeSection={activeSection}
+                />
+              </m.div>
+            </aside>
           </section>
-          <section className='items-center prose-sm prose text-justify mdx md:prose-base mt-14 dark:prose-invert'>
-            <MDXRemote {...source} components={MDXComponents} />
-          </section>
-        </article>
+        </m.article>
       </main>
     </Layout>
   );
