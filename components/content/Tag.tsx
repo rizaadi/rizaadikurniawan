@@ -11,7 +11,7 @@ function Tag({
     <Link href={`/tags/${children}`}>
       <m.button
         whileHover={{
-          scale: 1.0,
+          scale: 1.05,
           transition: { type: 'spring', stiffness: 400, damping: 17 },
         }}
         className={clsx(
