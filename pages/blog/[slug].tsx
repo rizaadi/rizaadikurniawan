@@ -79,7 +79,7 @@ export default function Blog({
             </h1>
           </m.section>
           <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <ul className='flex flex-wrap justify-center mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
+            <ul className='flex flex-wrap justify-center mx-4 mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
               <li>
                 Published At{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMMM YYYY')}
@@ -114,7 +114,7 @@ export default function Blog({
             <aside />
             <m.section
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='items-center prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
+              className='prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
             >
               <MDXRemote {...source} components={MDXComponents} />
             </m.section>

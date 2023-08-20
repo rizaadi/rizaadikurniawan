@@ -15,7 +15,10 @@ import Layout from '../../components/layout/Layout';
 import Seo from '../../components/Seo';
 import useContentMeta from '../../hooks/useContentMeta';
 import useScrollSpy from '../../hooks/useScrollSpy';
-import { FADE_DOWN_ANIMATION_VARIANTS } from '../../lib/framer';
+import {
+  FADE_DOWN_ANIMATION_VARIANTS,
+  FADE_LEFT_ANIMATION_VARIANTS,
+} from '../../lib/framer';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { ProjectFrontmatter } from '../../types/frontmatters';
 
@@ -107,7 +110,7 @@ export default function ProjectPage({
                 'bg-white drop-shadow-mobile_only_top dark:bg-black dark:drop-shadow-mobile_only_top_dark'
             )}
           >
-            <ul className='flex flex-wrap justify-center list-none md:text-sm gap-y-3 gap-x-7 mb-14'>
+            <ul className='flex flex-wrap justify-center mx-4 list-none md:text-sm gap-y-3 gap-x-7 mb-14'>
               <li>
                 Published at{' '}
                 {dayjs(frontMatter.publishedAt).format('D MMM YYYY')}
@@ -133,13 +136,16 @@ export default function ProjectPage({
               <MDXRemote {...source} components={MDXComponents} />
             </m.article>
             <aside>
-              <div className='sticky top-36'>
+              <m.div
+                variants={FADE_LEFT_ANIMATION_VARIANTS}
+                className='sticky top-36'
+              >
                 <TableOfContents
                   toc={toc}
                   minLevel={minLevel}
                   activeSection={activeSection}
                 />
-              </div>
+              </m.div>
             </aside>
           </section>
         </m.article>
