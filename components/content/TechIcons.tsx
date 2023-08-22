@@ -3,6 +3,7 @@ import React from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
   SiDart,
+  SiExpress,
   SiFigma,
   SiFirebase,
   SiFlutter,
@@ -129,6 +130,10 @@ const techList = {
   dart: {
     icon: SiDart,
     name: 'Dart',
+  },
+  express: {
+    icon: SiExpress,
+    name: 'Express',
   },
 };
 export default TechIcons;
