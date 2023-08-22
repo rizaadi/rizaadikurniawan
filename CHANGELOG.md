@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.3.0...v1.4.0) (2023-08-22)
+
+
+### Features
+
+* add express.js tech icon ([ade3eaa](https://github.com/rizaadi/rizaadikurniawan/commit/ade3eaa9efa2e71ffe2e8ed375332042ae853826))
+* add table of contents in projects ([e47575c](https://github.com/rizaadi/rizaadikurniawan/commit/e47575c2ffe2f9974d298c542b5e54b9cd447446))
+* add useScrollSpy hook ([77eea4b](https://github.com/rizaadi/rizaadikurniawan/commit/77eea4bc007652070080bc0037a6d964280f47c6))
+
 ## [1.3.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.2.0...v1.3.0) (2023-06-17)
 
 
