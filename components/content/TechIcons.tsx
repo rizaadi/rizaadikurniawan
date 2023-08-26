@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
+  SiAndroid,
   SiDart,
   SiExpress,
   SiFigma,
@@ -10,6 +11,7 @@ import {
   SiGit,
   SiGoogleanalytics,
   SiJavascript,
+  SiKotlin,
   SiLaravel,
   SiMarkdown,
   SiMongodb,
@@ -22,6 +24,7 @@ import {
   SiRedux,
   SiSass,
   SiTailwindcss,
+  SiTensorflow,
   SiTypescript,
 } from 'react-icons/si';
 
@@ -134,6 +137,18 @@ const techList = {
   express: {
     icon: SiExpress,
     name: 'Express',
+  },
+  android: {
+    icon: SiAndroid,
+    name: 'Andorid',
+  },
+  kotlin: {
+    icon: SiKotlin,
+    name: 'Kotlin',
+  },
+  tensorflow: {
+    icon: SiTensorflow,
+    name: 'Tensorflow',
   },
 };
 export default TechIcons;
