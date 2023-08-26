@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.4.0...v1.5.0) (2023-08-26)
+
+
+### Features
+
+* add android,kotlin and tensorflow tech icon ([7ee52cb](https://github.com/rizaadi/rizaadikurniawan/commit/7ee52cb5db2cc1fc1d2482dd4d9dd59456427d83))
+
 ## [1.4.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.3.0...v1.4.0) (2023-08-22)
 
 
