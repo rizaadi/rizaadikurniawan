@@ -75,22 +75,30 @@ function About() {
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                   className='mt-2 text-base text-justify md:text-2xl '
                 >
-                  I&#39;m a web developer and mobile developer. i love design,
-                  but i also love coding and photography. <br />
+                  A Flutter developer who has a passion for design, coding, and
+                  photography.
                   <br />
-                  I enjoy making websites and apps that are easy to use and
-                  beautiful. I have an eye for detail and try to make everything
-                  I create as intuitive as possible for the end user. <br />
                   <br />
-                  I&#39;ve been designing and building websites for the past
-                  three years, and building apps for the past two. I love
-                  designing websites because it allows me my creative outlet,
-                  and designing apps is a great way to learn how to build
-                  something that people will use daily. <br />
+                  As a programmer, I officially started my professional journey
+                  in 2022 as a Flutter Developer at Pupuk Indonesia. I have a
+                  strong passion for continuously learning and eagerly welcome
+                  feedback to enhance my skills. This website serves as a
+                  platform to showcase the projects I've worked on since my
+                  college days. Additionally, I'll be sharing some random
+                  thoughts in this blog. I believe that one of the best ways to
+                  remember things and gain a deeper understanding is through
+                  writing and sharing knowledge.
                   <br />
-                  My hobbies include writing blog posts, listening to music and
-                  singing along with it, reading books, watching movies, and
-                  making things (like this one).
+                  <br />
+                  I'm truly passionate about crafting pixel-perfect websites and
+                  apps that not only work seamlessly but also exude aesthetic
+                  appeal. I'm dedicated to ensuring that everything I create is
+                  not just user-friendly but visually captivating as well.{' '}
+                  <br />
+                  <br />
+                  In my free time, I enjoy writing blog posts, listening to
+                  music, diving into captivating books, catching up on movies,
+                  and getting my hands busy with DIY projects like this one.
                 </m.p>
               </m.div>
             </m.div>
