@@ -2,6 +2,7 @@ import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import React from 'react';
 
+import Button from '../components/buttons/Button';
 import BlogContent from '../components/content/blog/BlogContent';
 import BlogContentNotFound from '../components/content/blog/BlogContentNotFound';
 import Tag from '../components/content/Tag';
@@ -35,6 +36,8 @@ function BlogPage({
 }) {
   const populatedContent = useInjectContentMeta(posts);
 
+  const [isEnglish, setIsEnglish] = React.useState<boolean>(true);
+
   //search
   const [search, setSearch] = React.useState('');
 
@@ -42,6 +45,7 @@ function BlogPage({
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+  const clearSearch = () => setSearch('');
 
   React.useEffect(() => {
     const results = populatedContent.filter(
@@ -55,6 +59,10 @@ function BlogPage({
     );
     setFilteredPosts(results);
   }, [search, populatedContent]);
+
+  const englishPosts = filteredPosts.filter((p) => !p.slug.startsWith('id-'));
+  const bahasaPosts = filteredPosts.filter((p) => p.slug.startsWith('id-'));
+  const currentPosts = isEnglish ? englishPosts : bahasaPosts;
 
   return (
     <Layout>
@@ -88,6 +96,15 @@ function BlogPage({
           >
             Exploring coding, design, and more
           </m.h2>
+          <Button
+            onClick={() => {
+              setIsEnglish((b) => !b);
+              clearSearch();
+            }}
+            className='mt-2'
+          >
+            Read in {isEnglish ? 'Indonesia' : 'English'}
+          </Button>
           <m.div
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className='mt-5 md:mt-10 md:flex md:flex-row-reverse '
@@ -120,8 +137,8 @@ function BlogPage({
               }}
               className='w-full pt-4 pr-10'
             >
-              {filteredPosts.length > 0 ? (
-                filteredPosts.map((post) => (
+              {currentPosts.length > 0 ? (
+                currentPosts.map((post) => (
                   <BlogContent key={post.slug} post={post} />
                 ))
               ) : (

@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 
+import Button from '../../components/buttons/Button';
 import BlogContent from '../../components/content/blog/BlogContent';
 import BlogContentNotFound from '../../components/content/blog/BlogContentNotFound';
 import Tag from '../../components/content/Tag';
@@ -49,6 +50,8 @@ export default function TagsPage({
 }) {
   const populatedPosts = posts;
 
+  const [isEnglish, setIsEnglish] = React.useState<boolean>(true);
+
   //search
   const [search, setSearch] = React.useState('');
 
@@ -56,6 +59,8 @@ export default function TagsPage({
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
+  const clearSearch = () => setSearch('');
 
   React.useEffect(() => {
     const results = populatedPosts.filter(
@@ -69,6 +74,10 @@ export default function TagsPage({
     );
     setFilteredPosts(results);
   }, [search, populatedPosts]);
+
+  const englishPosts = filteredPosts.filter((p) => !p.slug.startsWith('id-'));
+  const bahasaPosts = filteredPosts.filter((p) => p.slug.startsWith('id-'));
+  const currentPosts = isEnglish ? englishPosts : bahasaPosts;
 
   return (
     <Layout>
@@ -84,6 +93,15 @@ export default function TagsPage({
           <h2 className='mt-3 text-base font-medium md:text-2xl text-black-secondary dark:text-black-secondary'>
             Exploring coding, design, and more
           </h2>
+          <Button
+            onClick={() => {
+              setIsEnglish((b) => !b);
+              clearSearch();
+            }}
+            className='mt-2'
+          >
+            Read in {isEnglish ? 'Indonesia' : 'English'}
+          </Button>
           <div className='mt-5 md:mt-10 md:flex md:flex-row-reverse'>
             <div className='w-auto md:w-60'>
               <input
@@ -101,8 +119,8 @@ export default function TagsPage({
               </div>
             </div>
             <ul className='w-full pt-4 pr-10 mt-5 md:mt-0'>
-              {filteredPosts.length > 0 ? (
-                filteredPosts.map((post) => (
+              {currentPosts.length > 0 ? (
+                currentPosts.map((post) => (
                   <BlogContent key={post.slug} post={post} />
                 ))
               ) : (

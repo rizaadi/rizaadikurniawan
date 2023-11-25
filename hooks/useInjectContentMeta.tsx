@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '../lib/fetcher';
+import { cleanBlogPrefix } from '../lib/helper';
 import { ContentMeta } from '../types/content';
 import { isProd } from '../types/env';
 import {
@@ -29,7 +30,9 @@ export default function useInjectContentMeta<T extends ContentType>(
   useEffect(() => {
     if (contentMeta) {
       const mapped = frontMatter.map((fm) => {
-        const views = contentMeta.find((meta) => meta.slug === fm.slug)?.views;
+        const views = contentMeta.find(
+          (meta) => meta.slug === cleanBlogPrefix(fm.slug)
+        )?.views;
 
         return { ...fm, views };
       });
