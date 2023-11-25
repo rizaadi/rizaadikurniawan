@@ -17,6 +17,7 @@ import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_LEFT_ANIMATION_VARIANTS,
 } from '../../lib/framer';
+import { cleanBlogPrefix } from '../../lib/helper';
 import { getFiles, getSlug } from '../../lib/mdx';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
@@ -27,7 +28,8 @@ export default function Blog({
   frontMatter: BlogFrontmatter;
   source: MDXRemoteSerializeResult;
 }) {
-  const meta = useContentMeta(frontMatter.slug);
+  const cleanSlug = cleanBlogPrefix(frontMatter.slug);
+  const meta = useContentMeta(cleanSlug);
   const activeSection = useScrollSpy();
 
   const [toc, setToc] = React.useState<HeadingScrollSpy>();
