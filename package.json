@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^5.10.2",
     "@vercel/analytics": "^0.1.6",
+    "@vercel/og": "^0.6.2",
     "axios": "^1.2.1",
     "cloudinary-build-url": "^0.2.4",
     "clsx": "^1.2.1",
