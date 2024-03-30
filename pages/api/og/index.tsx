@@ -5,10 +5,6 @@ export const fetchInterLight = fetch(
   new URL('public/fonts/Inter-Light.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-export const fetchInterRegular = fetch(
-  new URL('public/fonts/Inter-Regular.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
-
 export const fetchInterSemiBold = fetch(
   new URL('public/fonts/Inter-SemiBold.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
@@ -21,13 +17,11 @@ export const config = {
   runtime: 'experimental-edge',
 };
 export default async function handler() {
-  const [interLight, interRegular, interSemiBold, bodoniSemiBoldItalic] =
-    await Promise.all([
-      fetchInterLight,
-      fetchInterRegular,
-      fetchInterSemiBold,
-      fetchBodoniSemiBoldItalic,
-    ]);
+  const [interLight, interSemiBold, bodoniSemiBoldItalic] = await Promise.all([
+    fetchInterLight,
+    fetchInterSemiBold,
+    fetchBodoniSemiBoldItalic,
+  ]);
 
   return new ImageResponse(
     (
@@ -87,15 +81,13 @@ export default async function handler() {
             rizaadikurniawan.com
           </h4>
           <h1
-            style={
-              {
-                fontWeight: 600,
-                margin: 0,
-                fontSize: '5rem',
-                gap: '1rem',
-                top: '1.8rem',
-              } as CSSProperties
-            }
+            style={{
+              fontWeight: 600,
+              margin: 0,
+              fontSize: '5rem',
+              gap: '1rem',
+              top: '1.8rem',
+            }}
           >
             A
             <span
@@ -110,7 +102,7 @@ export default async function handler() {
           </h1>
           <p
             style={{
-              fontWeight: 400,
+              fontWeight: 300,
             }}
             tw='text-1xl my-2 mb-4'
           >
@@ -139,19 +131,12 @@ export default async function handler() {
     {
       width: 1200,
       height: 630,
-      //   debug: true,
       fonts: [
         {
           name: 'Inter',
           data: interLight,
           weight: 300,
         },
-        {
-          name: 'Inter',
-          data: interRegular,
-          weight: 400,
-        },
-
         {
           name: 'Inter',
           data: interSemiBold,
