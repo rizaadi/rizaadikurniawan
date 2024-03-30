@@ -56,7 +56,7 @@ export default function Blog({
       <Seo
         templateTitle={frontMatter.title}
         description={frontMatter.description}
-        banner={`${baseUrl}/api/og/content?title=${frontMatter.title}&type=Blog`}
+        image={`${baseUrl}/api/og/content?title=${frontMatter.title}&type=Blog`}
         date={new Date(
           frontMatter.lastModifiedAt ?? frontMatter.publishedAt
         ).toISOString()}
