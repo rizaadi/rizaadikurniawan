@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 const defaultMeta = {
   title: 'Riza Adi Kurniawan',
   siteName: 'rizaadikurniawan.com',
-  description: 'Interested in Web Developer, Mobile Developer, and Design.',
+  description: 'A Personal Portfolio crafted by Riza Adi Kurniawan',
   url: 'https://rizaadikurniawan.com',
-  image: 'https://rizaadikurniawan.com/image/og-rizaadikurniawan.png',
+  image: 'https://rizaadikurniawan.com/api/og',
   type: 'website',
   robots: 'follow, index',
 };
