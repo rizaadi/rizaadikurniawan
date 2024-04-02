@@ -6,7 +6,7 @@ const defaultMeta = {
   siteName: 'rizaadikurniawan.com',
   description: 'A Personal Portfolio crafted by Riza Adi Kurniawan',
   url: 'https://rizaadikurniawan.com',
-  image: 'https://rizaadikurniawan.com/api/og',
+  image: 'https://rizaadikurniawan.com/image/og.png',
   type: 'website',
   robots: 'follow, index',
 };
