@@ -20,7 +20,6 @@ import {
   FADE_LEFT_ANIMATION_VARIANTS,
 } from '../../lib/framer';
 import { getFiles, getSlug } from '../../lib/mdx';
-import { baseUrl } from '../../types/env';
 import { ProjectFrontmatter } from '../../types/frontmatters';
 
 export default function ProjectPage({
@@ -65,7 +64,7 @@ export default function ProjectPage({
       <Seo
         templateTitle={frontMatter.title}
         description={frontMatter.description}
-        image={`${baseUrl}/api/og/content?title=${frontMatter.title}&type=Project`}
+        image={`https://rizaadikurniawan.com/api/og/content?title=${frontMatter.title}&type=Project`}
         date={new Date(
           frontMatter.lastModifiedAt ?? frontMatter.publishedAt
         ).toISOString()}

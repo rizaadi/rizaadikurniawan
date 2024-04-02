@@ -19,7 +19,6 @@ import {
 } from '../../lib/framer';
 import { cleanBlogPrefix } from '../../lib/helper';
 import { getFiles, getSlug } from '../../lib/mdx';
-import { baseUrl } from '../../types/env';
 import { BlogFrontmatter } from '../../types/frontmatters';
 
 export default function Blog({
@@ -56,7 +55,7 @@ export default function Blog({
       <Seo
         templateTitle={frontMatter.title}
         description={frontMatter.description}
-        image={`${baseUrl}/api/og/content?title=${frontMatter.title}&type=Blog`}
+        image={`https://rizaadikurniawan.com/api/og/content?title=${frontMatter.title}&type=Blog`}
         date={new Date(
           frontMatter.lastModifiedAt ?? frontMatter.publishedAt
         ).toISOString()}
