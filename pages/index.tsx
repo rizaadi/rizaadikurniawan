@@ -57,7 +57,20 @@ export default function Home({
             </m.h1>
             <m.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className='max-w-4xl mt-2 text-base md:text-xl'
+              className='max-w-4xl mt-2 text-sm md:text-base'
+            >
+              Mobile Developer at{' '}
+              <a
+                href='https://www.pupuk-indonesia.com/'
+                className='hover:text-black-primary hover:dark:text-white-primary'
+              >
+                Pupuk Indonesia
+              </a>
+              .
+            </m.p>
+            <m.p
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+              className='max-w-4xl mt-2 text-base font-medium md:text-xl'
             >
               Interested in Web Developer, Mobile Developer, and Design.
             </m.p>

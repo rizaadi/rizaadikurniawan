@@ -75,7 +75,7 @@ function About() {
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                   className='mt-2 text-base text-justify md:text-2xl '
                 >
-                  A Flutter developer who has a passion for design, coding, and
+                  A Mobile Developer who has a passion for design, coding, and
                   photography.
                   <br />
                   <br />
@@ -135,7 +135,9 @@ function About() {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className='flex justify-between mt-2 text-base border-b md:text-2xl dark:border-gray-600'
             >
-              <p className='pr-4'>Fullstack Web Intership at CV. Linas Media</p>
+              <p className='pr-4'>
+                Web Developer Intership at Linas Media Informatika
+              </p>
               <p className='text-end'>2021</p>
             </m.div>
           </m.div>
