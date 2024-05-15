@@ -20,6 +20,7 @@ import {
   SiNotion,
   SiPhp,
   SiPrettier,
+  SiPython,
   SiReact,
   SiRedux,
   SiSass,
@@ -149,6 +150,10 @@ const techList = {
   tensorflow: {
     icon: SiTensorflow,
     name: 'Tensorflow',
+  },
+  python: {
+    icon: SiPython,
+    name: 'python',
   },
 };
 export default TechIcons;
