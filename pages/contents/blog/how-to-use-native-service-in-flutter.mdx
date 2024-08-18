@@ -1,0 +1,241 @@
+---
+title: 'How to use Native Service in Flutter'
+publishedAt: '2024-08-18'
+description: 'A simple Flutter application that demonstrates how to communicate with native platform to retrieve the devices battery level'
+tags: 'Flutter'
+---
+
+Flutter's seamless integration with native platforms is one of its standout features, enabling developers to harness platform-specific functionalities while enjoying the benefits of cross-platform development. This integration is made possible through Platform Channels and Dart's Foreign Function Interface (FFI).
+
+## Platform Channel
+
+Platform Channels are a crucial feature in Flutter, serving as a bridge between Dart and native platform code. They enable Flutter apps to communicate with the underlying platform, whether it's Android, iOS, macOS, Linux, or Windows. This communication is essential for accessing native functionalities like cameras, GPS, sensors, and other platform-specific features that aren't directly accessible through Flutter.
+
+Platform Channel offer three main types of communication methods:
+
+1. **Method Channel**: This is used for asynchronous method invocations. It's handy when you need performs a specific function and return a result, such as fetching sensor data, checking battery status, or processing data using native capabilities.
+2. **Event Channel**: This is used for create a data stream from native code to Dart. It's ideal for listening to continuous or periodic native events, like sensor readings or location updates.
+3. **BasicMessageChannel**: This is used for asynchronous message exchanges, suited for simple communication. It supports various data serialization formats and codecs, such as JSON, binary, or custom-defined formats.
+
+Now, let’s build a simple application where the Flutter part (Dart code) communicates with the native platform (Android & iOS) to retrieve the device’s battery level. We'll be using MethodChannel in flutter.
+
+### Android platform
+
+### Define the MethodChannel in Flutter
+
+```dart title="battery_service.dart" showLineNumbers
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+
+class BatteryService {
+  /// prefix the channel name with a unique 'domain prefix'
+  static const methodChannel =
+      MethodChannel('com.example.flutter_native_example/battery');
+
+  static Future<int?> getBatteryLevel() async {
+    try {
+      final batteryLevel =
+          await methodChannel.invokeMethod<int>('getBatteryLevel');
+      return batteryLevel;
+    } catch (e) {
+      debugPrint("Error: $e");
+      return null;
+    }
+  }
+}
+```
+
+#### Handling the Method Call in Native Android (Kotlin)
+
+In our Android project, we need to override the `configureFlutterEngine` method in our `MainActivity` or the relevant activity.
+
+```kotlin title="MainActivity.kt" showLineNumbers
+package com.example.flutter_native_example
+
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
+import android.os.BatteryManager
+import androidx.annotation.NonNull
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodChannel
+
+class MainActivity : FlutterActivity() {
+    private val CHANNEL = "com.example.flutter_native_example/battery"
+
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
+            call,
+            result ->
+            if (call.method == "getBatteryLevel") {
+                val batteryLevel = getBatteryLevel()
+
+                if (batteryLevel != -1) {
+                    result.success(batteryLevel)
+                } else {
+                    result.error("UNAVAILABLE", "Battery level not available.", null)
+                }
+            } else {
+                result.notImplemented()
+            }
+        }
+    }
+
+    private fun getBatteryLevel(): Int {
+        val batteryLevel: Int
+        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+            batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        } else {
+            val intent =
+                ContextWrapper(applicationContext)
+                    .registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+            batteryLevel =
+                intent!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 /
+                    intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        }
+
+        return batteryLevel
+    }
+}
+```
+
+#### Call the method from Flutter
+
+We can call `getBatteryLevel` from our Flutter code to retrieve the battery level from the native platform.
+
+```dart title="main.dart" showLineNumbers
+import 'package:flutter/material.dart';
+import 'package:flutter_native_example/battery_service.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  String? batteryLevel;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Flutter Native Example"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  final result = await BatteryService.getBatteryLevel();
+
+                  setState(() {
+                    batteryLevel = "$result";
+                  });
+                },
+                child: const Text("Get Battery Level"),
+              ),
+              Text("Battery Level ${batteryLevel ?? ''} %"),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+#### Run the App
+
+To run our app on an Android device, the `getBatteryLevel` method will invoke the native platform code, and the battery level will be fetched. Always ensure that the channel name matches between the dart code and the native code.
+
+<CloudinaryImg
+  mdx
+  className='rounded-xl'
+  publicId='rizaadikurniawan/blog/how-to-use-native-service-in-flutter/cfjorzfnfjem9yhm5plb.png'
+  alt='Android device'
+  width={300}
+  height={623}
+/>
+
+### iOS Platform
+
+Run this command to open the Xcode project
+
+`open ios/Runner.xcworkspace`
+
+Next, open the `appDelegate.swift` file located under Runner > Runner in the Project Navigator.
+
+#### Handling the Method Call in Native iOS (Swift)
+
+Override the `application` function and create a `FlutterMethodChannel` tied to the same channel name as before. Then, add the Swift code that uses iOS battery APIs to retrieve the battery level.
+
+```swift title="AppDelegate.swift" showLineNumbers
+import UIKit
+import Flutter
+
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+      let batteryChannel = FlutterMethodChannel(name: "com.example.flutter_native_example/battery", binaryMessenger: controller.binaryMessenger)
+
+      batteryChannel.setMethodCallHandler({
+        [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+        guard call.method == "getBatteryLevel" else {
+          result(FlutterMethodNotImplemented)
+          return
+        }
+        self?.receiveBatteryLevel(result: result)
+      })
+
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+    private func receiveBatteryLevel(result: FlutterResult) {
+      let device = UIDevice.current
+      device.isBatteryMonitoringEnabled = true
+      if device.batteryState == UIDevice.BatteryState.unknown {
+        result(FlutterError(code: "UNAVAILABLE",
+                            message: "Battery level not available.",
+                            details: nil))
+      } else {
+        result(Int(device.batteryLevel * 100))
+      }
+    }
+}
+```
+
+#### Run our App
+
+Now, run our app on iOS device. if you're using the iOS simulator, keep in mind that it doesn’t support the battery API
+
+<CloudinaryImg
+  mdx
+  className='rounded-xl'
+  publicId='rizaadikurniawan/blog/how-to-use-native-service-in-flutter/rjfcyvd5zhpfrbi7ajd7.png'
+  alt='iOS device'
+  width={300}
+  height={533}
+/>
+
+## Conclusions
+
+With Flutter, we can seamlessly integrate with native platform. Platform Channels bridge the gap between Dart and native code, allowing Flutter apps to communicate with the underlying platform. Additionally, We can use Pigeon, Dart FFI (Foreign Function Interface), FFIgen, and JNIgen (Java Native Interface Generator) to further simplify the process of creating bindings and facilitating communication between Dart and native code.
