@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.5.0...v1.6.0) (2024-08-18)
+
+
+### Features
+
+* add code blocks ([b2800d5](https://github.com/rizaadi/rizaadikurniawan/commit/b2800d5befce01ba6767a9415ff9f57b4b4b71a3))
+* add language blog ([23ca567](https://github.com/rizaadi/rizaadikurniawan/commit/23ca567737fb14eebc42dfeacf936ca8d41bae61))
+* add og blog ([3cbe58e](https://github.com/rizaadi/rizaadikurniawan/commit/3cbe58e400262c18ced925a2a4032e9eec4edfd7))
+* add open graph project ([65fd72f](https://github.com/rizaadi/rizaadikurniawan/commit/65fd72fd706ea91ee9a51374a88cd5bb5f880faf))
+* add python tech icon ([d99abf3](https://github.com/rizaadi/rizaadikurniawan/commit/d99abf3917010e2df2f1b406ac651f6e0adfe363))
+* move to postgresql ([c89a22f](https://github.com/rizaadi/rizaadikurniawan/commit/c89a22f9a58829b3e76b9a651ff2a8d36178ea58))
+
+
+### Bug Fixes
+
+* adjust max size open graph ([d701f81](https://github.com/rizaadi/rizaadikurniawan/commit/d701f811fe5bbc1351dfaadaebd815896bc1d6f1))
+* image og ([180c029](https://github.com/rizaadi/rizaadikurniawan/commit/180c0295b8ee301a04f9e33f576db9e7d9b66fc5))
+* open graph seo ([286086e](https://github.com/rizaadi/rizaadikurniawan/commit/286086e720e9aeae3f7b6b21828458bda328030d))
+* remove regular font open graph ([7b96d3c](https://github.com/rizaadi/rizaadikurniawan/commit/7b96d3c4f8eec72de6d39556f44480e13eaf83de))
+* seo image open graph ([8fc688b](https://github.com/rizaadi/rizaadikurniawan/commit/8fc688bd6b744874b9729b92d6c9463e2cab2446))
+* view slug blog ([a6953b2](https://github.com/rizaadi/rizaadikurniawan/commit/a6953b2354e296c66d50ac322a59ee76ea2b64df))
+
 ## [1.5.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.4.0...v1.5.0) (2023-08-26)
 
 
