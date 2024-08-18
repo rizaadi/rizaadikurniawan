@@ -10,6 +10,7 @@ pre [data-line] {
 }
 
 pre > code {
+  max-width: 300px;
   counter-reset: line;
 }
 
