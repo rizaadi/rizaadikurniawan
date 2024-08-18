@@ -8,7 +8,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import path, { join } from 'path';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeCodeTitles from 'rehype-code-titles';
+import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
@@ -18,6 +18,7 @@ import {
   FrontmatterWithDate,
   PickFrontmatter,
 } from './../types/frontmatters';
+import { rehypePrettyCodeOptions } from './rehypePrettyCode';
 
 export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'pages', 'contents', type));
@@ -39,7 +40,6 @@ export async function getSlug(type: ContentType, slug: string) {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
         rehypeSlug,
-        rehypeCodeTitles,
         [
           rehypeAutolinkHeadings,
           {
@@ -48,6 +48,7 @@ export async function getSlug(type: ContentType, slug: string) {
             },
           },
         ],
+        [rehypePrettyCode, rehypePrettyCodeOptions],
       ],
       format: 'mdx',
     },

@@ -1,0 +1,35 @@
+pre {
+  @apply !my-0;
+}
+figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])
+  pre {
+  @apply !rounded-t-none;
+}
+pre [data-line] {
+  padding: 0;
+}
+
+pre > code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply bg-zinc-700 text-zinc-200 rounded-t-lg py-2 px-3 font-semibold text-sm;
+}
+
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: red;
+  background-color: blue;
+}
