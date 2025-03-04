@@ -40,7 +40,7 @@
   display: block;
   width: -moz-fit-content;
   width: fit-content;
-  @apply text-black-primary dark:text-white-primary font-medium;
+  @apply text-black-primary dark:text-white-secondary font-medium;
 }
 
 .prose p {
@@ -81,4 +81,17 @@
 
 .prose img {
   margin: 0;
+}
+.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: '';
+  @apply p-0.5;
+}
+.prose p code {
+  @apply text-black-secondary bg-slate-100 dark:bg-slate-800 rounded-sm;
+}
+
+[data-rehype-pretty-code-title],
+[data-rehype-pretty-code-caption] {
+  @apply bg-slate-200 px-6 py-2 text-xs font-medium dark:bg-gray-700;
 }
