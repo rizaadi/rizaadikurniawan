@@ -11,13 +11,13 @@ Flutter's seamless integration with native platforms is one of its standout feat
 
 Platform Channels are a crucial feature in Flutter, serving as a bridge between Dart and native platform code. They enable Flutter apps to communicate with the underlying platform, whether it's Android, iOS, macOS, Linux, or Windows. This communication is essential for accessing native functionalities like cameras, GPS, sensors, and other platform-specific features that aren't directly accessible through Flutter.
 
-Platform Channel offer three main types of communication methods:
+Platform Channel offers three main types of communication methods:
 
-1. **Method Channel**: This is used for asynchronous method invocations. It's handy when you need performs a specific function and return a result, such as fetching sensor data, checking battery status, or processing data using native capabilities.
-2. **Event Channel**: This is used for create a data stream from native code to Dart. It's ideal for listening to continuous or periodic native events, like sensor readings or location updates.
+1. **Method Channel**: This is used for asynchronous method invocations. It's handy when you need to perform a specific function and return a result, such as fetching sensor data, checking battery status, or processing data using native capabilities.
+2. **Event Channel**: This is used to create a data stream from native code to Dart. It's ideal for listening to continuous or periodic native events, like sensor readings or location updates.
 3. **BasicMessageChannel**: This is used for asynchronous message exchanges, suited for simple communication. It supports various data serialization formats and codecs, such as JSON, binary, or custom-defined formats.
 
-Now, let’s build a simple application where the Flutter part (Dart code) communicates with the native platform (Android & iOS) to retrieve the device’s battery level. We'll be using MethodChannel in flutter.
+Now, let’s build a simple application where the Flutter part (Dart code) communicates with the native platform (Android & iOS) to retrieve the device’s battery level. We'll be using MethodChannel in Flutter.
 
 ### Android platform
 
@@ -161,7 +161,7 @@ class _MainAppState extends State<MainApp> {
 
 #### Run the App
 
-To run our app on an Android device, the `getBatteryLevel` method will invoke the native platform code, and the battery level will be fetched. Always ensure that the channel name matches between the dart code and the native code.
+To run our app on an Android device, the `getBatteryLevel` method will invoke the native platform code, and the battery level will be fetched. Always ensure that the channel name matches between the Dart code and the native code.
 
 <CloudinaryImg
   mdx
@@ -225,7 +225,7 @@ import Flutter
 
 #### Run our App
 
-Now, run our app on iOS device. if you're using the iOS simulator, keep in mind that it doesn’t support the battery API
+Now, run our app on an iOS device. If you're using the iOS simulator, keep in mind that it doesn’t support the battery API
 
 <CloudinaryImg
   mdx
@@ -240,4 +240,4 @@ Here's the full [Source Code](https://github.com/rizaadi/flutter_native_example)
 
 ## Conclusions
 
-With Flutter, we can seamlessly integrate with native platform. Platform Channels bridge the gap between Dart and native code, allowing Flutter apps to communicate with the underlying platform. Additionally, We can use Pigeon, Dart FFI (Foreign Function Interface), FFIgen, and JNIgen (Java Native Interface Generator) to further simplify the process of creating bindings and facilitating communication between Dart and native code.
+With Flutter, we can seamlessly integrate with the native platform. Platform Channels bridge the gap between Dart and native code, allowing Flutter apps to communicate with the underlying platform. Additionally, we can use Pigeon, Dart FFI (Foreign Function Interface), FFIgen, and JNIgen (Java Native Interface Generator) to further simplify the process of creating bindings and facilitating communication between Dart and native code.
