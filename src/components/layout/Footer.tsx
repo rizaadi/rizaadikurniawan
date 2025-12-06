@@ -20,7 +20,8 @@ function Footer() {
         <div className='flex flex-col '>
           <h4 className='mt-8 font-medium md:mt-0'>Riza Adi Kurniawan</h4>
           <p className='mt-1 text-sm'>
-            Interested in Web Developer, Mobile Developer, and Design.
+            I craft mobile experiences shaped by design <br /> and grounded in
+            engineering.
           </p>
           <div className='flex justify-center mt-3 space-x-4 md:justify-start'>
             {SOCIAL_MEDIA.map((social) => (

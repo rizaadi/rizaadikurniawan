@@ -52,6 +52,8 @@ export default function HomeSection({ featuredProjects }: HomeSectionProps) {
             Mobile Developer at{' '}
             <a
               href='https://www.pupuk-indonesia.com/'
+              target='_blank'
+              rel='noopener noreferrer'
               className='hover:text-black-primary hover:dark:text-white-primary'
             >
               Pupuk Indonesia
@@ -62,7 +64,8 @@ export default function HomeSection({ featuredProjects }: HomeSectionProps) {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className='max-w-4xl mt-2 text-base font-medium md:text-xl'
           >
-            Interested in Web Developer, Mobile Developer, and Design.
+            I craft mobile experiences shaped by design and grounded in
+            engineering.
           </m.p>
           <m.div
             variants={FADE_DOWN_ANIMATION_VARIANTS}
