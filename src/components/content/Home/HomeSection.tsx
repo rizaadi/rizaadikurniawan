@@ -3,7 +3,6 @@
 import { m } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
-import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
 
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
@@ -11,16 +10,18 @@ import {
   FADE_UP_ANIMATION_VARIANTS,
 } from '@/lib/framer';
 
-import ButtonLink from '@/components/buttons/ButtonLink';
-import ProjectCard from '@/components/content/projects/ProjectCard';
+import ButtonLink from '@/components/Buttons/ButtonLink';
+import ProjectCard from '@/components/Content/Project/ProjectCard';
+
+import { SOCIAL_MEDIA } from '@/constants/socials';
 
 import { ProjectFrontmatter } from '@/types/frontmatters';
 
-interface HomeClientProps {
+interface HomeSectionProps {
   featuredProjects: ProjectFrontmatter[];
 }
 
-export default function HomeClient({ featuredProjects }: HomeClientProps) {
+export default function HomeSection({ featuredProjects }: HomeSectionProps) {
   return (
     <main className='layout-container'>
       <m.section
@@ -67,9 +68,14 @@ export default function HomeClient({ featuredProjects }: HomeClientProps) {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className='flex mt-2 space-x-4'
           >
-            {sosmed.map((sosmed) => (
-              <Link href={sosmed.href} key={sosmed.href} target='_blank'>
-                <sosmed.icon className='w-4 h-4 md:h-5 md:w-5 hover:text-black-primary hover:dark:text-white-primary' />
+            {SOCIAL_MEDIA.map((social) => (
+              <Link
+                href={social.href}
+                key={social.href}
+                target='_blank'
+                aria-label={`Visit my ${social.name}`}
+              >
+                <social.icon className='w-4 h-4 md:h-5 md:w-5 hover:text-black-primary hover:dark:text-white-primary' />
               </Link>
             ))}
           </m.div>
@@ -140,21 +146,3 @@ export default function HomeClient({ featuredProjects }: HomeClientProps) {
     </main>
   );
 }
-
-const sosmed = [
-  {
-    name: 'Github',
-    href: 'https://github.com/rizaadi',
-    icon: SiGithub,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/rizaadikurniawan/',
-    icon: SiLinkedin,
-  },
-  {
-    name: 'Email',
-    href: 'mailto:rizaadi890@gmail.com',
-    icon: SiGmail,
-  },
-];

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import CloudinaryImg from '@/components/image/CloudinaryImg';
+import CloudinaryImg from '@/components/Image/CloudinaryImg';
 
 import FigmaEmbed from './FigmaEmbed';
 import TechIcons from './TechIcons';

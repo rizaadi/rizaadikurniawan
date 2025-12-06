@@ -5,15 +5,15 @@ import React from 'react';
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/framer';
 
-import ProjectCard from '@/components/content/projects/ProjectCard';
+import ProjectCard from '@/components/Content/Project/ProjectCard';
 
 import { ProjectFrontmatter } from '@/types/frontmatters';
 
-interface ProjectsClientProps {
+interface ProjectsSectionProps {
   posts: ProjectFrontmatter[];
 }
 
-export default function ProjectsClient({ posts }: ProjectsClientProps) {
+export default function ProjectsSection({ posts }: ProjectsSectionProps) {
   return (
     <main className='layout-container dark:bg-gradient-radial dark:from-[#01102D] dark:to-black'>
       <section>

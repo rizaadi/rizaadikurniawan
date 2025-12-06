@@ -1,46 +1,56 @@
-import Image from 'next/image';
+import dayjs from 'dayjs';
 import Link from 'next/link';
-import React from 'react';
+import { memo } from 'react';
 
-import Tag from '../Tag';
+import CloudinaryImg from '@/components/Image/CloudinaryImg';
+
+import Tag from '../Tag/Tag';
 
 import { BlogFrontmatter } from '@/types/frontmatters';
 
-function BlogCard({
+const BlogCard = memo(function BlogCard({
   slug,
   title,
   description,
   tags,
-}: BlogFrontmatter & React.ComponentPropsWithoutRef<'a'>) {
+  banner,
+  publishedAt,
+  readingTime,
+}: BlogFrontmatter) {
   return (
-    <Link href={`blog/${slug}}`} passHref>
-      <li className='w-full border rounded-xl'>
-        <a href=''>
-          <div className='p-4'>
-            <h4 className='mt-3'>{title}</h4>
-            <figure className='block mt-3 overflow-hidden rounded-xl'>
-              <Image
-                layout='responsive'
-                src='https://images.unsplash.com/photo-1500989145603-8e7ef71d639e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80'
-                width={400}
-                height={170}
-                alt='test'
-              />
-            </figure>
-            <div className='flex flex-wrap justify-start w-full py-2 mt-2 text-sm gap-y-1 gap-x-2'>
-              {tags.split(',').map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </div>
-            <p className='mt-2 text-sm font-semibold'>19 Mei 2020</p>
-            <p className='mt-2 text-sm text-gray-700 dark:text-white'>
-              {description}
-            </p>
+    <li className='w-full border rounded-xl overflow-hidden hover:shadow-lg transition-shadow dark:border-gray-700'>
+      <Link href={`/blog/${slug}`} className='block'>
+        <figure className='overflow-hidden'>
+          <CloudinaryImg
+            publicId={`rizaadikurniawan/${banner}`}
+            className='rounded-t-xl'
+            title={title}
+            alt={title}
+            width={400}
+            height={170}
+            aspect={undefined}
+          />
+        </figure>
+        <div className='p-4'>
+          <h4 className='text-xl font-semibold'>{title}</h4>
+
+          <div className='flex flex-wrap justify-start w-full py-2 mt-2 text-sm gap-y-1 gap-x-2'>
+            {tags.split(',').map((tag) => (
+              <Tag key={tag.trim()}>{tag.trim()}</Tag>
+            ))}
           </div>
-        </a>
-      </li>
-    </Link>
+
+          <p className='mt-2 text-sm font-semibold text-gray-600 dark:text-gray-400'>
+            {dayjs(publishedAt).format('D MMMM YYYY')} · {readingTime.text}
+          </p>
+
+          <p className='mt-2 text-sm text-gray-700 dark:text-white'>
+            {description}
+          </p>
+        </div>
+      </Link>
+    </li>
   );
-}
+});
 
 export default BlogCard;

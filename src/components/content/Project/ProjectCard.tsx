@@ -2,17 +2,17 @@
 
 import { m } from 'framer-motion';
 import Link from 'next/link';
-import React from 'react';
+import { memo } from 'react';
 
 import { FADE_UP_ANIMATION_VARIANTS } from '@/lib/framer';
 
-import CloudinaryImg from '@/components/image/CloudinaryImg';
+import CloudinaryImg from '@/components/Image/CloudinaryImg';
 
 import TechIcons, { TechListType } from '../TechIcons';
 
 import { ProjectFrontmatter } from '@/types/frontmatters';
 
-function ProjectCard({
+const ProjectCard = memo(function ProjectCard({
   title,
   description,
   tags,
@@ -51,6 +51,6 @@ function ProjectCard({
       </m.div>
     </Link>
   );
-}
+});
 
 export default ProjectCard;

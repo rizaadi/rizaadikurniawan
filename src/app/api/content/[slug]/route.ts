@@ -1,8 +1,11 @@
-import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { handleAPIError } from '@/lib/errorHandler';
 import { prismaClient } from '@/lib/prisma';
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
 
 export async function GET(
   request: NextRequest,
@@ -19,21 +22,18 @@ export async function GET(
       select: { views: true },
     });
 
-    return NextResponse.json({
-      contentViews: content?.views.toString(),
-    });
+    return NextResponse.json(
+      {
+        contentViews: content?.views.toString(),
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+        },
+      },
+    );
   } catch (err: unknown) {
-    if (err instanceof Prisma.PrismaClientUnknownRequestError) {
-      return NextResponse.json(
-        { message: err.message ?? 'Internal Server Error' },
-        { status: 500 },
-      );
-    } else {
-      return NextResponse.json(
-        { message: 'Internal Server Error' },
-        { status: 500 },
-      );
-    }
+    return handleAPIError(err);
   }
 }
 
@@ -63,16 +63,6 @@ export async function POST(
       contentViews: content.views.toString(),
     });
   } catch (err: unknown) {
-    if (err instanceof Prisma.PrismaClientUnknownRequestError) {
-      return NextResponse.json(
-        { message: err.message ?? 'Internal Server Error' },
-        { status: 500 },
-      );
-    } else {
-      return NextResponse.json(
-        { message: 'Internal Server Error' },
-        { status: 500 },
-      );
-    }
+    return handleAPIError(err);
   }
 }

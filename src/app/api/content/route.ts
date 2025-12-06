@@ -1,7 +1,10 @@
-import { Prisma } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
+import { handleAPIError } from '@/lib/errorHandler';
 import { prismaClient } from '@/lib/prisma';
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
 
 export async function GET() {
   try {
@@ -13,18 +16,12 @@ export async function GET() {
       views: Number(c.views),
     }));
 
-    return NextResponse.json(mapViewToNumber);
+    return NextResponse.json(mapViewToNumber, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+      },
+    });
   } catch (error: unknown) {
-    if (error instanceof Prisma.PrismaClientUnknownRequestError) {
-      return NextResponse.json(
-        { message: error.message ?? 'Internal Server Error' },
-        { status: 500 },
-      );
-    } else {
-      return NextResponse.json(
-        { message: 'Internal Server Error' },
-        { status: 500 },
-      );
-    }
+    return handleAPIError(error);
   }
 }

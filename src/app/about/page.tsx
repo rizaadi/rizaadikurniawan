@@ -5,8 +5,8 @@ import React from 'react';
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/framer';
 
-import CloudinaryImg from '@/components/image/CloudinaryImg';
-import Layout from '@/components/layout/Layout';
+import CloudinaryImg from '@/components/Image/CloudinaryImg';
+import Layout from '@/components/Layout/Layout';
 
 export default function About() {
   return (

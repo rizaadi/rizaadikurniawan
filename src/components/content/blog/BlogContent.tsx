@@ -3,6 +3,7 @@
 import dayjs from 'dayjs';
 import { m } from 'framer-motion';
 import Link from 'next/link';
+import { memo } from 'react';
 
 import { BlogFrontmatter, InjectedMeta } from '@/types/frontmatters';
 
@@ -10,7 +11,7 @@ type BlogContentProps = {
   post: BlogFrontmatter & InjectedMeta;
 } & React.ComponentPropsWithoutRef<'a'>;
 
-function BlogContent({ post }: BlogContentProps) {
+const BlogContent = memo(function BlogContent({ post }: BlogContentProps) {
   return (
     <li className='pb-9'>
       <Link href={`/blog/${post.slug}`} passHref>
@@ -31,6 +32,6 @@ function BlogContent({ post }: BlogContentProps) {
       </Link>
     </li>
   );
-}
+});
 
 export default BlogContent;

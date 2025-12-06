@@ -7,6 +7,7 @@
     "build": "bun --bun next build",
     "start": "bun --bun next start",
     "lint": "bun --bun next lint",
+    "analyze": "ANALYZE=true bun --bun next build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
+    "@next/bundle-analyzer": "^16.0.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.10.2",
