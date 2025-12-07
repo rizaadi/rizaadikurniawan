@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '@/lib/fetcher';
@@ -15,32 +15,24 @@ import {
 export default function useInjectContentMeta<T extends ContentType>(
   frontMatter: Array<PickFrontmatter<T>>,
 ) {
-  const { data: contentMeta, error } = useSWR<Array<ContentMeta>>(
+  const { data: contentMeta } = useSWR<Array<ContentMeta>>(
     isProd ? '/api/content' : null,
     fetcher,
   );
 
-  const isLoading = !error && !contentMeta;
-
   type PopulatedContent = Array<PickFrontmatter<T> & InjectedMeta>;
 
-  const [populatedContent, setPopulateContent] = useState<PopulatedContent>(
-    () => [...frontMatter] as PopulatedContent,
-  );
-
-  useEffect(() => {
-    if (contentMeta) {
-      const mapped = frontMatter.map((fm) => {
-        const views = contentMeta.find(
-          (meta) => meta.slug === cleanBlogPrefix(fm.slug),
-        )?.views;
-
-        return { ...fm, views };
-      });
-
-      setPopulateContent(mapped);
+  const populatedContent = useMemo(() => {
+    if (!contentMeta) {
+      return frontMatter as PopulatedContent;
     }
-  }, [contentMeta, isLoading, frontMatter]);
+
+    return frontMatter.map((fm) => ({
+      ...fm,
+      views: contentMeta.find((meta) => meta.slug === cleanBlogPrefix(fm.slug))
+        ?.views,
+    })) as PopulatedContent;
+  }, [contentMeta, frontMatter]);
 
   return populatedContent;
 }

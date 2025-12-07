@@ -91,7 +91,7 @@ export default function CloudinaryImg({
             background-size: 100%;
           }
         `}</style>
-        <div className='absolute top-0 left-0'>
+        <div className='absolute top-0 left-0 not-prose'>
           <Image
             width={width}
             height={height}

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { getAllArticles, getTags, sortByDate } from '@/lib/mdx';
 
-import Layout from '@/components/layout/Layout';
+import Layout from '@/components/Layout/Layout';
 
-import BlogsClient from './BlogsClient';
+import BlogsSection from '../../components/Content/Blog/BlogsSection';
 
 export const metadata = {
   title: 'Blog - Riza Adi Kurniawan',
@@ -27,7 +27,7 @@ export default async function BlogPage() {
 
   return (
     <Layout>
-      <BlogsClient posts={posts} tags={tags} />
+      <BlogsSection posts={posts} tags={tags} />
     </Layout>
   );
 }

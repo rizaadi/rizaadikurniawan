@@ -12,7 +12,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      {children}
+      <main id='main-content'>{children}</main>
       <Footer />
     </>
   );

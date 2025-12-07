@@ -2,9 +2,9 @@ import React from 'react';
 
 import { getAllArticles } from '@/lib/mdx';
 
-import Layout from '@/components/layout/Layout';
+import Layout from '@/components/Layout/Layout';
 
-import ProjectsClient from './ProjectsClient';
+import ProjectsSection from '../../components/Content/Project/ProjectsSection';
 
 export const metadata = {
   title: 'Projects - Riza Adi Kurniawan',
@@ -31,7 +31,7 @@ export default async function Projects() {
 
   return (
     <Layout>
-      <ProjectsClient posts={posts} />
+      <ProjectsSection posts={posts} />
     </Layout>
   );
 }

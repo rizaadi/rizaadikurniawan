@@ -1,53 +1,47 @@
 'use client';
 
-import buildUrl from 'cloudinary-build-url';
-import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { m, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { m } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_LEFT_ANIMATION_VARIANTS,
 } from '@/lib/framer';
+import { cleanBlogPrefix } from '@/lib/helper';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollSpy';
 
-import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
-} from '@/components/content/TableOfContents';
+} from '@/components/Content/TableOfContents';
+import Tag from '@/components/Content/Tag/Tag';
 
-import { ProjectFrontmatter } from '@/types/frontmatters';
+import { BlogFrontmatter } from '@/types/frontmatters';
 
-interface ProjectClientProps {
-  frontMatter: ProjectFrontmatter;
+const MDXRenderer = dynamic(() => import('@/components/Content/MDXRenderer'), {
+  ssr: false,
+});
+
+interface BlogSectionProps {
+  frontMatter: BlogFrontmatter;
   source: MDXRemoteSerializeResult;
 }
 
-export default function ProjectClient({
-  frontMatter,
-  source,
-}: ProjectClientProps) {
-  const meta = useContentMeta(frontMatter.slug);
-
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 0.3], [5, -200]);
+export default function BlogSection({ frontMatter, source }: BlogSectionProps) {
+  const cleanSlug = cleanBlogPrefix(frontMatter.slug);
+  const meta = useContentMeta(cleanSlug);
   const activeSection = useScrollSpy();
 
-  const url = frontMatter.mockup
-    ? buildUrl(`rizaadikurniawan/${frontMatter.mockup}`, {
-        cloud: {
-          cloudName: 'rizaadi',
-        },
-      })
-    : '';
-
   const [toc, setToc] = React.useState<HeadingScrollSpy>();
-  const minLevel =
-    toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
+  const minLevel = React.useMemo(
+    () =>
+      toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ??
+      0,
+    [toc],
+  );
 
   React.useEffect(() => {
     const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
@@ -64,7 +58,7 @@ export default function ProjectClient({
   }, [frontMatter.slug]);
 
   return (
-    <main className='layout-container'>
+    <main className='dark:border-black-primary dark:bg-gradient-to-b dark:from-black-primary/50 dark:to-black md:text-start layout-container'>
       <m.article
         initial='hidden'
         whileInView='show'
@@ -78,35 +72,16 @@ export default function ProjectClient({
         }}
         className='py-24'
       >
-        <section className='overflow-hidden'>
-          <m.section variants={FADE_DOWN_ANIMATION_VARIANTS} className='mx-4'>
-            <h1 className='text-5xl font-bold text-center md:text-7xl'>
-              {frontMatter.title}
-            </h1>
-          </m.section>
-          {frontMatter.mockup && (
-            <div className='h-[28rem]'>
-              <m.div
-                className='relative flex justify-center drop-shadow-mobile dark:drop-shadow-mobile_dark'
-                style={{ y }}
-              >
-                <Image src={url} alt='iphone' width={250} height={100} />
-              </m.div>
-            </div>
-          )}
-        </section>
-
-        <m.section
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className={clsx(
-            'z-10 pt-10',
-            frontMatter.mockup &&
-              'bg-white drop-shadow-mobile_only_top dark:bg-black dark:drop-shadow-mobile_only_top_dark',
-          )}
-        >
-          <ul className='flex flex-wrap justify-center mx-4 list-none md:text-sm gap-y-3 gap-x-7 mb-14'>
+        <m.section variants={FADE_DOWN_ANIMATION_VARIANTS} className='mx-4'>
+          <h1 className='text-3xl text-center md:text-5xl'>
+            {frontMatter.title}
+          </h1>
+        </m.section>
+        <m.section variants={FADE_DOWN_ANIMATION_VARIANTS}>
+          <ul className='flex flex-wrap justify-center mx-4 mt-10 list-none md:text-sm gap-y-3 gap-x-7'>
             <li>
-              Published at {dayjs(frontMatter.publishedAt).format('D MMM YYYY')}
+              Published At{' '}
+              {dayjs(frontMatter.publishedAt).format('D MMMM YYYY')}
             </li>
             {frontMatter.lastModifiedAt && (
               <li>
@@ -120,14 +95,28 @@ export default function ProjectClient({
             } Views`}</li>
           </ul>
         </m.section>
+        <m.section
+          variants={FADE_DOWN_ANIMATION_VARIANTS}
+          className='max-w-2xl px-4 mx-auto'
+        >
+          <ul className='flex flex-wrap justify-center gap-2 mt-3 mb-14'>
+            {frontMatter.tags.split(',').map((tag) => (
+              <li key={tag}>
+                <Tag key={tag} className='gap-6'>
+                  {tag}
+                </Tag>
+              </li>
+            ))}
+          </ul>
+        </m.section>
         <section className='lg:grid lg:grid-cols-[1fr,auto,1fr] lg:gap-7 flex justify-center lg:px-0 px-4'>
           <aside />
-          <m.article
+          <m.section
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className='prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
           >
-            <MDXRemote {...source} components={MDXComponents} />
-          </m.article>
+            <MDXRenderer source={source} />
+          </m.section>
           <aside>
             <m.div
               variants={FADE_LEFT_ANIMATION_VARIANTS}

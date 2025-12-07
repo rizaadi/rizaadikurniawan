@@ -14,12 +14,17 @@ export default function useContentMeta(slug: string) {
   );
 
   useEffect(() => {
-    if (isProd) {
+    if (!isProd) return;
+
+    // Delay increment by 3 seconds to avoid counting bots and quick exits
+    const timer = setTimeout(() => {
       incrementViews(slug).then((meta) => {
-        mutate({ ...meta });
+        mutate({ ...meta }, false);
       });
-    }
-  }, [mutate, slug]);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [slug, mutate]);
 
   return data;
 }

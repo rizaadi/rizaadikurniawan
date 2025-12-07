@@ -2,16 +2,16 @@ import React from 'react';
 
 import { getAllArticles, getFeatured } from '@/lib/mdx';
 
-import Layout from '@/components/layout/Layout';
+import Layout from '@/components/Layout/Layout';
 
-import HomeClient from './HomeClient';
+import HomeSection from '../components/Content/Home/HomeSection';
 
 async function getFeaturedProjects() {
   const projects = await getAllArticles('project');
   const featuredProjects = getFeatured(projects, [
-    'sinpro',
+    'balitaku',
     'valorantlab',
-    'volusearch',
+    'tradify',
   ]);
   return featuredProjects;
 }
@@ -21,7 +21,7 @@ export default async function Home() {
 
   return (
     <Layout>
-      <HomeClient featuredProjects={featuredProjects} />
+      <HomeSection featuredProjects={featuredProjects} />
     </Layout>
   );
 }
