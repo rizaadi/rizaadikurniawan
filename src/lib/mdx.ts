@@ -65,9 +65,9 @@ export async function getSlug(type: ContentType, slug: string) {
 }
 
 export async function getAllArticles<T extends ContentType>(type: T) {
-  const articles = fs.readdirSync(
-    path.join(process.cwd(), 'src', 'contents', type),
-  );
+  const articles = fs
+    .readdirSync(path.join(process.cwd(), 'src', 'contents', type))
+    .filter((file) => file.endsWith('.mdx'));
 
   return articles.reduce(
     (allArticles: Array<PickFrontmatter<T>>, articleSlug) => {
