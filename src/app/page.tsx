@@ -9,9 +9,9 @@ import HomeSection from '../components/Content/Home/HomeSection';
 async function getFeaturedProjects() {
   const projects = await getAllArticles('project');
   const featuredProjects = getFeatured(projects, [
+    'zest',
     'balitaku',
     'valorantlab',
-    'tradify',
   ]);
   return featuredProjects;
 }
