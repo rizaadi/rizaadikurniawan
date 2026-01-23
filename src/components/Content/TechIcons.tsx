@@ -11,6 +11,7 @@ import {
   SiGit,
   SiGoogleanalytics,
   SiJavascript,
+  SiJetpackcompose,
   SiKotlin,
   SiLaravel,
   SiMarkdown,
@@ -153,7 +154,11 @@ const techList = {
   },
   python: {
     icon: SiPython,
-    name: 'python',
+    name: 'Python',
+  },
+  jetpackCompose: {
+    icon: SiJetpackcompose,
+    name: 'Jetpack Compose',
   },
 };
 export default TechIcons;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAllArticles } from '@/lib/mdx';
+import { getAllArticles, sortByDate } from '@/lib/mdx';
 
 import Layout from '@/components/Layout/Layout';
 
@@ -13,17 +13,9 @@ export const metadata = {
 
 async function getProjects() {
   const articles = await getAllArticles('project');
+  const articlesSorted = sortByDate(articles);
 
-  articles
-    .map((article) => article.publishedAt)
-    .sort((a, b) => {
-      if (a > b) return 1;
-      if (a < b) return -1;
-
-      return 0;
-    });
-
-  return articles.reverse();
+  return articlesSorted.reverse();
 }
 
 export default async function Projects() {
