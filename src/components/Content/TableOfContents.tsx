@@ -40,7 +40,7 @@ export default function TableOfContents({
                 )}
                 style={{ marginLeft: (level - minLevel) * 15 }}
               >
-                <Link key={id} href={`#${id}`} replace scroll={false}>
+                <Link key={id} href={`#${id}`} replace>
                   {text}
                 </Link>
               </m.div>
