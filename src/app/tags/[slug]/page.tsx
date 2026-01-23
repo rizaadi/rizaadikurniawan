@@ -14,9 +14,10 @@ interface TagsProps {
 }
 
 async function getTagData(slug: string) {
+  const decodedSlug = decodeURIComponent(slug);
   const articles = await getAllArticles('blog');
   const filteredPosts = articles.filter((article) =>
-    article.tags.includes(slug),
+    article.tags.includes(decodedSlug),
   );
   const postsSorted = sortByDate(filteredPosts);
   const allTags = getTags(articles);
@@ -24,6 +25,7 @@ async function getTagData(slug: string) {
   return {
     posts: postsSorted,
     tags: allTags,
+    decodedSlug,
   };
 }
 
@@ -40,7 +42,8 @@ export async function generateMetadata({
   params,
 }: TagsProps): Promise<Metadata> {
   const { slug } = await params;
-  const tagName = slug.charAt(0).toUpperCase() + slug.slice(1);
+  const decodedSlug = decodeURIComponent(slug);
+  const tagName = decodedSlug.charAt(0).toUpperCase() + decodedSlug.slice(1);
 
   return {
     title: `${tagName} - Blog Tags - Riza Adi Kurniawan`,
@@ -50,11 +53,11 @@ export async function generateMetadata({
 
 export default async function TagsPage({ params }: TagsProps) {
   const { slug } = await params;
-  const { posts, tags } = await getTagData(slug);
+  const { posts, tags, decodedSlug } = await getTagData(slug);
 
   return (
     <Layout>
-      <TagsSection posts={posts} tags={tags} slug={slug} />
+      <TagsSection posts={posts} tags={tags} slug={decodedSlug} />
     </Layout>
   );
 }

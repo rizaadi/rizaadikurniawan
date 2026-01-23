@@ -79,13 +79,40 @@ export default function About() {
                   I've worked on since my college days. Additionally, I'll be
                   sharing some random thoughts in this blog.
                   <br />
+                  <br />
                   I believe that one of the best ways to remember things and
                   gain a deeper understanding is through writing and sharing
                   knowledge.
                   <br />
                   <br />
-                  In my free time, I write, explore new books, enjoy music and
-                  films, and take on hands-on DIY projects like this one.
+                  In my free time, I explore{' '}
+                  <a
+                    href='https://www.instagram.com/rzavisuals/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline hover:text-black-secondary dark:hover:text-white-secondary'
+                  >
+                    photography
+                  </a>
+                  , write,{' '}
+                  <a
+                    href='https://www.goodreads.com/zephysus'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline hover:text-black-secondary dark:hover:text-white-secondary'
+                  >
+                    read books
+                  </a>
+                  , enjoy{' '}
+                  <a
+                    href='https://open.spotify.com/user/21swnnxqa5bz4djnp2tyrl7eq'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline hover:text-black-secondary dark:hover:text-white-secondary'
+                  >
+                    music
+                  </a>{' '}
+                  and films, and work on hands-on DIY projects like this one.
                 </m.p>
               </m.div>
             </m.div>
