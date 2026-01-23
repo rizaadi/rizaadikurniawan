@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.7.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.6.0...v1.7.0) (2026-01-23)
+
+
+### Features
+
+* change bio ([0e7033c](https://github.com/rizaadi/rizaadikurniawan/commit/0e7033c171a48a4de3743ccf3fe98dbc001c0776))
+* enhance app ([3a40238](https://github.com/rizaadi/rizaadikurniawan/commit/3a40238311f9e925c557abb10cc20c38ffb886c4))
+
+
+### Bug Fixes
+
+* correct component folder capitalization for case-sensitive filesystems ([a78bc2a](https://github.com/rizaadi/rizaadikurniawan/commit/a78bc2acd1e9a8fc829c6088284b9540c21f7684))
+* correct component folder capitalization for case-sensitive filesystems ([7275d88](https://github.com/rizaadi/rizaadikurniawan/commit/7275d88d55a1586f52d29a45b5c16a0810c0de6b))
+
 ## [1.6.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.5.0...v1.6.0) (2024-08-18)
 
 
