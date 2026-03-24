@@ -28,3 +28,11 @@ export const FADE_LEFT_ANIMATION_VARIANTS: Variants = {
     transition: { type: 'spring', duration: 1 },
   },
 };
+export const STAGGER_CONTAINER_VARIANTS: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};

@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
-import { domAnimation, LazyMotion } from 'framer-motion';
+import { domAnimation, LazyMotion, MotionConfig } from 'framer-motion';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
@@ -41,14 +41,16 @@ export default function RootLayout({
       </head>
       <body className='bg-white dark:bg-dark' suppressHydrationWarning>
         <LazyMotion features={domAnimation} strict>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='dark'
-            enableSystem={false}
-          >
-            {children}
-            <Analytics />
-          </ThemeProvider>
+          <MotionConfig reducedMotion='user'>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='dark'
+              enableSystem={false}
+            >
+              {children}
+              <Analytics />
+            </ThemeProvider>
+          </MotionConfig>
         </LazyMotion>
       </body>
     </html>

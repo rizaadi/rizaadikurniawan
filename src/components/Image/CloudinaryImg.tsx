@@ -17,6 +17,7 @@ type CloudinaryImgType = {
     height: number;
   };
   mdx?: boolean;
+  sizes?: string;
 } & React.ComponentPropsWithoutRef<'figure'>;
 
 export default function CloudinaryImg({
@@ -28,6 +29,7 @@ export default function CloudinaryImg({
   className,
   aspect,
   mdx = false,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   ...rest
 }: CloudinaryImgType) {
   const urlBlurred = buildUrl(publicId, {
@@ -98,6 +100,7 @@ export default function CloudinaryImg({
             src={url}
             alt={alt}
             title={title || alt}
+            sizes={sizes}
           />
         </div>
       </div>

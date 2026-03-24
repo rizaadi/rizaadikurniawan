@@ -43,7 +43,7 @@ export default function BlogSection({ frontMatter, source }: BlogSectionProps) {
     [toc],
   );
 
-  React.useEffect(() => {
+  const extractHeadings = React.useCallback(() => {
     const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
 
     const headingArr: HeadingScrollSpy = [];
@@ -55,7 +55,7 @@ export default function BlogSection({ frontMatter, source }: BlogSectionProps) {
       headingArr.push({ id, level, text });
     });
     setToc(headingArr);
-  }, [frontMatter.slug]);
+  }, []);
 
   return (
     <main className='dark:border-black-primary dark:bg-gradient-to-b dark:from-black-primary/50 dark:to-black md:text-start layout-container'>
@@ -115,7 +115,7 @@ export default function BlogSection({ frontMatter, source }: BlogSectionProps) {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className='prose-sm prose text-justify mdx md:prose-base dark:prose-invert'
           >
-            <MDXRenderer source={source} />
+            <MDXRenderer source={source} onRendered={extractHeadings} />
           </m.section>
           <aside>
             <m.div

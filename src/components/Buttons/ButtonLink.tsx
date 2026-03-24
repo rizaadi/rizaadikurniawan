@@ -19,7 +19,11 @@ export default function ButtonLink({
   return (
     <Link
       href={`${href}`}
-      className={clsx('inline-block px-4 py-2 font-semibold', className)}
+      className={clsx(
+        'inline-block px-4 py-2 font-semibold rounded-md',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-black-secondary dark:focus-visible:ring-white-secondary focus-visible:ring-offset-2',
+        className,
+      )}
     >
       <m.div
         whileHover={{

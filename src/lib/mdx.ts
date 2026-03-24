@@ -6,6 +6,7 @@ import sortBy from 'lodash/sortBy';
 import toPairs from 'lodash/toPairs';
 import { serialize } from 'next-mdx-remote/serialize';
 import path, { join } from 'path';
+import { cache } from 'react';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -24,7 +25,10 @@ export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'src', 'contents', type));
 }
 
-export async function getSlug(type: ContentType, slug: string) {
+export const getSlug = cache(async function getSlug(
+  type: ContentType,
+  slug: string,
+) {
   const source = slug
     ? readFileSync(
         join(process.cwd(), 'src', 'contents', type, `${slug}.mdx`),
@@ -62,9 +66,11 @@ export async function getSlug(type: ContentType, slug: string) {
       ...data,
     },
   };
-}
+});
 
-export async function getAllArticles<T extends ContentType>(type: T) {
+export const getAllArticles = cache(async function getAllArticles<
+  T extends ContentType,
+>(type: T) {
   const articles = fs
     .readdirSync(path.join(process.cwd(), 'src', 'contents', type))
     .filter((file) => file.endsWith('.mdx'));
@@ -88,7 +94,8 @@ export async function getAllArticles<T extends ContentType>(type: T) {
     },
     [],
   );
-}
+});
+
 export function getTags<T extends Array<Frontmatter>>(articles: T) {
   const tags = articles.reduce(
     (accTags: string[], article) => [...accTags, ...article.tags.split(',')],

@@ -25,16 +25,23 @@ function Header() {
               key={`${href}${label}`}
               className='dark:hover:text-white-primary hover:text-black-primary'
             >
-              <Link href={href}>{label}</Link>
+              <Link
+                href={href}
+                className='rounded-md px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-black-secondary dark:focus-visible:ring-white-secondary focus-visible:ring-offset-2'
+              >
+                {label}
+              </Link>
             </li>
           ))}
         </ul>
         <button
           className={clsx(
-            'rounded-md p-2.5 focus:outline-none justify-self-end',
+            'rounded-md p-2.5 justify-self-end',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-black-secondary dark:focus-visible:ring-white-secondary focus-visible:ring-offset-2',
             'border dark:border-black-secondary',
             'hover:border-black-secondary hover:text-black-secondary dark:hover:border-white dark:hover:text-white-primary',
           )}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >
           {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
