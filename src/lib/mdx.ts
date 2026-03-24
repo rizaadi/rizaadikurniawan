@@ -57,6 +57,8 @@ export const getSlug = cache(async function getSlug(
       format: 'mdx',
     },
     scope: data,
+    blockJS: false,
+    blockDangerousJS: false,
   });
   return {
     source: mdxSource,
