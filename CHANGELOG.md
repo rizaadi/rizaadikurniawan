@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.7.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.6.0...v1.7.0) (2026-03-26)
+
+
+### Features
+
+* change bio ([0e7033c](https://github.com/rizaadi/rizaadikurniawan/commit/0e7033c171a48a4de3743ccf3fe98dbc001c0776))
+* enhance app ([3a40238](https://github.com/rizaadi/rizaadikurniawan/commit/3a40238311f9e925c557abb10cc20c38ffb886c4))
+* upgrade next16 ([0c98021](https://github.com/rizaadi/rizaadikurniawan/commit/0c9802165cfb128adfa75ec57e7d93531beb6015))
+
+
+### Bug Fixes
+
+* bun lock ([56be45b](https://github.com/rizaadi/rizaadikurniawan/commit/56be45b2d1ffc71ac00209a067c81bc98f4ff982))
+* correct component folder capitalization for case-sensitive filesystems ([a78bc2a](https://github.com/rizaadi/rizaadikurniawan/commit/a78bc2acd1e9a8fc829c6088284b9540c21f7684))
+* correct component folder capitalization for case-sensitive filesystems ([7275d88](https://github.com/rizaadi/rizaadikurniawan/commit/7275d88d55a1586f52d29a45b5c16a0810c0de6b))
+* favicon ([d05661b](https://github.com/rizaadi/rizaadikurniawan/commit/d05661be066482a83f9d8fdc8dba9a2e56a40d07))
+* type-safe links ([3215926](https://github.com/rizaadi/rizaadikurniawan/commit/3215926d21e502f1b25e5c71cdf60b795e8071c1))
+* upgrade next-mdx-remote to v6 and allow JS expressions in MDX ([299f98b](https://github.com/rizaadi/rizaadikurniawan/commit/299f98b7534409e3eb6a06b86cf4c921a38ac21e))
+
 ## [1.6.0](https://github.com/rizaadi/rizaadikurniawan/compare/v1.5.0...v1.6.0) (2024-08-18)
 
 
