@@ -3,11 +3,11 @@
   "version": "1.6.0",
   "private": true,
   "scripts": {
-    "dev": "bun --bun next dev",
-    "build": "bun --bun next build",
-    "start": "bun --bun next start",
-    "lint": "bun --bun next lint",
-    "analyze": "ANALYZE=true bun --bun next build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "analyze": "ANALYZE=true next build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -22,11 +22,11 @@
     "glob": "^11.0.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
-    "next": "15.5.7",
+    "next": "16.2.1",
     "next-mdx-remote": "6.0.0",
     "next-themes": "^0.4.4",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-icons": "^5.4.0",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -41,17 +41,17 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
-    "@next/bundle-analyzer": "^16.0.4",
+    "@next/bundle-analyzer": "16.2.1",
     "@tailwindcss/typography": "^0.5.16",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.10.2",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
-    "eslint-config-next": "^15.4.4",
+    "eslint-config-next": "16.2.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
@@ -70,5 +70,9 @@
     "**/*.{json,css,scss,md,mdx}": [
       "bun prettier -w"
     ]
+  },
+  "overrides": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
   }
 }

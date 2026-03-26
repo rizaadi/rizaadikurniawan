@@ -1,13 +1,8 @@
-'use client';
-
-import dynamic from 'next/dynamic';
 import React from 'react';
 
 import Footer from './Footer';
+import Header from './Header';
 
-const Header = dynamic(() => import('./Header'), {
-  ssr: false,
-});
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>

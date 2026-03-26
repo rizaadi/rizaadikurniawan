@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageResponse } from '@vercel/og';
+import { readFile } from 'fs/promises';
+import { ImageResponse } from 'next/og';
+import { join } from 'path';
+
 import { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
-
 export async function GET(req: NextRequest) {
-  const interBold = await fetch(
-    new URL('../../../../../public/fonts/Inter-Bold.woff', import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  const interBold = await readFile(
+    join(process.cwd(), 'public/fonts/Inter-Bold.woff'),
+  );
 
-  const { searchParams } = new URL(req.url);
+  const { searchParams, origin } = new URL(req.url);
 
   const title = searchParams.get('title');
   const type = searchParams.get('type');
@@ -21,7 +22,7 @@ export async function GET(req: NextRequest) {
           height: '100%',
           width: '100%',
           display: 'flex',
-          backgroundImage: `url(https://rizaadikurniawan.com/image/og-content.png)`,
+          backgroundImage: `url(${origin}/image/og-content.png)`,
           backgroundSize: '100% 100%',
         }}
       >

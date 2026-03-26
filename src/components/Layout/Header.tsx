@@ -3,12 +3,15 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
 import useScroll from '@/hooks/useScroll';
 function Header() {
   const { theme, setTheme } = useTheme();
   const scrolled = useScroll(50);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <header className='fixed top-0 left-0 right-0 z-50 backdrop-blur-md'>
@@ -41,10 +44,14 @@ function Header() {
             'border dark:border-black-secondary',
             'hover:border-black-secondary hover:text-black-secondary dark:hover:border-white dark:hover:text-white-primary',
           )}
-          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          aria-label={`Switch to ${mounted && theme === 'light' ? 'dark' : 'light'} mode`}
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >
-          {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+          {mounted && theme === 'light' ? (
+            <FiMoon size={20} />
+          ) : (
+            <FiSun size={20} />
+          )}
         </button>
       </nav>
     </header>
