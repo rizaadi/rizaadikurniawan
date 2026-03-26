@@ -116,7 +116,7 @@ export function getFeatured<T extends Frontmatter>(
 }
 
 export function sortByDate<T extends FrontmatterWithDate>(content: Array<T>) {
-  return content.sort(sortByDateFn);
+  return [...content].sort(sortByDateFn);
 }
 
 export function sortByDateFn<T extends FrontmatterWithDate>(

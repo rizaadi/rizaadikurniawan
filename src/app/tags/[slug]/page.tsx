@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import React from 'react';
 
 import { getAllArticles, getTags, sortByDate } from '@/lib/mdx';
 
@@ -46,8 +45,26 @@ export async function generateMetadata({
   const tagName = decodedSlug.charAt(0).toUpperCase() + decodedSlug.slice(1);
 
   return {
-    title: `${tagName} - Blog Tags - Riza Adi Kurniawan`,
+    title: `${tagName} - Blog Tags`,
     description: `Browse all blog posts tagged with ${tagName}`,
+    openGraph: {
+      title: `${tagName} - Blog Tags`,
+      description: `Browse all blog posts tagged with ${tagName}`,
+      images: [
+        {
+          url: `/api/og/content?title=${encodeURIComponent(tagName)}&type=Blog+Tags`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      title: `${tagName} - Blog Tags`,
+      description: `Browse all blog posts tagged with ${tagName}`,
+      images: [
+        `/api/og/content?title=${encodeURIComponent(tagName)}&type=Blog+Tags`,
+      ],
+    },
   };
 }
 

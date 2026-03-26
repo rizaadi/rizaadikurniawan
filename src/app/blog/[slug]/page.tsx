@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import React from 'react';
+import { notFound } from 'next/navigation';
 
 import { getAllArticles, getSlug } from '@/lib/mdx';
 
@@ -16,11 +16,15 @@ interface BlogProps {
 }
 
 async function getBlogPost(slug: string) {
-  const post = await getSlug('blog', slug);
-  return {
-    ...post,
-    frontMatter: post.frontMatter as BlogFrontmatter,
-  };
+  try {
+    const post = await getSlug('blog', slug);
+    return {
+      ...post,
+      frontMatter: post.frontMatter as BlogFrontmatter,
+    };
+  } catch {
+    notFound();
+  }
 }
 
 export async function generateStaticParams() {
@@ -37,7 +41,7 @@ export async function generateMetadata({
   const { frontMatter } = await getBlogPost(slug);
 
   return {
-    title: `${frontMatter.title} - Riza Adi Kurniawan`,
+    title: frontMatter.title,
     description: frontMatter.description,
     openGraph: {
       title: frontMatter.title,
@@ -47,7 +51,7 @@ export async function generateMetadata({
       modifiedTime: frontMatter.lastModifiedAt,
       images: [
         {
-          url: `https://res.cloudinary.com/rizaadi/image/upload/f_auto,q_auto/rizaadikurniawan/${frontMatter.banner}`,
+          url: `/api/og/content?title=${encodeURIComponent(frontMatter.title)}&type=Blog`,
           width: 1200,
           height: 630,
           alt: frontMatter.title,
@@ -59,7 +63,7 @@ export async function generateMetadata({
       title: frontMatter.title,
       description: frontMatter.description,
       images: [
-        `https://res.cloudinary.com/rizaadi/image/upload/f_auto,q_auto/rizaadikurniawan/${frontMatter.banner}`,
+        `/api/og/content?title=${encodeURIComponent(frontMatter.title)}&type=Blog`,
       ],
     },
   };

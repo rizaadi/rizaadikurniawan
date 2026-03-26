@@ -8,7 +8,7 @@ import { prismaClient } from '@/lib/prisma';
 export const revalidate = 60;
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
@@ -22,23 +22,16 @@ export async function GET(
       select: { views: true },
     });
 
-    return NextResponse.json(
-      {
-        contentViews: content?.views.toString(),
-      },
-      {
-        headers: {
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
-        },
-      },
-    );
+    return NextResponse.json({
+      contentViews: content?.views.toString(),
+    });
   } catch (err: unknown) {
     return handleAPIError(err);
   }
 }
 
 export async function POST(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
 ) {
   try {

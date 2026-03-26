@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { getAllArticles, getFeatured } from '@/lib/mdx';
 
 import Layout from '@/components/Layout/Layout';

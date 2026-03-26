@@ -1,4 +1,4 @@
-import React from 'react';
+import { Metadata } from 'next';
 
 import { getAllArticles, getTags, sortByDate } from '@/lib/mdx';
 
@@ -6,9 +6,25 @@ import Layout from '@/components/Layout/Layout';
 
 import BlogsSection from '../../components/Content/Blog/BlogsSection';
 
-export const metadata = {
-  title: 'Blog - Riza Adi Kurniawan',
+export const metadata: Metadata = {
+  title: 'Blog',
   description: 'Exploring coding, design, and more',
+  openGraph: {
+    title: 'Blog',
+    description: 'Exploring coding, design, and more',
+    images: [
+      {
+        url: `/api/og/content?title=Blog&type=Riza+Adi+Kurniawan`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    title: 'Blog',
+    description: 'Exploring coding, design, and more',
+    images: [`/api/og/content?title=Blog&type=Riza+Adi+Kurniawan`],
+  },
 };
 
 async function getBlogData() {
